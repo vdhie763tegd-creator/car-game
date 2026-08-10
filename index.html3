@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Ahmed Games</title>
+
+<style>
+*{box-sizing:border-box;user-select:none;-webkit-user-select:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Arial;background:#09090b;color:white}
+.screen{display:none;width:100vw;height:100vh;position:relative}
+.active{display:flex}
+
+#menu{
+ flex-direction:column;justify-content:center;align-items:center;gap:13px;
+ background:linear-gradient(135deg,#111827,#312e81)
+}
+.title{font-size:40px;font-weight:bold}
+.menuBtn{
+ width:285px;padding:15px;border:0;border-radius:16px;
+ color:white;font-size:22px;font-weight:bold;background:#2563eb;
+ box-shadow:0 5px #1647a5
+}
+.menuBtn:active{transform:translateY(4px)}
+.green{background:#16a34a;box-shadow:0 5px #11632e}
+.purple{background:#9333ea;box-shadow:0 5px #641c9b}
+.minecraft{background:#65a30d;box-shadow:0 5px #365314}
+
+.back{
+ position:absolute;top:10px;right:10px;z-index:100;
+ padding:10px 16px;border:0;border-radius:10px;
+ background:#ef4444;color:white;font-weight:bold
+}
+
+/* XO */
+#xoMenu,#xoGame{
+ flex-direction:column;align-items:center;justify-content:center;
+ background:#172554;gap:16px
+}
+.board{width:330px;height:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.cell{border:0;border-radius:15px;background:#1e293b;color:white;font-size:60px}
+#xoResult{font-size:24px;height:35px}
+
+/* CARS */
+#carsGame{background:#111;justify-content:center;align-items:center}
+#carRoad{
+ width:360px;height:100vh;position:relative;overflow:hidden;
+ background:#333;border-left:5px solid white;border-right:5px solid white
+}
+.line{
+ position:absolute;width:8px;height:80px;background:white;
+ left:50%;transform:translateX(-50%)
+}
+.carPlayer,.enemy{
+ position:absolute;width:50px;height:90px;border-radius:10px
+}
+.carPlayer{background:red;bottom:30px;left:155px;z-index:5}
+.enemy{background:#ffd000;z-index:4}
+#carScore{
+ position:absolute;top:15px;left:15px;z-index:20;
+ font-size:22px;font-weight:bold
+}
+.carControls{
+ position:absolute;bottom:18px;left:50%;
+ transform:translateX(-50%);display:flex;gap:20px;
+ z-index:30;direction:ltr
+}
+.carControl{width:75px;height:65px;border:0;border-radius:15px;font-size:32px}
+#carOver{
+ display:none;position:absolute;inset:0;background:#000d;z-index:50;
+ text-align:center;padding-top:220px
+}
+#carOver button{
+ padding:13px 25px;border:0;border-radius:10px;
+ background:#2563eb;color:white;font-size:19px
+}
+
+/* SNAKE */
+#snakeGame{
+ flex-direction:column;align-items:center;
+ background:#052e16;padding-top:50px
+}
+#snakeCanvas{
+ width:320px;height:320px;
+ background:#111827;border:5px solid #22c55e
+}
+.snakeControls{
+ display:grid;grid-template-columns:60px 60px 60px;
+ grid-template-rows:50px 50px;gap:5px;margin-top:10px;
+ direction:ltr
+}
+.snakeControl{
+ border:0;border-radius:10px;
+ background:#22c55e;color:white;font-size:22px
+}
+#up{grid-column:2}
+#leftS{grid-column:1;grid-row:2}
+#down{grid-column:2;grid-row:2}
+#rightS{grid-column:3;grid-row:2}
+
+/* INFO */
+#info{
+ justify-content:center;align-items:center;text-align:center;
+ background:linear-gradient(135deg,#3b0764,#111827)
+}
+.infoBox{
+ width:min(92%,430px);padding:25px;border-radius:25px;
+ background:#ffffff12;border:2px solid #ffffff22
+}
+.infoText{font-size:18px;line-height:2;white-space:pre-line}
+
+/* MINECRAFT 3D */
+#mcGame{
+ background:#87ceeb;
+ display:none;
+}
+#mcGame.active{display:block}
+
+#mcCanvas{
+ position:absolute;
+ inset:0;
+ width:100%;
+ height:100%;
+ display:block;
+ touch-action:none;
+}
+
+#mcUI{
+ position:absolute;
+ inset:0;
+ z-index:20;
+ pointer-events:none;
+}
+
+#mcTitle{
+ position:absolute;
+ top:12px;
+ left:12px;
+ background:#0008;
+ padding:8px 12px;
+ border-radius:10px;
+ font-size:14px;
+}
+
+#crosshair{
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ font-size:28px;
+ text-shadow:0 0 4px black;
+}
+
+/* INVENTORY */
+#hotbar{
+ position:absolute;
+ bottom:15px;
+ left:50%;
+ transform:translateX(-50%);
+ display:flex;
+ gap:4px;
+ direction:ltr;
+ pointer-events:auto;
+}
+
+.slot{
+ width:48px;
+ height:48px;
+ border:3px solid #777;
+ background:#333d;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:22px;
+ pointer-events:auto;
+ cursor:pointer;
+}
+
+.slot.selected{
+ border-color:white;
+ transform:scale(1.08);
+}
+
+/* الحركة */
+#mcMove{
+ position:absolute;
+ bottom:15px;
+ left:15px;
+ display:grid;
+ grid-template-columns:55px 55px 55px;
+ grid-template-rows:55px 55px;
+ gap:4px;
+ pointer-events:auto;
+ direction:ltr;
+}
+
+.mcBtn{
+ border:0;
+ border-radius:12px;
+ background:#0009;
+ color:white;
+ font-size:25px;
+ font-weight:bold;
+ pointer-events:auto;
+ touch-action:none;
+}
+
+#mcForward{grid-column:2;grid-row:1}
+#mcLeft{grid-column:1;grid-row:2}
+#mcBack{grid-column:2;grid-row:2}
+#mcRight{grid-column:3;grid-row:2}
+
+/* الأفعال */
+#mcActions{
+ position:absolute;
+ bottom:15px;
+ right:15px;
+ display:flex;
+ gap:7px;
+ pointer-events:auto;
+}
+
+.mcAction{
+ width:70px;
+ height:55px;
+ border:0;
+ border-radius:12px;
+ color:white;
+ background:#0009;
+ font-weight:bold;
+ pointer-events:auto;
+ touch-action:none;
+}
+
+#mcJump{
+ position:absolute;
+ bottom:140px;
+ left:15px;
+ width:60px;
+ height:55px;
+ border:0;
+ border-radius:12px;
+ background:#0009;
+ color:white;
+ font-size:24px;
+ pointer-events:auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- القائمة -->
+<div id="menu" class="screen active">
+ <div class="title">🎮 Ahmed Games</div>
+
+ <button class="menuBtn" onclick="show('xoMenu')">
+  ❌⭕ XO
+ </button>
+
+ <button class="menuBtn" onclick="show('carsGame');startCars()">
+  🚗 Cars
+ </button>
+
+ <button class="menuBtn green" onclick="show('snakeGame');startSnake()">
+  🐍 The Snake
+ </button>
+
+ <button class="menuBtn minecraft" onclick="show('mcGame');startMC()">
+  ⛏️ Minecraft 3D
+ </button>
+
+ <button class="menuBtn purple" onclick="show('info')">
+  👤 معلومات عني
+ </button>
+</div>
+
+
+<!-- XO MENU -->
+<div id="xoMenu" class="screen">
+ <button class="back" onclick="show('menu')">رجوع</button>
+
+ <h1>❌⭕ XO</h1>
+
+ <button class="menuBtn" onclick="startXO('bot')">
+  🤖 لعب مع بوت
+ </button>
+
+ <button class="menuBtn" onclick="startXO('friend')">
+  👥 لعب مع صديق
+ </button>
+</div>
+
+
+<!-- XO GAME -->
+<div id="xoGame" class="screen">
+ <button class="back" onclick="show('xoMenu')">رجوع</button>
+
+ <h1>❌⭕ XO</h1>
+
+ <div id="xoTurn"></div>
+
+ <div class="board">
+  <button class="cell" onclick="xoPlay(0)"></button>
+  <button class="cell" onclick="xoPlay(1)"></button>
+  <button class="cell" onclick="xoPlay(2)"></button>
+  <button class="cell" onclick="xoPlay(3)"></button>
+  <button class="cell" onclick="xoPlay(4)"></button>
+  <button class="cell" onclick="xoPlay(5)"></button>
+  <button class="cell" onclick="xoPlay(6)"></button>
+  <button class="cell" onclick="xoPlay(7)"></button>
+  <button class="cell" onclick="xoPlay(8)"></button>
+ </div>
+
+ <div id="xoResult"></div>
+
+ <button class="menuBtn" onclick="xoRestart()">
+  🔄 إعادة اللعب
+ </button>
+</div>
+
+
+<!-- CARS -->
+<div id="carsGame" class="screen">
+
+ <button class="back" onclick="show('menu')">🏠</button>
+
+ <div id="carScore">النقاط: 0</div>
+
+ <div id="carRoad">
+
+  <div class="carPlayer" id="carPlayer"></div>
+
+  <div id="carOver">
+   <h1>💥 انتهت اللعبة</h1>
+   <h2 id="carFinal"></h2>
+   <button onclick="startCars()">🔄 إعادة</button>
+  </div>
+
+ </div>
+
+ <div class="carControls">
+  <button class="carControl" id="carLeft">⬅️</button>
+  <button class="carControl" id="carRight">➡️</button>
+ </div>
+</div>
+
+
+<!-- SNAKE -->
+<div id="snakeGame" class="screen">
+
+ <button class="back" onclick="show('menu')">🏠</button>
+
+ <h1>🐍 The Snake</h1>
+
+ <div id="snakeScore">النقاط: 0</div>
+
+ <canvas id="snakeCanvas" width="320" height="320"></canvas>
+
+ <div class="snakeControls">
+  <button class="snakeControl" id="up">⬆️</button>
+  <button class="snakeControl" id="leftS">⬅️</button>
+  <button class="snakeControl" id="down">⬇️</button>
+  <button class="snakeControl" id="rightS">➡️</button>
+ </div>
+</div>
+
+
+<!-- INFO -->
+<div id="info" class="screen">
+
+ <button class="back" onclick="show('menu')">🏠</button>
+
+ <div class="infoBox">
+
+  <h1>👤 معلومات عني</h1>
+
+  <div class="infoText">
+========المنشئ========
+                Ahmed_am
+
+========المساعد========
+                Ahmed_am
+
+=======فكرة اللعبه=======
+  </div>
+
+  <p>🎮 مجموعة ألعاب في لعبة واحدة</p>
+
+  <p>
+  ❌⭕ XO — 🚗 Cars — 🐍 Snake
+  <br>
+  ⛏️ Minecraft 3D
+  </p>
+
+ </div>
+</div>
+
+
+<!-- MINECRAFT 3D -->
+<div id="mcGame" class="screen">
+
+ <button class="back" onclick="show('menu')"
+ style="pointer-events:auto">
+  🏠
+ </button>
+
+ <canvas id="mcCanvas"></canvas>
+
+ <div id="mcUI">
+
+  <div id="mcTitle">
+   ⛏️ Minecraft 3D
+  </div>
+
+  <div id="crosshair">+</div>
+
+
+  <!-- INVENTORY -->
+  <div id="hotbar">
+
+   <div class="slot selected" data-block="grass">
+    🌱
+   </div>
+
+   <div class="slot" data-block="dirt">
+    🟫
+   </div>
+
+   <div class="slot" data-block="stone">
+    🪨
+   </div>
+
+   <div class="slot" data-block="wood">
+    🪵
+   </div>
+
+   <div class="slot" data-block="leaf">
+    🍃
+   </div>
+
+  </div>
+
+
+  <!-- الحركة -->
+  <div id="mcMove">
+
+   <button class="mcBtn" id="mcForward">
+    ⬆️
+   </button>
+
+   <button class="mcBtn" id="mcLeft">
+    ⬅️
+   </button>
+
+   <button class="mcBtn" id="mcBack">
+    ⬇️
+   </button>
+
+   <button class="mcBtn" id="mcRight">
+    ➡️
+   </button>
+
+  </div>
+
+
+  <!-- القفز -->
+  <button id="mcJump">
+   🦘
+  </button>
+
+
+  <!-- الكسر والوضع -->
+  <div id="mcActions">
+
+   <button class="mcAction" id="mcBreak">
+    ⛏️ كسر
+   </button>
+
+   <button class="mcAction" id="mcPlace">
+    🧱 وضع
+   </button>
+
+  </div>
+
+ </div>
+</div>
+
+
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+
+<script>
+
+/* =========================
+   القائمة
+========================= */
+
+function show(id){
+
+ document.querySelectorAll(".screen").forEach(s=>{
+  s.classList.remove("active");
+ });
+
+ document.getElementById(id).classList.add("active");
+}
+
+
+/* =========================
+   XO
+========================= */
+
+let xoMode="friend";
+let xo=[];
+let xoTurn="X";
+let xoOver=false;
+
+const xoCells=document.querySelectorAll(".cell");
+
+function startXO(mode){
+
+ xoMode=mode;
+
+ show("xoGame");
+
+ xoRestart();
+}
+
+function xoRestart(){
+
+ xo=[
+  "","","",
+  "","","",
+  "","",""
+ ];
+
+ xoTurn="X";
+ xoOver=false;
+
+ document.getElementById("xoResult").textContent="";
+
+ updateXO();
+}
+
+function updateXO(){
+
+ xoCells.forEach((c,i)=>{
+
+  c.textContent=
+   xo[i]=="X"?"❌":
+   xo[i]=="O"?"⭕":"";
+
+ });
+
+ document.getElementById("xoTurn").textContent=
+  xoOver?"":
+  xoTurn=="X"?"دور ❌":"دور ⭕";
+}
+
+function xoPlay(i){
+
+ if(xoOver||xo[i])return;
+
+ if(xoMode=="bot"&&xoTurn=="O")return;
+
+ xo[i]=xoTurn;
+
+ let r=xoWinner();
+
+ if(r){
+  xoFinish(r);
+  return;
+ }
+
+ xoTurn=xoTurn=="X"?"O":"X";
+
+ updateXO();
+
+ if(xoMode=="bot"&&xoTurn=="O")
+  setTimeout(xoBot,350);
+}
+
+function xoWinner(){
+
+ const w=[
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+ ];
+
+ for(let a of w){
+
+  if(
+   xo[a[0]] &&
+   xo[a[0]]==xo[a[1]] &&
+   xo[a[0]]==xo[a[2]]
+  )
+   return xo[a[0]];
+ }
+
+ return xo.includes("")?null:"draw";
+}
+
+function xoFinish(r){
+
+ xoOver=true;
+
+ document.getElementById("xoResult").textContent=
+  r=="draw"
+  ?"🤝 تعادل!"
+  :"🎉 الفائز: "+(r=="X"?"❌":"⭕");
+
+ updateXO();
+}
+
+function xoBot(){
+
+ if(xoOver)return;
+
+ let empty=xo
+  .map((v,i)=>v?null:i)
+  .filter(x=>x!==null);
+
+ if(!empty.length)return;
+
+ let i=xoFind("O");
+
+ if(i<0)i=xoFind("X");
+
+ if(i<0&&xo[4]=="")i=4;
+
+ if(i<0)
+  i=empty[Math.floor(Math.random()*empty.length)];
+
+ xo[i]="O";
+
+ let r=xoWinner();
+
+ if(r){
+  xoFinish(r);
+  return;
+ }
+
+ xoTurn="X";
+
+ updateXO();
+}
+
+function xoFind(p){
+
+ const w=[
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]
+ ];
+
+ for(let a of w){
+
+  let vals=a.map(i=>xo[i]);
+
+  if(
+   vals.filter(x=>x==p).length==2 &&
+   vals.includes("")
+  )
+   return a[vals.indexOf("")];
+ }
+
+ return -1;
+}
+
+
+/* =========================
+   CARS
+========================= */
+
+let carX=155;
+let carMoveL=false;
+let carMoveR=false;
+let carEnemies=[];
+let carScore=0;
+let carRunning=false;
+let carSpeed=5;
+
+function startCars(){
+
+ carRunning=true;
+ carX=155;
+ carScore=0;
+ carSpeed=5;
+ carEnemies=[];
+
+ document.getElementById("carOver").style.display="none";
+
+ document.getElementById("carScore").textContent=
+  "النقاط: 0";
+
+ const road=document.getElementById("carRoad");
+
+ road.querySelectorAll(".line,.enemy")
+ .forEach(x=>x.remove());
+
+ for(let i=0;i<8;i++){
+
+  let l=document.createElement("div");
+
+  l.className="line";
+  l.style.top=(i*100-100)+"px";
+
+  road.appendChild(l);
+ }
+
+ document.getElementById("carPlayer")
+ .style.left=carX+"px";
+}
+
+setInterval(()=>{
+
+ if(
+  carRunning &&
+  document.getElementById("carsGame")
+  .classList.contains("active")
+ ){
+
+  let e=document.createElement("div");
+
+  e.className="enemy";
+
+  let lanes=[55,155,255];
+
+  e.style.left=
+   lanes[Math.floor(Math.random()*3)]+"px";
+
+  e.style.top="-100px";
+
+  document.getElementById("carRoad")
+  .appendChild(e);
+
+  carEnemies.push({
+   e:e,
+   y:-100
+  });
+ }
+
+},1200);
+
+function carLoop(){
+
+ if(
+  carRunning &&
+  document.getElementById("carsGame")
+  .classList.contains("active")
+ ){
+
+  if(carMoveL)carX-=7;
+  if(carMoveR)carX+=7;
+
+  carX=Math.max(10,Math.min(300,carX));
+
+  document.getElementById("carPlayer")
+  .style.left=carX+"px";
+
+  document.querySelectorAll("#carRoad .line")
+  .forEach(l=>{
+
+   let y=parseInt(l.style.top)+carSpeed;
+
+   if(y>700)y=-80;
+
+   l.style.top=y+"px";
+  });
+
+  for(let i=carEnemies.length-1;i>=0;i--){
+
+   let a=carEnemies[i];
+
+   a.y+=carSpeed;
+
+   a.e.style.top=a.y+"px";
+
+   if(hit(
+    document.getElementById("carPlayer"),
+    a.e
+   )){
+
+    carRunning=false;
+
+    document.getElementById("carFinal")
+    .textContent="نقاطك: "+carScore;
+
+    document.getElementById("carOver")
+    .style.display="block";
+   }
+
+   if(a.y>750){
+
+    a.e.remove();
+
+    carEnemies.splice(i,1);
+
+    carScore++;
+
+    document.getElementById("carScore")
+    .textContent="النقاط: "+carScore;
+
+    if(carScore%10==0)
+     carSpeed++;
+   }
+  }
+ }
+
+ requestAnimationFrame(carLoop);
+}
+
+function hit(a,b){
+
+ let x=a.getBoundingClientRect();
+ let y=b.getBoundingClientRect();
+
+ return !(
+  x.bottom<y.top ||
+  x.top>y.bottom ||
+  x.right<y.left ||
+  x.left>y.right
+ );
+}
+
+requestAnimationFrame(carLoop);
+
+function carButton(id,set){
+
+ let b=document.getElementById(id);
+
+ b.addEventListener("touchstart",e=>{
+  e.preventDefault();
+  set(true);
+ },{passive:false});
+
+ b.addEventListener("touchend",e=>{
+  e.preventDefault();
+  set(false);
+ },{passive:false});
+
+ b.addEventListener("mousedown",()=>set(true));
+ b.addEventListener("mouseup",()=>set(false));
+ b.addEventListener("mouseleave",()=>set(false));
+}
+
+carButton("carLeft",v=>carMoveL=v);
+carButton("carRight",v=>carMoveR=v);
+
+
+/* =========================
+   SNAKE
+========================= */
+
+const sc=document.getElementById("snakeCanvas");
+const sx=sc.getContext("2d");
+
+let snake;
+let food;
+let sdx;
+let sdy;
+let sScore;
+let sTimer;
+
+function startSnake(){
+
+ clearInterval(sTimer);
+
+ snake=[
+  {x:10,y:10},
+  {x:9,y:10},
+  {x:8,y:10}
+ ];
+
+ sdx=1;
+ sdy=0;
+ sScore=0;
+
+ foodNew();
+
+ document.getElementById("snakeScore")
+ .textContent="النقاط: 0";
+
+ sTimer=setInterval(()=>{
+
+  let h={
+   x:snake[0].x+sdx,
+   y:snake[0].y+sdy
+  };
+
+  if(
+   h.x<0||
+   h.x>=20||
+   h.y<0||
+   h.y>=20||
+   snake.some(p=>p.x==h.x&&p.y==h.y)
+  ){
+
+   startSnake();
+   return;
+  }
+
+  snake.unshift(h);
+
+  if(h.x==food.x&&h.y==food.y){
+
+   sScore++;
+
+   document.getElementById("snakeScore")
+   .textContent="النقاط: "+sScore;
+
+   foodNew();
+
+  }else{
+   snake.pop();
+  }
+
+  snakeDraw();
+
+ },120);
+
+ snakeDraw();
+}
+
+function foodNew(){
+
+ food={
+  x:Math.floor(Math.random()*20),
+  y:Math.floor(Math.random()*20)
+ };
+}
+
+function snakeDraw(){
+
+ sx.fillStyle="#111827";
+ sx.fillRect(0,0,320,320);
+
+ sx.fillStyle="#ef4444";
+ sx.fillRect(food.x*16,food.y*16,15,15);
+
+ sx.fillStyle="#22c55e";
+
+ snake.forEach(p=>{
+  sx.fillRect(p.x*16,p.y*16,15,15);
+ });
+}
+
+function sd(dx,dy){
+
+ if(dx==-sdx&&dy==-sdy)return;
+
+ sdx=dx;
+ sdy=dy;
+}
+
+document.getElementById("up").onclick=()=>sd(0,-1);
+document.getElementById("down").onclick=()=>sd(0,1);
+document.getElementById("leftS").onclick=()=>sd(-1,0);
+document.getElementById("rightS").onclick=()=>sd(1,0);
+
+
+/* ==================================================
+   MINECRAFT 3D
+================================================== */
+
+let renderer;
+let scene;
+let camera;
+let mcStarted=false;
+
+let blocks=[];
+
+let selectedBlock="grass";
+
+let player={
+ x:0,
+ y:3,
+ z:5,
+ vy:0,
+ speed:.12,
+ onGround:false
+};
+
+let keys={
+ forward:false,
+ back:false,
+ left:false,
+ right:false
+};
+
+let cameraYaw=0;
+let cameraPitch=0;
+
+const blockColors={
+ grass:0x55aa35,
+ dirt:0x8b5a2b,
+ stone:0x777777,
+ wood:0x9a6a3a,
+ leaf:0x287a2e
+};
+
+
+/* بدء اللعبة */
+
+function startMC(){
+
+ if(mcStarted)return;
+
+ mcStarted=true;
+
+ const canvas=
+  document.getElementById("mcCanvas");
+
+ renderer=new THREE.WebGLRenderer({
+  canvas:canvas,
+  antialias:true
+ });
+
+ renderer.setPixelRatio(
+  Math.min(devicePixelRatio,2)
+ );
+
+ renderer.setSize(
+  innerWidth,
+  innerHeight
+ );
+
+ scene=new THREE.Scene();
+
+ scene.background=
+  new THREE.Color(0x87ceeb);
+
+ camera=new THREE.PerspectiveCamera(
+  70,
+  innerWidth/innerHeight,
+  .1,
+  500
+ );
+
+ camera.rotation.order="YXZ";
+
+ const ambient=
+  new THREE.AmbientLight(0xffffff,.7);
+
+ scene.add(ambient);
+
+ const sun=
+  new THREE.DirectionalLight(0xffffff,1);
+
+ sun.position.set(20,40,10);
+
+ scene.add(sun);
+
+ generateWorld();
+
+ animateMC();
+}
+
+
+/* إنشاء بلوك */
+
+function addBlock(x,y,z,type){
+
+ const geometry=
+  new THREE.BoxGeometry(1,1,1);
+
+ const material=
+  new THREE.MeshLambertMaterial({
+   color:blockColors[type]||0xffffff
+  });
+
+ const mesh=
+  new THREE.Mesh(
+   geometry,
+   material
+  );
+
+ mesh.position.set(x,y,z);
+
+ mesh.userData={
+  block:true,
+  type:type
+ };
+
+ scene.add(mesh);
+
+ blocks.push(mesh);
+
+ return mesh;
+}
+
+
+/* العالم */
+
+function generateWorld(){
+
+ for(let x=-16;x<=16;x++){
+
+  for(let z=-16;z<=16;z++){
+
+   let h=Math.floor(
+    1+
+    Math.sin(x*.4)*.5+
+    Math.cos(z*.35)*.5
+   );
+
+   h=Math.max(0,Math.min(2,h));
+
+   for(let y=0;y<=h;y++){
+
+    let type=
+     y==h
+     ?"grass"
+     :y>=h-1
+     ?"dirt"
+     :"stone";
+
+    addBlock(x,y,z,type);
+   }
+  }
+ }
+
+
+ /* أشجار */
+
+ for(let i=0;i<12;i++){
+
+  let x=
+   Math.floor(Math.random()*24)-12;
+
+  let z=
+   Math.floor(Math.random()*24)-12;
+
+  for(let y=2;y<5;y++)
+   addBlock(x,y,z,"wood");
+
+  for(let xx=-1;xx<=1;xx++){
+
+   for(let zz=-1;zz<=1;zz++){
+
+    for(let yy=4;yy<=5;yy++){
+
+     if(Math.random()>.15)
+      addBlock(
+       x+xx,
+       yy,
+       z+zz,
+       "leaf"
+      );
+    }
+   }
+  }
+ }
+
+ player.x=0;
+ player.y=3;
+ player.z=5;
+}
+
+
+/* تحديث اللاعب */
+
+function updateMC(){
+
+ let dx=0;
+ let dz=0;
+
+ if(keys.forward)dz-=player.speed;
+ if(keys.back)dz+=player.speed;
+ if(keys.left)dx-=player.speed;
+ if(keys.right)dx+=player.speed;
+
+
+ /* الحركة حسب اتجاه الكاميرا */
+
+ let sin=Math.sin(cameraYaw);
+ let cos=Math.cos(cameraYaw);
+
+ let moveX=
+  dx*cos-dz*sin;
+
+ let moveZ=
+  dx*sin+dz*cos;
+
+ player.x+=moveX;
+ player.z+=moveZ;
+
+
+ /* الجاذبية */
+
+ player.vy-=.012;
+
+ player.y+=player.vy;
+
+ if(player.y<2.05){
+
+  player.y=2.05;
+
+  player.vy=0;
+
+  player.onGround=true;
+ }
+
+
+ /* حدود العالم */
+
+ player.x=
+  Math.max(-15,Math.min(15,player.x));
+
+ player.z=
+  Math.max(-15,Math.min(15,player.z));
+
+
+ /* الكاميرا */
+
+ camera.position.set(
+  player.x,
+  player.y+.65,
+  player.z
+ );
+
+ camera.rotation.y=
+  cameraYaw;
+
+ camera.rotation.x=
+  cameraPitch;
+
+
+ document.getElementById("mcTitle")
+ .textContent=
+ "⛏️ Minecraft 3D | X:"+
+ Math.floor(player.x)+
+ " Z:"+
+ Math.floor(player.z);
+}
+
+
+/* القفز */
+
+function jumpMC(){
+
+ if(player.onGround){
+
+  player.vy=.22;
+
+  player.onGround=false;
+ }
+}
+
+
+/* تحديد البلوك */
+
+function raycastBlock(){
+
+ const raycaster=
+  new THREE.Raycaster();
+
+ raycaster.setFromCamera(
+  new THREE.Vector2(0,0),
+  camera
+ );
+
+ const hits=
+  raycaster.intersectObjects(blocks);
+
+ if(
+  hits.length &&
+  hits[0].distance<5
+ )
+  return hits[0];
+
+ return null;
+}
+
+
+/* كسر */
+
+function breakMC(){
+
+ const hit=
+  raycastBlock();
+
+ if(!hit)return;
+
+ const obj=hit.object;
+
+ scene.remove(obj);
+
+ blocks=
+  blocks.filter(b=>b!==obj);
+
+ obj.geometry.dispose();
+ obj.material.dispose();
+}
+
+
+/* وضع */
+
+function placeMC(){
+
+ const hit=
+  raycastBlock();
+
+ if(!hit)return;
+
+ const normal=
+  hit.face.normal.clone();
+
+ const pos=
+  hit.object.position.clone();
+
+ pos.add(normal);
+
+ addBlock(
+  Math.round(pos.x),
+  Math.round(pos.y),
+  Math.round(pos.z),
+  selectedBlock
+ );
+}
+
+
+/* =========================
+   تحريك الكاميرا باللمس
+========================= */
+
+let touchingCamera=false;
+let touchX=0;
+let touchY=0;
+
+const mcCanvas=
+ document.getElementById("mcCanvas");
+
+mcCanvas.addEventListener(
+ "touchstart",
+ e=>{
+
+  if(e.touches.length!==1)return;
+
+  touchingCamera=true;
+
+  touchX=e.touches[0].clientX;
+  touchY=e.touches[0].clientY;
+
+ },
+ {passive:false}
+);
+
+mcCanvas.addEventListener(
+ "touchmove",
+ e=>{
+
+  if(!touchingCamera)return;
+
+  e.preventDefault();
+
+  let x=e.touches[0].clientX;
+  let y=e.touches[0].clientY;
+
+  let dx=x-touchX;
+  let dy=y-touchY;
+
+  touchX=x;
+  touchY=y;
+
+  cameraYaw-=dx*.006;
+  cameraPitch-=dy*.006;
+
+  cameraPitch=
+   Math.max(
+    -Math.PI/2+.1,
+    Math.min(Math.PI/2-.1,cameraPitch)
+   );
+
+ },
+ {passive:false}
+);
+
+mcCanvas.addEventListener(
+ "touchend",
+ ()=>{
+  touchingCamera=false;
+ }
+);
+
+
+/* =========================
+   أزرار الحركة
+========================= */
+
+function mcHold(id,key){
+
+ const button=
+  document.getElementById(id);
+
+ button.addEventListener(
+  "touchstart",
+  e=>{
+   e.preventDefault();
+   keys[key]=true;
+  },
+  {passive:false}
+ );
+
+ button.addEventListener(
+  "touchend",
+  e=>{
+   e.preventDefault();
+   keys[key]=false;
+  },
+  {passive:false}
+ );
+
+ button.addEventListener(
+  "touchcancel",
+  ()=>{
+   keys[key]=false;
+  }
+ );
+
+ button.addEventListener(
+  "mousedown",
+  ()=>{
+   keys[key]=true;
+  }
+ );
+
+ button.addEventListener(
+  "mouseup",
+  ()=>{
+   keys[key]=false;
+  }
+ );
+
+ button.addEventListener(
+  "mouseleave",
+  ()=>{
+   keys[key]=false;
+  }
+ );
+}
+
+mcHold("mcForward","forward");
+mcHold("mcBack","back");
+mcHold("mcLeft","left");
+mcHold("mcRight","right");
+
+
+/* القفز */
+
+document.getElementById("mcJump")
+.onclick=jumpMC;
+
+
+/* كسر ووضع */
+
+document.getElementById("mcBreak")
+.onclick=breakMC;
+
+document.getElementById("mcPlace")
+.onclick=placeMC;
+
+
+/* =========================
+   INVENTORY
+========================= */
+
+document.querySelectorAll(".slot")
+.forEach(slot=>{
+
+ slot.addEventListener(
+  "click",
+  e=>{
+
+   e.stopPropagation();
+
+   document
+    .querySelectorAll(".slot")
+    .forEach(s=>
+     s.classList.remove("selected")
+    );
+
+   slot.classList.add("selected");
+
+   selectedBlock=
+    slot.dataset.block;
+  }
+ );
+
+});
+
+
+/* =========================
+   الكمبيوتر
+========================= */
+
+document.addEventListener(
+ "keydown",
+ e=>{
+
+  if(
+   !document
+    .getElementById("mcGame")
+    .classList.contains("active")
+  )return;
+
+  if(e.key=="w"||e.key=="ArrowUp")
+   keys.forward=true;
+
+  if(e.key=="s"||e.key=="ArrowDown")
+   keys.back=true;
+
+  if(e.key=="a"||e.key=="ArrowLeft")
+   keys.left=true;
+
+  if(e.key=="d"||e.key=="ArrowRight")
+   keys.right=true;
+
+  if(e.code=="Space")
+   jumpMC();
+
+  if(e.key=="q")
+   breakMC();
+
+  if(e.key=="e")
+   placeMC();
+ });
+
+document.addEventListener(
+ "keyup",
+ e=>{
+
+  if(e.key=="w"||e.key=="ArrowUp")
+   keys.forward=false;
+
+  if(e.key=="s"||e.key=="ArrowDown")
+   keys.back=false;
+
+  if(e.key=="a"||e.key=="ArrowLeft")
+   keys.left=false;
+
+  if(e.key=="d"||e.key=="ArrowRight")
+   keys.right=false;
+ });
+
+
+/* =========================
+   تشغيل Minecraft
+========================= */
+
+function animateMC(){
+
+ requestAnimationFrame(animateMC);
+
+ if(
+  document
+   .getElementById("mcGame")
+   .classList.contains("active")
+ ){
+
+  updateMC();
+
+  renderer.render(
+   scene,
+   camera
+  );
+ }
+}
+
+
+/* تغيير حجم الشاشة */
+
+window.addEventListener(
+ "resize",
+ ()=>{
+
+  if(!renderer||!camera)return;
+
+  renderer.setSize(
+   innerWidth,
+   innerHeight
+  );
+
+  camera.aspect=
+   innerWidth/innerHeight;
+
+  camera.updateProjectionMatrix();
+ });
+
+</script>
+
+</body>
+</html>
