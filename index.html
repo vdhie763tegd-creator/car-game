@@ -3,96 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-
 <title>Ahmed Games</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  user-select:none;
-  -webkit-user-select:none;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+box-sizing:border-box;
+user-select:none;
+-webkit-user-select:none;
+-webkit-tap-highlight-color:transparent;
 }
 
 html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Arial,sans-serif;
-  color:white;
-  background:
-    radial-gradient(circle at top,#24458d,#101a3b 45%,#070b19);
-}
-
-body{
-  min-height:100vh;
+margin:0;
+min-height:100%;
+font-family:Arial,sans-serif;
+color:white;
+background:radial-gradient(circle at top,#24458d,#101a3b 45%,#070b19);
 }
 
 button{
-  border:0;
-  color:white;
-  font-family:Arial;
-  cursor:pointer;
+border:0;
+color:white;
+font-family:Arial,sans-serif;
+cursor:pointer;
+-webkit-appearance:none;
+appearance:none;
+touch-action:manipulation;
 }
 
 .screen{
-  display:none;
-  min-height:100vh;
-  width:100%;
-  padding:15px;
+display:none;
+min-height:100vh;
+width:100%;
+padding:15px;
 }
 
-.screen.show{
-  display:block;
-}
+.screen.show{display:block}
 
 .container{
-  width:min(700px,100%);
-  margin:auto;
+width:min(700px,100%);
+margin:auto;
 }
 
-h1,h2,h3{
-  text-align:center;
-}
+h1,h2,h3{text-align:center}
 
 .logo{
-  text-align:center;
-  padding:25px 0;
+text-align:center;
+padding:25px 0;
 }
 
-.logo .icon{
-  font-size:55px;
-}
+.logo .icon{font-size:55px}
 
 .logo h1{
-  font-size:42px;
-  margin:5px;
+font-size:42px;
+margin:5px;
 }
 
-.logo p{
-  opacity:.7;
-}
+.logo p{opacity:.7}
 
 .menu{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
 .menu button{
-  min-height:105px;
-  border-radius:22px;
-  font-size:21px;
-  font-weight:bold;
-  box-shadow:0 6px 0 #0005;
+min-height:105px;
+border-radius:22px;
+font-size:21px;
+font-weight:bold;
+box-shadow:0 6px 0 #0005;
 }
 
 .menu button:active,
 .big:active,
 .back:active,
 .mode:active,
-.gameBtn:active{
-  transform:scale(.96);
+.gameBtn:active,
+.kick:active{
+transform:scale(.96);
 }
 
 .blue{background:#2563eb}
@@ -105,196 +94,187 @@ h1,h2,h3{
 .pink{background:#d42a9d}
 
 .panel{
-  width:min(650px,100%);
-  margin:auto;
-  padding:18px;
-  border-radius:24px;
-  background:#0d1733ee;
+width:min(650px,100%);
+margin:auto;
+padding:18px;
+border-radius:24px;
+background:#0d1733ee;
 }
 
 .back{
-  display:block;
-  width:min(650px,100%);
-  margin:0 auto 12px;
-  padding:15px;
-  border-radius:15px;
-  background:#30466f;
-  font-size:19px;
-  font-weight:bold;
+display:block;
+width:min(650px,100%);
+margin:0 auto 12px;
+padding:15px;
+border-radius:15px;
+background:#30466f;
+font-size:19px;
+font-weight:bold;
 }
 
 .big{
-  width:100%;
-  padding:16px;
-  margin:7px 0;
-  border-radius:16px;
-  background:#2563eb;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.mode{
-  width:100%;
-  min-height:120px;
-  border-radius:20px;
-  background:#2563eb;
-  font-size:22px;
-  font-weight:bold;
+width:100%;
+padding:16px;
+margin:7px 0;
+border-radius:16px;
+background:#2563eb;
+font-size:20px;
+font-weight:bold;
 }
 
 .modeBox{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.mode{
+width:100%;
+min-height:120px;
+border-radius:20px;
+background:#2563eb;
+font-size:22px;
+font-weight:bold;
 }
 
 .result{
-  text-align:center;
-  font-size:22px;
-  min-height:35px;
-  margin:12px;
+text-align:center;
+font-size:22px;
+min-height:35px;
+margin:12px;
 }
 
 /* XO */
-
 .xo{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  max-width:360px;
-  margin:20px auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+max-width:360px;
+margin:20px auto;
 }
 
 .xo button{
-  aspect-ratio:1;
-  border-radius:16px;
-  background:#263b67;
-  font-size:55px;
+aspect-ratio:1;
+border-radius:16px;
+background:#263b67;
+font-size:55px;
 }
 
-/* ================= CARS ================= */
-
+/* CARS */
 #carGame{
-  position:relative;
-  width:360px;
-  max-width:100%;
-  height:calc(100vh - 160px);
-  min-height:500px;
-  max-height:700px;
-  margin:auto;
-  overflow:hidden;
-  background:#333;
-  border-left:5px solid white;
-  border-right:5px solid white;
+position:relative;
+width:360px;
+max-width:100%;
+height:calc(100vh - 160px);
+min-height:500px;
+max-height:700px;
+margin:auto;
+overflow:hidden;
+background:#333;
+border-left:5px solid white;
+border-right:5px solid white;
 }
 
 .line{
-  position:absolute;
-  width:8px;
-  height:80px;
-  background:white;
-  left:50%;
-  transform:translateX(-50%);
+position:absolute;
+width:8px;
+height:80px;
+background:white;
+left:50%;
+transform:translateX(-50%);
 }
 
 .player{
-  position:absolute;
-  width:50px;
-  height:90px;
-  background:red;
-  border-radius:10px;
-  bottom:30px;
-  left:155px;
-  z-index:5;
+position:absolute;
+width:50px;
+height:90px;
+background:red;
+border-radius:10px;
+bottom:30px;
+left:155px;
+z-index:5;
 }
 
 .enemy{
-  position:absolute;
-  width:50px;
-  height:90px;
-  background:#ffd21c;
-  border-radius:10px;
-  z-index:4;
+position:absolute;
+width:50px;
+height:90px;
+background:#ffd21c;
+border-radius:10px;
+z-index:4;
 }
 
 .carControls{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  direction:ltr;
-  margin-top:12px;
+display:flex;
+justify-content:center;
+gap:20px;
+direction:ltr;
+margin-top:12px;
 }
 
 .carControls button{
-  width:85px;
-  height:65px;
-  border-radius:15px;
-  background:white;
-  color:#111;
-  font-size:34px;
-  touch-action:none;
+width:85px;
+height:65px;
+border-radius:15px;
+background:white;
+color:#111;
+font-size:34px;
 }
 
 .carOver{
-  display:none;
-  position:absolute;
-  inset:0;
-  background:#000e;
-  z-index:20;
-  align-items:center;
-  justify-content:center;
+display:none;
+position:absolute;
+inset:0;
+background:#000e;
+z-index:20;
+align-items:center;
+justify-content:center;
 }
 
-.carOver.show{
-  display:flex;
-}
+.carOver.show{display:flex}
 
-.carOver div{
-  text-align:center;
-}
+.carOver div{text-align:center}
 
-/* ================= SNAKE ================= */
-
+/* SNAKE */
 .snakeBoard{
-  width:min(360px,90vw);
-  aspect-ratio:1;
-  margin:15px auto;
-  position:relative;
-  overflow:hidden;
-  border:6px solid #18d866;
-  border-radius:18px;
-  background:#101827;
+width:min(360px,90vw);
+aspect-ratio:1;
+margin:15px auto;
+position:relative;
+overflow:hidden;
+border:6px solid #18d866;
+border-radius:18px;
+background:#101827;
 }
 
 .snakePart{
-  position:absolute;
-  width:8.333%;
-  height:8.333%;
-  background:#20d968;
+position:absolute;
+width:8.333%;
+height:8.333%;
+background:#20d968;
 }
 
 .food{
-  position:absolute;
-  width:8.333%;
-  height:8.333%;
-  background:red;
-  border-radius:50%;
+position:absolute;
+width:8.333%;
+height:8.333%;
+background:red;
+border-radius:50%;
 }
 
 .snakeControls{
-  width:260px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
+width:260px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:7px;
 }
 
 .snakeControls button{
-  height:60px;
-  border-radius:14px;
-  background:#304975;
-  font-size:28px;
-  touch-action:manipulation;
+height:60px;
+border-radius:14px;
+background:#304975;
+font-size:28px;
 }
 
 .up{grid-column:2}
@@ -302,305 +282,304 @@ h1,h2,h3{
 .sd{grid-column:2}
 .sr{grid-column:3}
 
-/* ================= PENALTY ================= */
-
+/* PENALTY */
 .penaltyField{
-  position:relative;
-  width:100%;
-  height:570px;
-  overflow:hidden;
-  border-radius:25px;
-  border:5px solid white;
-  background:
-    linear-gradient(
-      to bottom,
-      #159447 0%,
-      #20a94e 50%,
-      #159447 100%
-    );
-}
-
-.penaltyField:before{
-  content:"";
-  position:absolute;
-  width:330px;
-  height:180px;
-  border:4px solid white;
-  border-bottom:0;
-  left:50%;
-  top:0;
-  transform:translateX(-50%);
-}
-
-.penaltyField:after{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:80px;
-  border:4px solid white;
-  border-bottom:0;
-  left:50%;
-  top:0;
-  transform:translateX(-50%);
+position:relative;
+width:100%;
+height:570px;
+overflow:hidden;
+border-radius:25px;
+border:5px solid white;
+background:linear-gradient(to bottom,#159447,#20a94e 50%,#159447);
 }
 
 .goal{
-  position:absolute;
-  width:300px;
-  height:150px;
-  left:50%;
-  top:20px;
-  transform:translateX(-50%);
-  border:8px solid white;
-  border-bottom:12px solid white;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 24px,
-      rgba(255,255,255,.35) 25px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 24px,
-      rgba(255,255,255,.35) 25px
-    );
-  z-index:2;
+position:absolute;
+width:300px;
+height:150px;
+left:50%;
+top:20px;
+transform:translateX(-50%);
+border:8px solid white;
+background:
+repeating-linear-gradient(90deg,transparent 0,transparent 24px,#ffffff55 25px),
+repeating-linear-gradient(0deg,transparent 0,transparent 24px,#ffffff55 25px);
+z-index:2;
 }
 
 .keeper{
-  position:absolute;
-  left:50%;
-  bottom:15px;
-  transform:translateX(-50%);
-  font-size:65px;
-  z-index:8;
-  transition:
-    left .45s ease,
-    bottom .45s ease,
-    transform .45s ease;
+position:absolute;
+left:50%;
+bottom:15px;
+transform:translateX(-50%);
+font-size:65px;
+z-index:8;
+transition:.45s;
 }
 
 .ball{
-  position:absolute;
-  left:50%;
-  bottom:95px;
-  transform:translateX(-50%);
-  font-size:42px;
-  z-index:10;
-  transition:
-    left .65s cubic-bezier(.2,.8,.3,1),
-    bottom .65s cubic-bezier(.2,.8,.3,1),
-    transform .65s ease;
+position:absolute;
+left:50%;
+bottom:95px;
+transform:translateX(-50%);
+font-size:42px;
+z-index:10;
+transition:.65s;
 }
 
 .penaltyPlayer{
-  position:absolute;
-  left:50%;
-  bottom:10px;
-  transform:translateX(-50%);
-  font-size:75px;
-  z-index:7;
-  transition:left .35s ease;
+position:absolute;
+left:50%;
+bottom:10px;
+transform:translateX(-50%);
+font-size:75px;
+z-index:7;
+transition:.35s;
 }
 
 .penaltyResult{
-  position:absolute;
-  left:50%;
-  top:190px;
-  transform:translateX(-50%);
-  width:90%;
-  text-align:center;
-  font-size:32px;
-  font-weight:bold;
-  z-index:20;
-  text-shadow:0 3px 5px #000;
-  opacity:0;
-  transition:opacity .2s;
+position:absolute;
+left:50%;
+top:190px;
+transform:translateX(-50%);
+width:90%;
+text-align:center;
+font-size:32px;
+font-weight:bold;
+z-index:20;
+text-shadow:0 3px 5px #000;
+opacity:0;
+transition:.2s;
 }
 
-.penaltyResult.show{
-  opacity:1;
-}
+.penaltyResult.show{opacity:1}
 
 .kicks{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:15px;
 }
 
 .kick{
-  height:75px;
-  border-radius:18px;
-  background:#2563eb;
-  color:white;
-  font-size:32px;
-  font-weight:bold;
-  box-shadow:0 5px 0 #123b91;
-  touch-action:manipulation;
-}
-
-.kick:active{
-  transform:scale(.94);
+height:75px;
+border-radius:18px;
+background:#2563eb;
+font-size:32px;
+font-weight:bold;
+box-shadow:0 5px 0 #123b91;
 }
 
 .penaltyRestart{
-  width:100%;
-  margin-top:12px;
-  padding:16px;
-  border-radius:18px;
-  background:#e87500;
-  color:white;
-  font-size:21px;
-  font-weight:bold;
+width:100%;
+margin-top:12px;
+padding:16px;
+border-radius:18px;
+background:#e87500;
+font-size:21px;
+font-weight:bold;
 }
 
-/* ================= BALLOON ================= */
-
+/* BALLOON */
 .balloonArea{
-  height:500px;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  background:linear-gradient(#47c5ff,#c5f2ff);
+height:500px;
+position:relative;
+overflow:hidden;
+border-radius:20px;
+background:linear-gradient(#47c5ff,#c5f2ff);
 }
 
 .balloon{
-  position:absolute;
-  width:60px;
-  height:75px;
-  border-radius:50%;
+position:absolute;
+width:60px;
+height:75px;
+border-radius:50%;
 }
 
-/* ================= QUIZ ================= */
-
+/* QUIZ */
 .question{
-  text-align:center;
-  font-size:25px;
-  margin:25px 5px;
+text-align:center;
+font-size:25px;
+margin:25px 5px;
 }
 
 .answers{
-  display:grid;
-  gap:10px;
+display:grid;
+gap:10px;
 }
 
 .answers button{
-  padding:17px;
-  border-radius:15px;
-  background:#293e6b;
-  font-size:20px;
+padding:17px;
+border-radius:15px;
+background:#293e6b;
+font-size:20px;
 }
 
-/* ================= EMOJI ================= */
-
+/* EMOJI */
 .emojiGrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:8px;
 }
 
 .emojiGrid button{
-  aspect-ratio:1;
-  border-radius:13px;
-  background:#293c65;
-  font-size:30px;
+aspect-ratio:1;
+border-radius:13px;
+background:#293c65;
+font-size:30px;
 }
 
-/* ================= RPS ================= */
-
+/* RPS */
 .rpsGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
 .rpsGrid button{
-  padding:25px 5px;
-  border-radius:18px;
-  background:#293e6b;
-  font-size:40px;
+padding:25px 5px;
+border-radius:18px;
+background:#293e6b;
+font-size:40px;
 }
 
-/* ================= BOMB ================= */
-
+/* BOMB */
 .bombGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
 }
 
 .bombGrid button{
-  aspect-ratio:1;
-  border-radius:14px;
-  background:#725331;
-  font-size:28px;
+aspect-ratio:1;
+border-radius:14px;
+background:#725331;
+font-size:28px;
 }
 
-.bombGrid button:disabled{
-  opacity:.5;
+.bombGrid button:disabled{opacity:.5}
+
+/* ================= LIQUID ================= */
+
+.liquidInfo{
+text-align:center;
+font-size:20px;
+margin-bottom:15px;
 }
 
-/* ================= INFO ================= */
+.tubes{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px;
+justify-items:center;
+align-items:end;
+max-width:520px;
+margin:20px auto;
+}
 
+.tube{
+width:65px;
+height:190px;
+border:4px solid #dbeafe;
+border-top:0;
+border-radius:0 0 25px 25px;
+background:#ffffff18;
+display:flex;
+flex-direction:column-reverse;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+transition:.2s;
+}
+
+.tube.selected{
+transform:translateY(-12px);
+border-color:#ffd43b;
+box-shadow:0 0 18px #ffd43b;
+}
+
+.liquid{
+width:100%;
+height:25%;
+flex-shrink:0;
+border-top:2px solid #ffffff55;
+}
+
+.liquid.redL{background:#ef4444}
+.liquid.blueL{background:#3b82f6}
+.liquid.greenL{background:#22c55e}
+.liquid.yellowL{background:#facc15}
+.liquid.purpleL{background:#a855f7}
+.liquid.orangeL{background:#f97316}
+
+.liquidWin{
+text-align:center;
+font-size:26px;
+font-weight:bold;
+min-height:35px;
+}
+
+.liquidButtons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
+}
+
+/* INFO */
 .info{
-  text-align:center;
-  font-size:21px;
-  line-height:2;
+text-align:center;
+font-size:21px;
+line-height:2;
 }
 
 @media(max-width:500px){
 
-  .menu button{
-    min-height:90px;
-    font-size:18px;
-  }
+.menu button{
+min-height:90px;
+font-size:18px;
+}
 
-  .modeBox{
-    grid-template-columns:1fr;
-  }
+.modeBox{
+grid-template-columns:1fr;
+}
 
-  .logo h1{
-    font-size:34px;
-  }
+.logo h1{font-size:34px}
 
-  .penaltyField{
-    height:520px;
-  }
+.penaltyField{height:520px}
 
-  .goal{
-    width:280px;
-    height:140px;
-  }
+.goal{
+width:280px;
+height:140px;
+}
 
-  .keeper{
-    font-size:58px;
-  }
+.keeper{font-size:58px}
 
-  .penaltyPlayer{
-    font-size:65px;
-  }
+.penaltyPlayer{font-size:65px}
 
-  .ball{
-    font-size:38px;
-  }
+.ball{font-size:38px}
 
-  .penaltyResult{
-    top:175px;
-    font-size:27px;
-  }
+.tubes{
+grid-template-columns:repeat(4,1fr);
+gap:9px;
+}
+
+.tube{
+width:58px;
+height:175px;
+}
+
+.liquidButtons{
+grid-template-columns:1fr;
+}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <section id="home" class="screen show">
-
 <div class="container">
 
 <div class="logo">
@@ -611,357 +590,191 @@ h1,h2,h3{
 
 <div class="menu">
 
-<button class="blue" onclick="show('xoMenu')">
-⭕❌<br>XO
-</button>
+<button class="blue" onclick="show('xoMenu')">⭕❌<br>XO</button>
+<button class="green" onclick="show('cars')">🚗<br>Cars</button>
+<button class="yellow" onclick="show('snake')">🐍<br>The Snake</button>
+<button class="orange" onclick="show('penalty')">⚽<br>ضربات جزاء</button>
+<button class="purple" onclick="show('balloon')">🎈<br>المنطاد</button>
+<button class="cyan" onclick="show('quiz')">❓<br>سؤال جواب</button>
+<button class="red" onclick="show('rpsMenu')">✊📄✂️<br>حجر ورقة مقص</button>
+<button class="yellow" onclick="show('emoji')">😀<br>أوجد المختلف</button>
+<button class="pink" onclick="show('bomb')">💣<br>لعبة القنابل</button>
 
-<button class="green" onclick="show('cars')">
-🚗<br>Cars
-</button>
+<!-- اللعبة الجديدة -->
+<button class="blue" onclick="show('liquid')">🧪💧<br>لعبة السوائل</button>
 
-<button class="yellow" onclick="show('snake')">
-🐍<br>The Snake
-</button>
-
-<button class="orange" onclick="show('penalty')">
-⚽<br>ضربات جزاء
-</button>
-
-<button class="purple" onclick="show('balloon')">
-🎈<br>المنطاد
-</button>
-
-<button class="cyan" onclick="show('quiz')">
-❓<br>سؤال جواب
-</button>
-
-<button class="red" onclick="show('rpsMenu')">
-✊📄✂️<br>حجر ورقة مقص
-</button>
-
-<button class="yellow" onclick="show('emoji')">
-😀<br>أوجد المختلف
-</button>
-
-<button class="pink" onclick="show('bomb')">
-💣<br>لعبة القنابل
-</button>
-
-<button class="purple" onclick="show('info')">
-👤<br>معلومات عني
-</button>
+<button class="purple" onclick="show('info')">👤<br>معلومات عني</button>
 
 </div>
 </div>
 </section>
 
-
-<!-- ================= XO MENU ================= -->
-
+<!-- XO MENU -->
 <section id="xoMenu" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>⭕❌ XO</h2>
-
 <div class="modeBox">
-
-<button class="mode" onclick="startXO('bot')">
-🤖<br>لعب مع بوت
-</button>
-
-<button class="mode" onclick="startXO('friend')">
-👥<br>لعب مع صديق
-</button>
-
+<button class="mode" onclick="startXO('bot')">🤖<br>لعب مع بوت</button>
+<button class="mode" onclick="startXO('friend')">👥<br>لعب مع صديق</button>
 </div>
 </div>
 </section>
 
-
-<!-- ================= XO ================= -->
-
+<!-- XO -->
 <section id="xoGame" class="screen">
-
 <button class="back" onclick="show('xoMenu')">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>⭕❌ XO</h2>
-
 <div id="xoStatus" class="result"></div>
-
 <div id="xoBoard" class="xo"></div>
-
-<button class="big" onclick="startXO(xoMode)">
-🔄 إعادة
-</button>
-
+<button class="big" onclick="startXO(xoMode)">🔄 إعادة</button>
 </div>
 </section>
 
-
-<!-- ================= CARS ================= -->
-
+<!-- CARS -->
 <section id="cars" class="screen">
-
 <button class="back" onclick="leaveCars()">⬅️ رجوع</button>
-
 <div id="carScore" class="result">النقاط: 0</div>
 
 <div id="carGame">
-
 <div id="playerCar" class="player"></div>
 
 <div id="carOver" class="carOver">
-
 <div>
 <h1>💥 انتهت اللعبة</h1>
 <h2 id="finalCarScore">النقاط: 0</h2>
-
-<button class="big" onclick="startCars()">
-🔄 إعادة اللعب
-</button>
-
+<button class="big" onclick="startCars()">🔄 إعادة اللعب</button>
 </div>
 </div>
-
 </div>
 
 <div class="carControls">
-
 <button id="leftCar">⬅️</button>
 <button id="rightCar">➡️</button>
-
 </div>
-
 </section>
 
-
-<!-- ================= SNAKE ================= -->
-
+<!-- SNAKE -->
 <section id="snake" class="screen">
-
 <button class="back" onclick="leaveSnake()">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>🐍 The Snake</h2>
-
-<div id="snakeScore" class="result">
-النقاط: 0
-</div>
-
+<div id="snakeScore" class="result">النقاط: 0</div>
 <div id="snakeBoard" class="snakeBoard"></div>
 
 <div class="snakeControls">
-
 <button class="up" onclick="snakeMove('up')">⬆️</button>
 <button class="sl" onclick="snakeMove('left')">⬅️</button>
 <button class="sd" onclick="snakeMove('down')">⬇️</button>
 <button class="sr" onclick="snakeMove('right')">➡️</button>
-
 </div>
 
-<button class="big" onclick="startSnake()">
-🔄 إعادة
-</button>
-
+<button class="big" onclick="startSnake()">🔄 إعادة</button>
 </div>
 </section>
 
-
-<!-- ================= PENALTY ================= -->
-
+<!-- PENALTY -->
 <section id="penalty" class="screen">
-
 <button class="back" onclick="leavePenalty()">⬅️ رجوع</button>
-
 <div class="panel">
 
 <h2>⚽ ضربات الجزاء</h2>
-
-<div id="penaltyScore" class="result">
-الأهداف: 0
-</div>
+<div id="penaltyScore" class="result">الأهداف: 0</div>
 
 <div id="penaltyField" class="penaltyField">
 
-<div class="goal">
+<div class="goal"></div>
 
-<div id="keeper" class="keeper">
-🤾
-</div>
-
-</div>
+<div id="keeper" class="keeper">🤾</div>
 
 <div id="penaltyResult" class="penaltyResult"></div>
 
-<div id="penaltyBall" class="ball">
-⚽
-</div>
+<div id="penaltyBall" class="ball">⚽</div>
 
-<div id="penaltyPlayer" class="penaltyPlayer">
-🧍
-</div>
+<div id="penaltyPlayer" class="penaltyPlayer">🧍</div>
 
 </div>
 
 <div class="kicks">
-
-<button class="kick" onclick="kick('left')">
-⬅️
-</button>
-
-<button class="kick" onclick="kick('center')">
-⬆️
-</button>
-
-<button class="kick" onclick="kick('right')">
-➡️
-</button>
-
+<button class="kick" onclick="kick('left')">⬅️</button>
+<button class="kick" onclick="kick('center')">⬆️</button>
+<button class="kick" onclick="kick('right')">➡️</button>
 </div>
 
-<button class="penaltyRestart" onclick="restartPenalty()">
-🔄 إعادة اللعب
-</button>
+<button class="penaltyRestart" onclick="restartPenalty()">🔄 إعادة اللعب</button>
 
 </div>
 </section>
 
-
-<!-- ================= BALLOON ================= -->
-
+<!-- BALLOON -->
 <section id="balloon" class="screen">
-
 <button class="back" onclick="leaveBalloon()">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>🎈 المنطاد</h2>
-
-<div id="balloonScore" class="result">
-النقاط: 0
-</div>
-
+<div id="balloonScore" class="result">النقاط: 0</div>
 <div id="balloonArea" class="balloonArea"></div>
-
-<button class="big" onclick="startBalloon()">
-🔄 إعادة
-</button>
-
+<button class="big" onclick="startBalloon()">🔄 إعادة</button>
 </div>
 </section>
 
-
-<!-- ================= QUIZ ================= -->
-
+<!-- QUIZ -->
 <section id="quiz" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>❓ سؤال جواب</h2>
-
 <div id="quizScore" class="result"></div>
-
 <div id="question" class="question"></div>
-
 <div id="answers" class="answers"></div>
-
 </div>
 </section>
 
-
-<!-- ================= EMOJI ================= -->
-
+<!-- EMOJI -->
 <section id="emoji" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel">
-
-<h2>😀 أوجد الإيموجي المختلف</h2>
-
-<div id="emojiScore" class="result">
-النقاط: 0
-</div>
-
+<h2>😀 أوجد المختلف</h2>
+<div id="emojiScore" class="result">النقاط: 0</div>
 <div id="emojiGrid" class="emojiGrid"></div>
-
 </div>
 </section>
 
-
-<!-- ================= RPS MENU ================= -->
-
+<!-- RPS MENU -->
 <section id="rpsMenu" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>✊📄✂️ حجر ورقة مقص</h2>
-
 <div class="modeBox">
-
-<button class="mode" onclick="startRPS('bot')">
-🤖<br>لعب مع بوت
-</button>
-
-<button class="mode" onclick="startRPS('friend')">
-👥<br>لعب مع صديق
-</button>
-
+<button class="mode" onclick="startRPS('bot')">🤖<br>لعب مع بوت</button>
+<button class="mode" onclick="startRPS('friend')">👥<br>لعب مع صديق</button>
 </div>
-
 </div>
 </section>
 
-
-<!-- ================= RPS ================= -->
-
+<!-- RPS -->
 <section id="rps" class="screen">
-
 <button class="back" onclick="show('rpsMenu')">⬅️ رجوع</button>
-
 <div class="panel">
-
 <h2>✊📄✂️</h2>
-
 <div id="rpsStatus" class="result"></div>
 
 <div class="rpsGrid">
-
 <button onclick="playRPS('rock')">✊</button>
 <button onclick="playRPS('paper')">📄</button>
 <button onclick="playRPS('scissors')">✂️</button>
-
 </div>
 
 <div id="rpsResult" class="result"></div>
-
 </div>
 </section>
 
-
-<!-- ================= BOMB ================= -->
-
+<!-- BOMB -->
 <section id="bomb" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel">
 
 <h2>💣 لعبة القنابل</h2>
-
-<div id="bombStatus" class="result">
-دور اللاعب 1
-</div>
+<div id="bombStatus" class="result">دور اللاعب 1</div>
 
 <h3>اللاعب 1</h3>
 <div id="bomb1" class="bombGrid"></div>
@@ -969,82 +782,89 @@ h1,h2,h3{
 <h3>اللاعب 2</h3>
 <div id="bomb2" class="bombGrid"></div>
 
-<button class="big" onclick="startBomb()">
-🔄 لعبة جديدة
-</button>
+<button class="big" onclick="startBomb()">🔄 لعبة جديدة</button>
+</div>
+</section>
+
+<!-- ================= LIQUID GAME ================= -->
+
+<section id="liquid" class="screen">
+<button class="back" onclick="leaveLiquid()">⬅️ رجوع</button>
+
+<div class="panel">
+
+<h2>🧪💧 لعبة السوائل</h2>
+
+<div class="liquidInfo">
+رتّب كل لون داخل أنبوب واحد فقط!
+<br>
+اضغط على أنبوب ثم اضغط على أنبوب ثاني لنقل السائل.
+</div>
+
+<div id="liquidWin" class="liquidWin"></div>
+
+<div id="tubes" class="tubes"></div>
+
+<div class="liquidButtons">
+<button class="big" onclick="startLiquid()">🔄 إعادة اللعبة</button>
+<button class="big" onclick="newLiquidLevel()">🎲 مستوى جديد</button>
+</div>
 
 </div>
 </section>
 
-
-<!-- ================= INFO ================= -->
-
+<!-- INFO -->
 <section id="info" class="screen">
-
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
-
 <div class="panel info">
-
 <h2>👤 معلومات عني</h2>
-
 <p>
 ========المنشئ========
 <br>
 Ahmed_am
 </p>
-
 <p>
 ========المساعد========
 <br>
 Ahmed_am
 </p>
-
 <hr>
-
-<p>
-=======فكرة اللعبة=======
-</p>
-
+<p>=======فكرة اللعبة=======</p>
 <p>
 تطبيق يجمع مجموعة ألعاب<br>
 خفيفة وممتعة في مكان واحد 🎮
 </p>
-
 </div>
 </section>
 
-
 <script>
 
-/* =====================================================
-   التنقل
-===================================================== */
+/* ================= NAVIGATION ================= */
 
 function show(id){
 
-  document.querySelectorAll(".screen").forEach(function(s){
-    s.classList.remove("show");
-  });
+document.querySelectorAll(".screen").forEach(function(s){
+s.classList.remove("show");
+});
 
-  var page=document.getElementById(id);
+var page=document.getElementById(id);
 
-  if(page){
-    page.classList.add("show");
-  }
+if(page){
+page.classList.add("show");
+}
 
-  if(id==="cars") startCars();
-  if(id==="snake") startSnake();
-  if(id==="quiz") startQuiz();
-  if(id==="emoji") startEmoji();
-  if(id==="balloon") startBalloon();
-  if(id==="bomb") startBomb();
-  if(id==="penalty") startPenalty();
+if(id==="cars")startCars();
+if(id==="snake")startSnake();
+if(id==="quiz")startQuiz();
+if(id==="emoji")startEmoji();
+if(id==="balloon")startBalloon();
+if(id==="bomb")startBomb();
+if(id==="penalty")startPenalty();
+if(id==="liquid")startLiquid();
 }
 
 
-/* =====================================================
-   XO
-===================================================== */
+/* ================= XO ================= */
 
 var xoMode="bot";
 var xoBoard=[];
@@ -1053,127 +873,116 @@ var xoFinished=false;
 
 function startXO(mode){
 
-  xoMode=mode;
+xoMode=mode;
+xoBoard=["","","","","","","","",""];
+xoTurn="X";
+xoFinished=false;
 
-  xoBoard=["","","","","","","","",""];
-  xoTurn="X";
-  xoFinished=false;
-
-  show("xoGame");
-  drawXO();
+show("xoGame");
+drawXO();
 }
 
 function drawXO(){
 
-  var board=document.getElementById("xoBoard");
+var board=document.getElementById("xoBoard");
+board.innerHTML="";
 
-  board.innerHTML="";
+for(let i=0;i<9;i++){
 
-  for(let i=0;i<9;i++){
+let b=document.createElement("button");
+b.textContent=xoBoard[i];
 
-    let b=document.createElement("button");
+b.onclick=function(){
+xoPlay(i);
+};
 
-    b.textContent=xoBoard[i];
+board.appendChild(b);
+}
 
-    b.onclick=function(){
-      xoPlay(i);
-    };
-
-    board.appendChild(b);
-  }
-
-  document.getElementById("xoStatus").textContent=
-    "دور: "+xoTurn;
+document.getElementById("xoStatus").textContent="دور: "+xoTurn;
 }
 
 function xoPlay(i){
 
-  if(xoFinished || xoBoard[i]) return;
+if(xoFinished||xoBoard[i])return;
 
-  xoBoard[i]=xoTurn;
+xoBoard[i]=xoTurn;
 
-  if(checkXO()) return;
+if(checkXO())return;
 
-  xoTurn=xoTurn==="X"?"O":"X";
+xoTurn=xoTurn==="X"?"O":"X";
 
-  drawXO();
+drawXO();
 
-  if(xoMode==="bot" && xoTurn==="O"){
+if(xoMode==="bot"&&xoTurn==="O"){
 
-    setTimeout(function(){
+setTimeout(function(){
 
-      if(xoFinished)return;
+if(xoFinished)return;
 
-      var empty=[];
+var empty=[];
 
-      for(let i=0;i<9;i++){
-        if(!xoBoard[i]) empty.push(i);
-      }
+for(let i=0;i<9;i++){
+if(!xoBoard[i])empty.push(i);
+}
 
-      if(empty.length===0)return;
+if(!empty.length)return;
 
-      var choice=
-        empty[Math.floor(Math.random()*empty.length)];
+var choice=empty[Math.floor(Math.random()*empty.length)];
 
-      xoBoard[choice]="O";
+xoBoard[choice]="O";
 
-      if(checkXO())return;
+if(checkXO())return;
 
-      xoTurn="X";
-      drawXO();
+xoTurn="X";
+drawXO();
 
-    },400);
-  }
+},350);
+}
 }
 
 function checkXO(){
 
-  var wins=[
-    [0,1,2],[3,4,5],[6,7,8],
-    [0,3,6],[1,4,7],[2,5,8],
-    [0,4,8],[2,4,6]
-  ];
+var wins=[
+[0,1,2],[3,4,5],[6,7,8],
+[0,3,6],[1,4,7],[2,5,8],
+[0,4,8],[2,4,6]
+];
 
-  for(var i=0;i<wins.length;i++){
+for(var i=0;i<wins.length;i++){
 
-    var a=wins[i][0];
-    var b=wins[i][1];
-    var c=wins[i][2];
+var a=wins[i][0];
+var b=wins[i][1];
+var c=wins[i][2];
 
-    if(
-      xoBoard[a] &&
-      xoBoard[a]===xoBoard[b] &&
-      xoBoard[b]===xoBoard[c]
-    ){
+if(
+xoBoard[a] &&
+xoBoard[a]===xoBoard[b] &&
+xoBoard[b]===xoBoard[c]
+){
 
-      xoFinished=true;
+xoFinished=true;
 
-      document.getElementById("xoStatus").textContent=
-        "🎉 الفائز: "+xoBoard[a];
+document.getElementById("xoStatus").textContent=
+"🎉 الفائز: "+xoBoard[a];
 
-      drawXO();
+drawXO();
+return true;
+}
+}
 
-      return true;
-    }
-  }
+if(xoBoard.every(function(x){return x!=="";})){
 
-  if(xoBoard.every(function(x){return x!=="";})){
+xoFinished=true;
+document.getElementById("xoStatus").textContent="🤝 تعادل!";
+return true;
+}
 
-    xoFinished=true;
-
-    document.getElementById("xoStatus").textContent=
-      "🤝 تعادل!";
-
-    return true;
-  }
-
-  return false;
+return false;
 }
 
 
-/* =====================================================
-   CARS
-===================================================== */
+/* ================= CARS ================= */
 
 var carX=155;
 var carScore=0;
@@ -1182,248 +991,215 @@ var carRunning=false;
 var carEnemies=[];
 var carLoopID=null;
 var carSpawnID=null;
-
 var leftPressed=false;
 var rightPressed=false;
 
 function startCars(){
 
-  clearCars();
+clearCars();
 
-  carX=155;
-  carScore=0;
-  carSpeed=5;
-  carRunning=true;
-  carEnemies=[];
+carX=155;
+carScore=0;
+carSpeed=5;
+carRunning=true;
+carEnemies=[];
 
-  document.getElementById("playerCar").style.left="155px";
+document.getElementById("playerCar").style.left="155px";
+document.getElementById("carScore").textContent="النقاط: 0";
+document.getElementById("carOver").classList.remove("show");
 
-  document.getElementById("carScore").textContent=
-    "النقاط: 0";
+var game=document.getElementById("carGame");
 
-  document.getElementById("carOver").classList.remove("show");
+game.querySelectorAll(".line").forEach(function(x){
+x.remove();
+});
 
-  var game=document.getElementById("carGame");
+for(var i=0;i<8;i++){
 
-  game.querySelectorAll(".line").forEach(function(x){
-    x.remove();
-  });
+var line=document.createElement("div");
+line.className="line";
+line.style.top=(i*100-100)+"px";
+game.appendChild(line);
+}
 
-  for(var i=0;i<8;i++){
+carSpawnID=setInterval(function(){
 
-    var line=document.createElement("div");
+if(carRunning)createEnemy();
 
-    line.className="line";
-    line.style.top=(i*100-100)+"px";
+},1200);
 
-    game.appendChild(line);
-  }
-
-  carSpawnID=setInterval(function(){
-
-    if(carRunning){
-      createEnemy();
-    }
-
-  },1200);
-
-  carLoopID=requestAnimationFrame(carLoop);
+carLoopID=requestAnimationFrame(carLoop);
 }
 
 function clearCars(){
 
-  carRunning=false;
+carRunning=false;
 
-  if(carSpawnID){
-    clearInterval(carSpawnID);
-    carSpawnID=null;
-  }
+if(carSpawnID){
+clearInterval(carSpawnID);
+carSpawnID=null;
+}
 
-  if(carLoopID){
-    cancelAnimationFrame(carLoopID);
-    carLoopID=null;
-  }
+if(carLoopID){
+cancelAnimationFrame(carLoopID);
+carLoopID=null;
+}
 
-  carEnemies.forEach(function(e){
-    e.el.remove();
-  });
+carEnemies.forEach(function(e){
+if(e.el)e.el.remove();
+});
 
-  carEnemies=[];
+carEnemies=[];
 }
 
 function leaveCars(){
-
-  clearCars();
-  show("home");
+clearCars();
+show("home");
 }
 
 function createEnemy(){
 
-  var game=document.getElementById("carGame");
+var game=document.getElementById("carGame");
+var enemy=document.createElement("div");
 
-  var enemy=document.createElement("div");
+enemy.className="enemy";
 
-  enemy.className="enemy";
+var lanes=[55,155,255];
+var lane=lanes[Math.floor(Math.random()*lanes.length)];
 
-  var lanes=[55,155,255];
+enemy.style.left=lane+"px";
+enemy.style.top="-100px";
 
-  var lane=lanes[
-    Math.floor(Math.random()*lanes.length)
-  ];
+game.appendChild(enemy);
 
-  enemy.style.left=lane+"px";
-  enemy.style.top="-100px";
-
-  game.appendChild(enemy);
-
-  carEnemies.push({
-    el:enemy,
-    y:-100
-  });
+carEnemies.push({
+el:enemy,
+y:-100
+});
 }
 
 function collision(a,b){
 
-  var r1=a.getBoundingClientRect();
-  var r2=b.getBoundingClientRect();
+var r1=a.getBoundingClientRect();
+var r2=b.getBoundingClientRect();
 
-  return !(
-    r1.right<r2.left ||
-    r1.left>r2.right ||
-    r1.bottom<r2.top ||
-    r1.top>r2.bottom
-  );
+return !(
+r1.right<r2.left||
+r1.left>r2.right||
+r1.bottom<r2.top||
+r1.top>r2.bottom
+);
 }
 
 function carLoop(){
 
-  if(!carRunning)return;
+if(!carRunning)return;
 
-  if(leftPressed)carX-=7;
-  if(rightPressed)carX+=7;
+if(leftPressed)carX-=7;
+if(rightPressed)carX+=7;
 
-  if(carX<10)carX=10;
-  if(carX>300)carX=300;
+if(carX<10)carX=10;
+if(carX>300)carX=300;
 
-  document.getElementById("playerCar").style.left=
-    carX+"px";
+document.getElementById("playerCar").style.left=carX+"px";
 
-  document.querySelectorAll("#carGame .line")
-  .forEach(function(line){
+document.querySelectorAll("#carGame .line").forEach(function(line){
 
-    var y=parseInt(line.style.top)||0;
+var y=parseInt(line.style.top)||0;
+y+=carSpeed;
 
-    y+=carSpeed;
+if(y>700)y=-80;
 
-    if(y>700)y=-80;
+line.style.top=y+"px";
+});
 
-    line.style.top=y+"px";
-  });
+for(var i=carEnemies.length-1;i>=0;i--){
 
-  for(var i=carEnemies.length-1;i>=0;i--){
+var enemy=carEnemies[i];
 
-    var enemy=carEnemies[i];
+enemy.y+=carSpeed;
+enemy.el.style.top=enemy.y+"px";
 
-    enemy.y+=carSpeed;
+if(collision(
+document.getElementById("playerCar"),
+enemy.el
+)){
 
-    enemy.el.style.top=
-      enemy.y+"px";
+carRunning=false;
 
-    if(
-      collision(
-        document.getElementById("playerCar"),
-        enemy.el
-      )
-    ){
+document.getElementById("finalCarScore").textContent=
+"نقاطك: "+carScore;
 
-      carRunning=false;
+document.getElementById("carOver").classList.add("show");
 
-      document.getElementById("finalCarScore").textContent=
-        "نقاطك: "+carScore;
-
-      document.getElementById("carOver")
-        .classList.add("show");
-
-      return;
-    }
-
-    if(enemy.y>750){
-
-      enemy.el.remove();
-
-      carEnemies.splice(i,1);
-
-      carScore++;
-
-      document.getElementById("carScore").textContent=
-        "النقاط: "+carScore;
-
-      if(carScore%10===0){
-        carSpeed++;
-      }
-    }
-  }
-
-  carLoopID=requestAnimationFrame(carLoop);
+return;
 }
 
+if(enemy.y>750){
 
-/* أزرار السيارة */
+enemy.el.remove();
+carEnemies.splice(i,1);
+carScore++;
+
+document.getElementById("carScore").textContent=
+"النقاط: "+carScore;
+
+if(carScore%10===0)carSpeed++;
+}
+}
+
+carLoopID=requestAnimationFrame(carLoop);
+}
 
 function pressLeft(e){
-  e.preventDefault();
-  leftPressed=true;
+e.preventDefault();
+leftPressed=true;
 }
 
 function releaseLeft(e){
-  e.preventDefault();
-  leftPressed=false;
+e.preventDefault();
+leftPressed=false;
 }
 
 function pressRight(e){
-  e.preventDefault();
-  rightPressed=true;
+e.preventDefault();
+rightPressed=true;
 }
 
 function releaseRight(e){
-  e.preventDefault();
-  rightPressed=false;
+e.preventDefault();
+rightPressed=false;
 }
 
-var lb=document.getElementById("leftCar");
-var rb=document.getElementById("rightCar");
+document.getElementById("leftCar").addEventListener("pointerdown",pressLeft);
+document.getElementById("leftCar").addEventListener("pointerup",releaseLeft);
+document.getElementById("leftCar").addEventListener("pointercancel",releaseLeft);
 
-lb.addEventListener("pointerdown",pressLeft);
-lb.addEventListener("pointerup",releaseLeft);
-lb.addEventListener("pointercancel",releaseLeft);
-
-rb.addEventListener("pointerdown",pressRight);
-rb.addEventListener("pointerup",releaseRight);
-rb.addEventListener("pointercancel",releaseRight);
+document.getElementById("rightCar").addEventListener("pointerdown",pressRight);
+document.getElementById("rightCar").addEventListener("pointerup",releaseRight);
+document.getElementById("rightCar").addEventListener("pointercancel",releaseRight);
 
 document.addEventListener("pointerup",function(){
-  leftPressed=false;
-  rightPressed=false;
+leftPressed=false;
+rightPressed=false;
 });
 
 document.addEventListener("keydown",function(e){
 
-  if(e.key==="ArrowLeft")leftPressed=true;
-  if(e.key==="ArrowRight")rightPressed=true;
+if(e.key==="ArrowLeft")leftPressed=true;
+if(e.key==="ArrowRight")rightPressed=true;
 
 });
 
 document.addEventListener("keyup",function(e){
 
-  if(e.key==="ArrowLeft")leftPressed=false;
-  if(e.key==="ArrowRight")rightPressed=false;
+if(e.key==="ArrowLeft")leftPressed=false;
+if(e.key==="ArrowRight")rightPressed=false;
 
 });
 
 
-/* =====================================================
-   SNAKE
-===================================================== */
+/* ================= SNAKE ================= */
 
 var snake=[];
 var snakeDir={x:1,y:0};
@@ -1434,146 +1210,130 @@ var snakeScore=0;
 
 function startSnake(){
 
-  clearInterval(snakeTimer);
+clearInterval(snakeTimer);
 
-  snake=[
-    {x:5,y:6},
-    {x:4,y:6},
-    {x:3,y:6}
-  ];
+snake=[
+{x:5,y:6},
+{x:4,y:6},
+{x:3,y:6}
+];
 
-  snakeDir={x:1,y:0};
-  snakeNext={x:1,y:0};
-  snakeScore=0;
+snakeDir={x:1,y:0};
+snakeNext={x:1,y:0};
+snakeScore=0;
 
-  makeFood();
-  drawSnake();
+makeFood();
+drawSnake();
 
-  snakeTimer=setInterval(updateSnake,130);
+snakeTimer=setInterval(updateSnake,130);
 }
 
 function leaveSnake(){
 
-  clearInterval(snakeTimer);
-  show("home");
+clearInterval(snakeTimer);
+show("home");
 }
 
 function makeFood(){
 
-  do{
+do{
 
-    snakeFood={
-      x:Math.floor(Math.random()*12),
-      y:Math.floor(Math.random()*12)
-    };
+snakeFood={
+x:Math.floor(Math.random()*12),
+y:Math.floor(Math.random()*12)
+};
 
-  }while(
-    snake.some(function(p){
-      return p.x===snakeFood.x &&
-             p.y===snakeFood.y;
-    })
-  );
+}while(snake.some(function(p){
+return p.x===snakeFood.x&&p.y===snakeFood.y;
+}));
 }
 
 function snakeMove(direction){
 
-  var d={
-    up:{x:0,y:-1},
-    down:{x:0,y:1},
-    left:{x:-1,y:0},
-    right:{x:1,y:0}
-  }[direction];
+var d={
+up:{x:0,y:-1},
+down:{x:0,y:1},
+left:{x:-1,y:0},
+right:{x:1,y:0}
+}[direction];
 
-  if(
-    d.x===-snakeDir.x &&
-    d.y===-snakeDir.y
-  )return;
+if(d.x===-snakeDir.x&&d.y===-snakeDir.y)return;
 
-  snakeNext=d;
+snakeNext=d;
 }
 
 function updateSnake(){
 
-  snakeDir=snakeNext;
+snakeDir=snakeNext;
 
-  var head={
-    x:snake[0].x+snakeDir.x,
-    y:snake[0].y+snakeDir.y
-  };
+var head={
+x:snake[0].x+snakeDir.x,
+y:snake[0].y+snakeDir.y
+};
 
-  if(
-    head.x<0 ||
-    head.x>=12 ||
-    head.y<0 ||
-    head.y>=12 ||
-    snake.some(function(p){
-      return p.x===head.x &&
-             p.y===head.y;
-    })
-  ){
+if(
+head.x<0||
+head.x>=12||
+head.y<0||
+head.y>=12||
+snake.some(function(p){
+return p.x===head.x&&p.y===head.y;
+})
+){
 
-    clearInterval(snakeTimer);
+clearInterval(snakeTimer);
 
-    document.getElementById("snakeScore").textContent=
-      "💥 انتهت اللعبة - النقاط: "+snakeScore;
+document.getElementById("snakeScore").textContent=
+"💥 انتهت اللعبة - النقاط: "+snakeScore;
 
-    return;
-  }
+return;
+}
 
-  snake.unshift(head);
+snake.unshift(head);
 
-  if(
-    head.x===snakeFood.x &&
-    head.y===snakeFood.y
-  ){
+if(head.x===snakeFood.x&&head.y===snakeFood.y){
 
-    snakeScore++;
-    makeFood();
+snakeScore++;
+makeFood();
 
-  }else{
+}else{
 
-    snake.pop();
+snake.pop();
 
-  }
+}
 
-  drawSnake();
+drawSnake();
 }
 
 function drawSnake(){
 
-  var board=document.getElementById("snakeBoard");
+var board=document.getElementById("snakeBoard");
+board.innerHTML="";
 
-  board.innerHTML="";
+snake.forEach(function(p){
 
-  snake.forEach(function(p){
+var e=document.createElement("div");
+e.className="snakePart";
 
-    var e=document.createElement("div");
+e.style.left=(p.x*8.333)+"%";
+e.style.top=(p.y*8.333)+"%";
 
-    e.className="snakePart";
+board.appendChild(e);
+});
 
-    e.style.left=(p.x*8.333)+"%";
-    e.style.top=(p.y*8.333)+"%";
+var f=document.createElement("div");
+f.className="food";
+f.style.left=(snakeFood.x*8.333)+"%";
+f.style.top=(snakeFood.y*8.333)+"%";
 
-    board.appendChild(e);
-  });
+board.appendChild(f);
 
-  var f=document.createElement("div");
-
-  f.className="food";
-
-  f.style.left=(snakeFood.x*8.333)+"%";
-  f.style.top=(snakeFood.y*8.333)+"%";
-
-  board.appendChild(f);
-
-  document.getElementById("snakeScore").textContent=
-    "النقاط: "+snakeScore;
+document.getElementById("snakeScore").textContent=
+"النقاط: "+snakeScore;
 }
 
 
-/* =====================================================
-   PENALTY - النسخة الجديدة
-===================================================== */
+/* ================= PENALTY ================= */
 
 var penaltyGoals=0;
 var penaltyPlaying=false;
@@ -1581,293 +1341,208 @@ var penaltyRoundTimer=null;
 
 function startPenalty(){
 
-  clearTimeout(penaltyRoundTimer);
+clearTimeout(penaltyRoundTimer);
 
-  penaltyGoals=0;
-  penaltyPlaying=true;
+penaltyGoals=0;
+penaltyPlaying=true;
 
-  resetPenaltyObjects();
+resetPenaltyObjects();
 
-  document.getElementById("penaltyScore").textContent=
-    "الأهداف: 0";
-
-  document.getElementById("penaltyResult").textContent="";
-  document.getElementById("penaltyResult").classList.remove("show");
+document.getElementById("penaltyScore").textContent="الأهداف: 0";
+document.getElementById("penaltyResult").textContent="";
+document.getElementById("penaltyResult").classList.remove("show");
 }
 
 function leavePenalty(){
 
-  clearTimeout(penaltyRoundTimer);
-
-  penaltyPlaying=false;
-
-  show("home");
+clearTimeout(penaltyRoundTimer);
+penaltyPlaying=false;
+show("home");
 }
 
 function resetPenaltyObjects(){
 
-  var ball=document.getElementById("penaltyBall");
-  var keeper=document.getElementById("keeper");
-  var player=document.getElementById("penaltyPlayer");
+var ball=document.getElementById("penaltyBall");
+var keeper=document.getElementById("keeper");
+var player=document.getElementById("penaltyPlayer");
 
-  ball.style.left="50%";
-  ball.style.bottom="95px";
-  ball.style.transform=
-    "translateX(-50%) scale(1)";
+ball.style.left="50%";
+ball.style.bottom="95px";
+ball.style.transform="translateX(-50%) scale(1)";
 
-  keeper.style.left="50%";
-  keeper.style.bottom="15px";
-  keeper.style.transform=
-    "translateX(-50%)";
+keeper.style.left="50%";
+keeper.style.bottom="15px";
+keeper.style.transform="translateX(-50%)";
 
-  player.style.left="50%";
+player.style.left="50%";
 }
 
 function kick(direction){
 
-  if(!penaltyPlaying)return;
+if(!penaltyPlaying)return;
 
-  penaltyPlaying=false;
+penaltyPlaying=false;
 
-  var ball=document.getElementById("penaltyBall");
-  var keeper=document.getElementById("keeper");
-  var player=document.getElementById("penaltyPlayer");
-  var result=document.getElementById("penaltyResult");
+var ball=document.getElementById("penaltyBall");
+var keeper=document.getElementById("keeper");
+var player=document.getElementById("penaltyPlayer");
+var result=document.getElementById("penaltyResult");
 
-  var positions={
-    left:"25%",
-    center:"50%",
-    right:"75%"
-  };
+var positions={
+left:"25%",
+center:"50%",
+right:"75%"
+};
 
-  var keeperPlaces=[
-    "25%",
-    "50%",
-    "75%"
-  ];
+var keeperPlaces=["25%","50%","75%"];
 
-  var keeperDirection=
-    keeperPlaces[
-      Math.floor(Math.random()*3)
-    ];
+var keeperDirection=
+keeperPlaces[Math.floor(Math.random()*3)];
 
-  /* اللاعب يتحرك */
+if(direction==="left")player.style.left="42%";
+if(direction==="center")player.style.left="50%";
+if(direction==="right")player.style.left="58%";
 
-  if(direction==="left"){
-    player.style.left="42%";
-  }
+setTimeout(function(){
 
-  if(direction==="center"){
-    player.style.left="50%";
-  }
+keeper.style.left=keeperDirection;
 
-  if(direction==="right"){
-    player.style.left="58%";
-  }
+if(keeperDirection==="25%")
+keeper.style.transform="translateX(-50%) rotate(-35deg)";
 
-  /* الحارس يتحرك */
+if(keeperDirection==="50%")
+keeper.style.transform="translateX(-50%) translateY(-25px)";
 
-  setTimeout(function(){
+if(keeperDirection==="75%")
+keeper.style.transform="translateX(-50%) rotate(35deg)";
 
-    keeper.style.left=keeperDirection;
+keeper.style.bottom="30px";
 
-    if(keeperDirection==="25%"){
+},180);
 
-      keeper.style.transform=
-        "translateX(-50%) rotate(-35deg)";
+setTimeout(function(){
 
-      keeper.style.bottom="30px";
-    }
+ball.style.left=positions[direction];
+ball.style.bottom="380px";
+ball.style.transform=
+"translateX(-50%) scale(.7) rotate(360deg)";
 
-    if(keeperDirection==="50%"){
+},120);
 
-      keeper.style.transform=
-        "translateX(-50%) translateY(-25px)";
+penaltyRoundTimer=setTimeout(function(){
 
-      keeper.style.bottom="30px";
-    }
+var caught=keeperDirection===positions[direction];
 
-    if(keeperDirection==="75%"){
+result.classList.add("show");
 
-      keeper.style.transform=
-        "translateX(-50%) rotate(35deg)";
+if(caught){
 
-      keeper.style.bottom="30px";
-    }
+result.textContent="🤾 تصدى لها الحارس!";
 
-  },180);
+}else{
 
-  /* الكرة تتحرك */
+penaltyGoals++;
 
-  setTimeout(function(){
+document.getElementById("penaltyScore").textContent=
+"الأهداف: "+penaltyGoals;
 
-    ball.style.left=positions[direction];
+result.textContent="⚽ جوووول! 🔥";
+}
 
-    ball.style.bottom="380px";
+},700);
 
-    ball.style.transform=
-      "translateX(-50%) scale(.7) rotate(360deg)";
+penaltyRoundTimer=setTimeout(function(){
 
-  },120);
+result.classList.remove("show");
+resetPenaltyObjects();
+penaltyPlaying=true;
 
-  /* النتيجة */
-
-  penaltyRoundTimer=setTimeout(function(){
-
-    var caught=
-      keeperDirection===positions[direction];
-
-    result.classList.add("show");
-
-    if(caught){
-
-      result.textContent=
-        "🤾 تصدى لها الحارس!";
-
-    }else{
-
-      penaltyGoals++;
-
-      document.getElementById("penaltyScore").textContent=
-        "الأهداف: "+penaltyGoals;
-
-      result.textContent=
-        "⚽ جوووول! 🔥";
-    }
-
-  },700);
-
-  /* إعادة الوضع */
-
-  penaltyRoundTimer=setTimeout(function(){
-
-    result.classList.remove("show");
-
-    resetPenaltyObjects();
-
-    penaltyPlaying=true;
-
-  },1700);
+},1700);
 }
 
 function restartPenalty(){
 
-  clearTimeout(penaltyRoundTimer);
-
-  startPenalty();
+clearTimeout(penaltyRoundTimer);
+startPenalty();
 }
 
 
-/* =====================================================
-   BALLOON
-===================================================== */
+/* ================= BALLOON ================= */
 
 var balloonScore=0;
 var balloonTimer=null;
 
 function startBalloon(){
 
-  clearInterval(balloonTimer);
+clearInterval(balloonTimer);
 
-  balloonScore=0;
+balloonScore=0;
 
-  document.getElementById("balloonScore").textContent=
-    "النقاط: 0";
+document.getElementById("balloonScore").textContent="النقاط: 0";
+document.getElementById("balloonArea").innerHTML="";
 
-  document.getElementById("balloonArea").innerHTML="";
-
-  balloonTimer=setInterval(createBalloon,850);
+balloonTimer=setInterval(createBalloon,850);
 }
 
 function leaveBalloon(){
 
-  clearInterval(balloonTimer);
-  show("home");
+clearInterval(balloonTimer);
+show("home");
 }
 
 function createBalloon(){
 
-  var area=document.getElementById("balloonArea");
+var area=document.getElementById("balloonArea");
 
-  var b=document.createElement("button");
+var b=document.createElement("button");
 
-  b.className="balloon";
+b.className="balloon";
 
-  b.style.left=
-    Math.random()*(area.clientWidth-65)+"px";
+b.style.left=Math.random()*(area.clientWidth-65)+"px";
+b.style.top=area.clientHeight+"px";
 
-  b.style.top=
-    area.clientHeight+"px";
+b.style.background=[
+"#e93350","#ff9d16","#7c3aed","#18b981","#2485e8"
+][Math.floor(Math.random()*5)];
 
-  b.style.background=[
-    "#e93350",
-    "#ff9d16",
-    "#7c3aed",
-    "#18b981",
-    "#2485e8"
-  ][Math.floor(Math.random()*5)];
+b.onclick=function(){
 
-  b.onclick=function(){
+balloonScore++;
 
-    balloonScore++;
+document.getElementById("balloonScore").textContent=
+"النقاط: "+balloonScore;
 
-    document.getElementById("balloonScore").textContent=
-      "النقاط: "+balloonScore;
+b.remove();
+};
 
-    b.remove();
-  };
+area.appendChild(b);
 
-  area.appendChild(b);
+var y=area.clientHeight;
 
-  var y=area.clientHeight;
+var move=setInterval(function(){
 
-  var move=setInterval(function(){
+y-=3;
+b.style.top=y+"px";
 
-    y-=3;
+if(y<-100){
 
-    b.style.top=y+"px";
+clearInterval(move);
 
-    if(y<-100){
+if(b.parentNode)b.remove();
+}
 
-      clearInterval(move);
-
-      if(b.parentNode)b.remove();
-    }
-
-  },30);
+},30);
 }
 
 
-/* =====================================================
-   QUIZ
-===================================================== */
+/* ================= QUIZ ================= */
 
 var questions=[
- {
-  q:"ما هو أكبر كوكب؟",
-  a:["الأرض","المشتري","المريخ","عطارد"],
-  c:1
- },
- {
-  q:"كم عدد أيام الأسبوع؟",
-  a:["5","6","7","8"],
-  c:2
- },
- {
-  q:"ما عاصمة العراق؟",
-  a:["بغداد","البصرة","أربيل","الموصل"],
-  c:0
- },
- {
-  q:"5 + 5 = ؟",
-  a:["8","9","10","11"],
-  c:2
- },
- {
-  q:"ملك الغابة؟",
-  a:["الفيل","الأسد","الحصان","القرد"],
-  c:1
- }
+{q:"ما هو أكبر كوكب؟",a:["الأرض","المشتري","المريخ","عطارد"],c:1},
+{q:"كم عدد أيام الأسبوع؟",a:["5","6","7","8"],c:2},
+{q:"ما عاصمة العراق؟",a:["بغداد","البصرة","أربيل","الموصل"],c:0},
+{q:"5 + 5 = ؟",a:["8","9","10","11"],c:2},
+{q:"ملك الغابة؟",a:["الفيل","الأسد","الحصان","القرد"],c:1}
 ];
 
 var qIndex=0;
@@ -1875,233 +1550,205 @@ var qScore=0;
 
 function startQuiz(){
 
-  qIndex=0;
-  qScore=0;
-
-  showQuestion();
+qIndex=0;
+qScore=0;
+showQuestion();
 }
 
 function showQuestion(){
 
-  var q=questions[qIndex];
+var q=questions[qIndex];
 
-  document.getElementById("quizScore").textContent=
-    "النقاط: "+qScore;
+document.getElementById("quizScore").textContent=
+"النقاط: "+qScore;
 
-  document.getElementById("question").textContent=
-    q.q;
+document.getElementById("question").textContent=q.q;
 
-  var answers=document.getElementById("answers");
+var answers=document.getElementById("answers");
+answers.innerHTML="";
 
-  answers.innerHTML="";
+q.a.forEach(function(answer,index){
 
-  q.a.forEach(function(answer,index){
+var b=document.createElement("button");
+b.textContent=answer;
 
-    var b=document.createElement("button");
+b.onclick=function(){
 
-    b.textContent=answer;
+if(index===q.c)qScore++;
 
-    b.onclick=function(){
+qIndex++;
 
-      if(index===q.c)qScore++;
+if(qIndex>=questions.length){
 
-      qIndex++;
+document.getElementById("question").textContent=
+"🎉 انتهت اللعبة!";
 
-      if(qIndex>=questions.length){
+document.getElementById("quizScore").textContent=
+"النتيجة: "+qScore+" / "+questions.length;
 
-        document.getElementById("question").textContent=
-          "🎉 انتهت اللعبة!";
+answers.innerHTML=
+'<button onclick="startQuiz()">🔄 إعادة</button>';
 
-        document.getElementById("quizScore").textContent=
-          "النتيجة: "+qScore+" / "+questions.length;
+}else{
 
-        answers.innerHTML=
-          '<button onclick="startQuiz()">🔄 إعادة</button>';
+showQuestion();
+}
+};
 
-      }else{
-
-        showQuestion();
-
-      }
-    };
-
-    answers.appendChild(b);
-  });
+answers.appendChild(b);
+});
 }
 
 
-/* =====================================================
-   EMOJI
-===================================================== */
+/* ================= EMOJI ================= */
 
 var emojiPairs=[
- ["😀","😃"],
- ["🐶","🐱"],
- ["🍎","🍊"],
- ["🚗","🚌"],
- ["⭐","🌟"],
- ["🍕","🍔"],
- ["⚽","🏀"],
- ["🐸","🐵"]
+["😀","😃"],
+["🐶","🐱"],
+["🍎","🍊"],
+["🚗","🚌"],
+["⭐","🌟"],
+["🍕","🍔"],
+["⚽","🏀"],
+["🐸","🐵"]
 ];
 
 var emojiScore=0;
 
 function startEmoji(){
 
-  emojiScore=0;
+emojiScore=0;
 
-  document.getElementById("emojiScore").textContent=
-    "النقاط: 0";
+document.getElementById("emojiScore").textContent="النقاط: 0";
 
-  newEmoji();
+newEmoji();
 }
 
 function newEmoji(){
 
-  var grid=document.getElementById("emojiGrid");
+var grid=document.getElementById("emojiGrid");
+grid.innerHTML="";
 
-  grid.innerHTML="";
+var pair=emojiPairs[Math.floor(Math.random()*emojiPairs.length)];
 
-  var pair=
-    emojiPairs[
-      Math.floor(Math.random()*emojiPairs.length)
-    ];
+var normal=pair[0];
+var different=pair[1];
 
-  var normal=pair[0];
-  var different=pair[1];
+var differentIndex=Math.floor(Math.random()*25);
 
-  var differentIndex=
-    Math.floor(Math.random()*25);
+for(let i=0;i<25;i++){
 
-  for(let i=0;i<25;i++){
+var b=document.createElement("button");
 
-    var b=document.createElement("button");
+b.textContent=i===differentIndex?different:normal;
 
-    b.textContent=
-      i===differentIndex?
-      different:
-      normal;
+b.onclick=function(){
 
-    b.onclick=function(){
+if(i===differentIndex){
 
-      if(i===differentIndex){
+emojiScore++;
 
-        emojiScore++;
+document.getElementById("emojiScore").textContent=
+"النقاط: "+emojiScore;
 
-        document.getElementById("emojiScore").textContent=
-          "النقاط: "+emojiScore;
+newEmoji();
 
-        newEmoji();
+}else{
 
-      }else{
+document.getElementById("emojiScore").textContent=
+"❌ خطأ! النقاط: "+emojiScore;
+}
+};
 
-        document.getElementById("emojiScore").textContent=
-          "❌ خطأ! النقاط: "+emojiScore;
-      }
-    };
-
-    grid.appendChild(b);
-  }
+grid.appendChild(b);
+}
 }
 
 
-/* =====================================================
-   RPS
-===================================================== */
+/* ================= RPS ================= */
 
 var rpsMode="bot";
 var player1Choice=null;
 
 var rpsName={
- rock:"✊ حجر",
- paper:"📄 ورقة",
- scissors:"✂️ مقص"
+rock:"✊ حجر",
+paper:"📄 ورقة",
+scissors:"✂️ مقص"
 };
 
 function startRPS(mode){
 
-  rpsMode=mode;
-  player1Choice=null;
+rpsMode=mode;
+player1Choice=null;
 
-  show("rps");
+show("rps");
 
-  document.getElementById("rpsResult").textContent="";
+document.getElementById("rpsResult").textContent="";
 
-  document.getElementById("rpsStatus").textContent=
-    mode==="bot"?
-    "اختر ضد البوت":
-    "اللاعب 1 يختار";
+document.getElementById("rpsStatus").textContent=
+mode==="bot"?"اختر ضد البوت":"اللاعب 1 يختار";
 }
 
 function playRPS(choice){
 
-  if(rpsMode==="friend"){
+if(rpsMode==="friend"){
 
-    if(player1Choice===null){
+if(player1Choice===null){
 
-      player1Choice=choice;
+player1Choice=choice;
 
-      document.getElementById("rpsStatus").textContent=
-        "الآن اللاعب 2 يختار";
+document.getElementById("rpsStatus").textContent=
+"الآن اللاعب 2 يختار";
 
-      return;
-    }
+return;
+}
 
-    var p2=choice;
+var p2=choice;
 
-    showRPS(player1Choice,p2);
+showRPS(player1Choice,p2);
 
-    player1Choice=null;
+player1Choice=null;
 
-    return;
-  }
+return;
+}
 
-  var options=[
-    "rock",
-    "paper",
-    "scissors"
-  ];
+var options=["rock","paper","scissors"];
 
-  var bot=
-    options[Math.floor(Math.random()*3)];
+var bot=options[Math.floor(Math.random()*3)];
 
-  showRPS(choice,bot);
+showRPS(choice,bot);
 }
 
 function showRPS(a,b){
 
-  var result;
+var result;
 
-  if(a===b){
+if(a===b){
 
-    result="🤝 تعادل";
+result="🤝 تعادل";
 
-  }else if(
-    (a==="rock"&&b==="scissors")||
-    (a==="paper"&&b==="rock")||
-    (a==="scissors"&&b==="paper")
-  ){
+}else if(
+(a==="rock"&&b==="scissors")||
+(a==="paper"&&b==="rock")||
+(a==="scissors"&&b==="paper")
+){
 
-    result="🎉 اللاعب 1 فاز";
+result="🎉 اللاعب 1 فاز";
 
-  }else{
+}else{
 
-    result="🏆 اللاعب 2 / البوت فاز";
+result="🏆 اللاعب 2 / البوت فاز";
+}
 
-  }
-
-  document.getElementById("rpsResult").innerHTML=
-    "اللاعب 1: "+rpsName[a]+
-    "<br>"+
-    "اللاعب 2: "+rpsName[b]+
-    "<br><br>"+result;
+document.getElementById("rpsResult").innerHTML=
+"اللاعب 1: "+rpsName[a]+
+"<br>"+
+"اللاعب 2: "+rpsName[b]+
+"<br><br>"+result;
 }
 
 
-/* =====================================================
-   BOMB
-===================================================== */
+/* ================= BOMB ================= */
 
 var bombTurn=1;
 var bomb1=0;
@@ -2112,92 +1759,293 @@ var bombEnd=false;
 
 function startBomb(){
 
-  bombTurn=1;
-  bombEnd=false;
+bombTurn=1;
+bombEnd=false;
 
-  used1=[];
-  used2=[];
+used1=[];
+used2=[];
 
-  bomb1=Math.floor(Math.random()*6);
-  bomb2=Math.floor(Math.random()*6);
+bomb1=Math.floor(Math.random()*6);
+bomb2=Math.floor(Math.random()*6);
 
-  document.getElementById("bombStatus").textContent=
-    "دور اللاعب 1";
+document.getElementById("bombStatus").textContent=
+"دور اللاعب 1";
 
-  drawBomb(1);
-  drawBomb(2);
+drawBomb(1);
+drawBomb(2);
 }
 
 function drawBomb(player){
 
-  var grid=document.getElementById(
-    player===1?"bomb1":"bomb2"
-  );
+var grid=document.getElementById(player===1?"bomb1":"bomb2");
 
-  grid.innerHTML="";
+grid.innerHTML="";
 
-  for(let i=0;i<6;i++){
+for(let i=0;i<6;i++){
 
-    var b=document.createElement("button");
+var b=document.createElement("button");
 
-    b.textContent="📦";
+b.textContent="📦";
 
-    var used=
-      player===1?
-      used1.includes(i):
-      used2.includes(i);
+var used=player===1?used1.includes(i):used2.includes(i);
 
-    b.disabled=used;
+b.disabled=used;
 
-    b.onclick=function(){
-      chooseBomb(player,i);
-    };
+b.onclick=function(){
+chooseBomb(player,i);
+};
 
-    grid.appendChild(b);
-  }
+grid.appendChild(b);
+}
 }
 
 function chooseBomb(player,index){
 
-  if(bombEnd)return;
+if(bombEnd)return;
+if(player!==bombTurn)return;
 
-  if(player!==bombTurn)return;
+if(player===1)used1.push(index);
+else used2.push(index);
 
-  if(player===1){
-    used1.push(index);
-  }else{
-    used2.push(index);
-  }
+drawBomb(1);
+drawBomb(2);
 
-  drawBomb(1);
-  drawBomb(2);
+var bomb=player===1?bomb1:bomb2;
 
-  var bomb=
-    player===1?
-    bomb1:
-    bomb2;
+if(index===bomb){
 
-  if(index===bomb){
+bombEnd=true;
 
-    bombEnd=true;
+document.getElementById("bombStatus").textContent=
+"💥 اللاعب "+player+" وجد القنبلة!";
 
-    document.getElementById("bombStatus").textContent=
-      "💥 اللاعب "+player+" وجد القنبلة!";
+return;
+}
 
-    return;
-  }
+bombTurn=player===1?2:1;
 
-  bombTurn=
-    player===1?2:1;
-
-  document.getElementById("bombStatus").textContent=
-    "دور اللاعب "+bombTurn;
+document.getElementById("bombStatus").textContent=
+"دور اللاعب "+bombTurn;
 }
 
 
 /* =====================================================
-   البداية
+   LIQUID / WATER SORT
 ===================================================== */
+
+var liquidColors=[
+"redL",
+"blueL",
+"greenL",
+"yellowL"
+];
+
+var liquidData=[];
+var selectedTube=-1;
+var liquidLocked=false;
+
+function newLiquidLevel(){
+startLiquid();
+}
+
+function startLiquid(){
+
+selectedTube=-1;
+liquidLocked=false;
+
+document.getElementById("liquidWin").textContent="";
+
+var colors=[];
+
+for(var i=0;i<liquidColors.length;i++){
+
+for(var j=0;j<4;j++){
+colors.push(liquidColors[i]);
+}
+}
+
+/* خلط الألوان */
+for(var i=colors.length-1;i>0;i--){
+
+var r=Math.floor(Math.random()*(i+1));
+
+var temp=colors[i];
+colors[i]=colors[r];
+colors[r]=temp;
+}
+
+liquidData=[
+colors.slice(0,4),
+colors.slice(4,8),
+colors.slice(8,12),
+colors.slice(12,16),
+[],
+[]
+];
+
+drawLiquid();
+}
+
+function leaveLiquid(){
+selectedTube=-1;
+show("home");
+}
+
+function drawLiquid(){
+
+var container=document.getElementById("tubes");
+
+container.innerHTML="";
+
+liquidData.forEach(function(tube,index){
+
+var el=document.createElement("div");
+
+el.className="tube";
+
+if(index===selectedTube){
+el.classList.add("selected");
+}
+
+el.onclick=function(){
+selectTube(index);
+};
+
+tube.forEach(function(color){
+
+var liquid=document.createElement("div");
+
+liquid.className="liquid "+color;
+
+el.appendChild(liquid);
+});
+
+container.appendChild(el);
+});
+}
+
+function selectTube(index){
+
+if(liquidLocked)return;
+
+if(selectedTube===-1){
+
+if(liquidData[index].length===0)return;
+
+selectedTube=index;
+
+drawLiquid();
+
+return;
+}
+
+if(selectedTube===index){
+
+selectedTube=-1;
+drawLiquid();
+
+return;
+}
+
+moveLiquid(selectedTube,index);
+}
+
+function moveLiquid(from,to){
+
+var source=liquidData[from];
+var target=liquidData[to];
+
+if(source.length===0){
+selectedTube=-1;
+drawLiquid();
+return;
+}
+
+if(target.length>=4){
+selectedTube=-1;
+drawLiquid();
+return;
+}
+
+/* اللون الموجود بالأعلى */
+var color=source[source.length-1];
+
+/* إذا الأنبوب الثاني غير فارغ لازم يكون نفس اللون */
+if(target.length>0){
+
+var targetColor=target[target.length-1];
+
+if(targetColor!==color){
+
+selectedTube=-1;
+drawLiquid();
+return;
+}
+}
+
+/* عدد القطع المتتالية من نفس اللون */
+var count=0;
+
+for(var i=source.length-1;i>=0;i--){
+
+if(source[i]===color){
+count++;
+}else{
+break;
+}
+}
+
+/* المساحة المتوفرة */
+var space=4-target.length;
+
+var amount=Math.min(count,space);
+
+for(var i=0;i<amount;i++){
+
+target.push(source.pop());
+}
+
+selectedTube=-1;
+
+drawLiquid();
+
+checkLiquidWin();
+}
+
+function checkLiquidWin(){
+
+var win=true;
+
+for(var i=0;i<liquidData.length;i++){
+
+var tube=liquidData[i];
+
+if(tube.length===0)continue;
+
+if(tube.length!==4){
+win=false;
+break;
+}
+
+for(var j=1;j<tube.length;j++){
+
+if(tube[j]!==tube[0]){
+win=false;
+break;
+}
+}
+}
+
+if(win){
+
+document.getElementById("liquidWin").textContent=
+"🎉🎉 أحسنت! رتبت كل السوائل! 🎉🎉";
+
+}
+}
+
+
+/* ================= START ================= */
 
 show("home");
 
