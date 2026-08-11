@@ -17,13 +17,14 @@ html,body{
  width:100%;
  height:100%;
  overflow:hidden;
- font-family:Arial;
- background:#09090b;
+ font-family:Arial,sans-serif;
+ background:#111536;
  color:white;
 }
 
 button{
- font-family:Arial;
+ font-family:Arial,sans-serif;
+ border:0;
  cursor:pointer;
 }
 
@@ -34,150 +35,217 @@ button{
  position:relative;
 }
 
-.active{
+.screen.active{
  display:flex;
 }
 
+/* ================= MAIN MENU ================= */
+
 #menu{
  flex-direction:column;
- justify-content:center;
  align-items:center;
- gap:10px;
- background:linear-gradient(135deg,#111827,#312e81);
- overflow:auto;
- padding:25px 0;
+ justify-content:flex-start;
+ padding:20px 15px 35px;
+ overflow-y:auto;
+ background:
+ radial-gradient(circle at 50% -10%,#30386f,#191d4d 45%,#111536);
 }
 
-.title{
- font-size:38px;
- font-weight:bold;
- margin-bottom:8px;
+.top{
+ width:100%;
+ max-width:650px;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ margin-bottom:22px;
 }
 
-.menuBtn{
- width:290px;
- padding:13px;
- border:0;
- border-radius:15px;
+.language{
+ width:115px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:7px;
+}
+
+.globe{
+ width:70px;
+ height:70px;
+ font-size:52px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+.lang{
+ width:50px;
+ height:48px;
+ border-radius:10px;
  color:white;
- font-size:20px;
+ background:#ffffff12;
+ font-size:15px;
  font-weight:bold;
- background:#2563eb;
- box-shadow:0 4px #1647a5;
 }
 
-.menuBtn:active{
- transform:translateY(3px);
+.activeLang{
+ background:#2864dc;
+}
+
+.mainTitle{
+ font-size:52px;
+ line-height:.9;
+ font-weight:900;
+ text-align:center;
+ text-shadow:3px 4px 0 #0005;
+ margin-top:8px;
+}
+
+.gamesGrid{
+ width:100%;
+ max-width:650px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:13px;
+}
+
+.gameButton{
+ min-height:105px;
+ border-radius:24px;
+ color:white;
+ font-size:24px;
+ font-weight:900;
+ padding:10px;
+ box-shadow:
+ 0 8px 0 #0004,
+ 0 12px 20px #0003;
+ transition:.12s;
+}
+
+.gameButton:active{
+ transform:translateY(7px);
+ box-shadow:0 2px 0 #0004;
+}
+
+.blue{
+ background:linear-gradient(145deg,#3282f5,#1555d2);
+}
+
+.yellow{
+ background:linear-gradient(145deg,#c7d41a,#8b9500);
 }
 
 .green{
- background:#16a34a;
- box-shadow:0 4px #11632e;
-}
-
-.purple{
- background:#9333ea;
- box-shadow:0 4px #641c9b;
+ background:linear-gradient(145deg,#20d449,#0a9c31);
 }
 
 .orange{
- background:#ea580c;
- box-shadow:0 4px #9a3412;
+ background:linear-gradient(145deg,#ff8a00,#f05a00);
 }
 
-.red{
- background:#dc2626;
- box-shadow:0 4px #991b1b;
+.purple{
+ background:linear-gradient(145deg,#a52df0,#7120c4);
 }
 
 .cyan{
- background:#0891b2;
- box-shadow:0 4px #155e75;
+ background:linear-gradient(145deg,#17c8db,#0799ad);
 }
 
-.minecraft{
- background:#65a30d;
- box-shadow:0 4px #365314;
+.red{
+ background:linear-gradient(145deg,#ef2b2b,#c80e16);
 }
+
+@media(max-width:500px){
+ .mainTitle{font-size:43px}
+ .gameButton{font-size:20px;min-height:100px}
+ .gamesGrid{gap:11px}
+}
+
+@media(max-width:360px){
+ .mainTitle{font-size:36px}
+ .gameButton{font-size:17px;min-height:90px}
+}
+
+/* ================= GENERAL ================= */
 
 .back{
  position:absolute;
- top:10px;
- right:10px;
- z-index:100;
- padding:9px 15px;
- border:0;
- border-radius:10px;
- background:#ef4444;
+ top:12px;
+ right:12px;
+ z-index:1000;
+ background:#ef3333;
  color:white;
+ padding:10px 17px;
+ border-radius:12px;
  font-weight:bold;
-}
-
-.gameTitle{
- font-size:28px;
- margin:8px;
-}
-
-.info{
- font-size:20px;
- margin:5px;
+ font-size:16px;
 }
 
 .bigBtn{
- padding:12px 25px;
- border:0;
- border-radius:12px;
  background:#2563eb;
  color:white;
- font-size:20px;
+ padding:13px 25px;
+ border-radius:13px;
+ font-size:19px;
  font-weight:bold;
 }
 
+/* ================= XO MENU ================= */
 
-/* =========================
-   XO
-========================= */
-
-#xoMenu,
-#xoGame,
-#rpsMenu,
-#rpsGame{
+#xoMenu,#xoGame,#rpsMenu,#rpsGame{
  flex-direction:column;
  align-items:center;
  justify-content:center;
  gap:12px;
 }
 
-#xoMenu,
-#xoGame{
- background:#172554;
+#xoMenu,#xoGame{
+ background:linear-gradient(135deg,#172554,#1e3a8a);
+}
+
+#xoMenu h1,#xoGame h1{
+ font-size:35px;
+}
+
+#xoMenu .menuBtn,
+#rpsMenu .menuBtn{
+ width:280px;
+ padding:15px;
+ border-radius:15px;
+ color:white;
+ font-size:20px;
+ font-weight:bold;
+}
+
+.menuBtn{
+ background:#2563eb;
+ box-shadow:0 5px #123e98;
+}
+
+.menuBtn.green{
+ background:#16a34a;
+ box-shadow:0 5px #11632e;
 }
 
 .board{
- width:320px;
- height:320px;
+ width:315px;
+ height:315px;
  display:grid;
  grid-template-columns:repeat(3,1fr);
  gap:7px;
 }
 
 .cell{
- border:0;
- border-radius:15px;
- background:#1e293b;
+ background:#172033;
  color:white;
+ border-radius:15px;
  font-size:55px;
 }
 
-#xoResult{
- font-size:23px;
- height:30px;
+#xoTurn,#xoResult{
+ font-size:21px;
+ min-height:27px;
 }
 
-
-/* =========================
-   CARS
-========================= */
+/* ================= CARS ================= */
 
 #carsGame{
  background:#111;
@@ -188,6 +256,7 @@ button{
 #carRoad{
  width:360px;
  height:100vh;
+ max-height:750px;
  position:relative;
  overflow:hidden;
  background:#333;
@@ -204,8 +273,7 @@ button{
  transform:translateX(-50%);
 }
 
-.carPlayer,
-.enemy{
+.carPlayer,.enemy{
  position:absolute;
  width:50px;
  height:90px;
@@ -214,8 +282,8 @@ button{
 
 .carPlayer{
  background:red;
- bottom:30px;
  left:155px;
+ bottom:30px;
  z-index:5;
 }
 
@@ -247,8 +315,8 @@ button{
 .carControl{
  width:75px;
  height:65px;
- border:0;
  border-radius:15px;
+ background:#eee;
  font-size:32px;
 }
 
@@ -264,23 +332,19 @@ button{
 
 #carOver button{
  padding:13px 25px;
- border:0;
  border-radius:10px;
  background:#2563eb;
  color:white;
  font-size:19px;
 }
 
-
-/* =========================
-   SNAKE
-========================= */
+/* ================= SNAKE ================= */
 
 #snakeGame{
  flex-direction:column;
  align-items:center;
- background:#052e16;
  padding-top:45px;
+ background:#052e16;
 }
 
 #snakeCanvas{
@@ -300,36 +364,18 @@ button{
 }
 
 .snakeControl{
- border:0;
  border-radius:10px;
  background:#22c55e;
  color:white;
  font-size:22px;
 }
 
-#up{
- grid-column:2;
-}
+#up{grid-column:2}
+#leftS{grid-column:1;grid-row:2}
+#down{grid-column:2;grid-row:2}
+#rightS{grid-column:3;grid-row:2}
 
-#leftS{
- grid-column:1;
- grid-row:2;
-}
-
-#down{
- grid-column:2;
- grid-row:2;
-}
-
-#rightS{
- grid-column:3;
- grid-row:2;
-}
-
-
-/* =========================
-   INFO
-========================= */
+/* ================= INFO ================= */
 
 #info{
  justify-content:center;
@@ -347,21 +393,18 @@ button{
 }
 
 .infoText{
+ white-space:pre-line;
  font-size:18px;
  line-height:2;
- white-space:pre-line;
 }
 
-
-/* =========================
-   PENALTY
-========================= */
+/* ================= PENALTY ================= */
 
 #penaltyGame{
  flex-direction:column;
  align-items:center;
  background:linear-gradient(#38bdf8,#0f766e);
- padding-top:45px;
+ padding-top:50px;
 }
 
 #goal{
@@ -369,25 +412,15 @@ button{
  width:330px;
  height:190px;
  border:8px solid white;
- border-bottom:12px solid white;
- background:#ffffff22;
- margin-top:15px;
+ background:#ffffff20;
 }
 
 .net{
  position:absolute;
  inset:0;
  background:
- repeating-linear-gradient(
-  0deg,
-  #fff3 0 2px,
-  transparent 2px 18px
- ),
- repeating-linear-gradient(
-  90deg,
-  #fff3 0 2px,
-  transparent 2px 18px
- );
+ repeating-linear-gradient(0deg,#fff3 0 2px,transparent 2px 18px),
+ repeating-linear-gradient(90deg,#fff3 0 2px,transparent 2px 18px);
 }
 
 #keeper{
@@ -398,7 +431,6 @@ button{
  bottom:0;
  left:145px;
  border-radius:12px 12px 5px 5px;
- z-index:4;
 }
 
 #ball{
@@ -409,7 +441,6 @@ button{
  background:white;
  bottom:15px;
  left:151px;
- z-index:5;
  transition:.35s;
 }
 
@@ -422,28 +453,18 @@ button{
 
 .penaltyButtons button{
  padding:12px 18px;
- border:0;
  border-radius:12px;
  font-size:18px;
- font-weight:bold;
 }
 
-#penaltyResult{
- font-size:22px;
- margin:10px;
-}
-
-
-/* =========================
-   BALLOON
-========================= */
+/* ================= BALLOON ================= */
 
 #balloonGame{
  flex-direction:column;
  align-items:center;
  background:linear-gradient(#38bdf8,#dbeafe);
  color:#111827;
- padding-top:45px;
+ padding-top:50px;
 }
 
 #balloonArea{
@@ -459,9 +480,7 @@ button{
  position:absolute;
  width:70px;
  height:90px;
- border-radius:50% 50% 45% 45%;
- background:#ef4444;
- cursor:pointer;
+ border-radius:50%;
  box-shadow:inset -10px -10px #0002;
 }
 
@@ -475,15 +494,7 @@ button{
  left:34px;
 }
 
-#balloonResult{
- font-size:22px;
- margin:10px;
-}
-
-
-/* =========================
-   QUIZ
-========================= */
+/* ================= QUIZ ================= */
 
 #quizGame{
  flex-direction:column;
@@ -508,7 +519,6 @@ button{
 }
 
 .answer{
- border:0;
  border-radius:12px;
  padding:14px;
  background:#2563eb;
@@ -516,48 +526,20 @@ button{
  font-size:19px;
 }
 
-#quizResult{
- font-size:22px;
- height:30px;
-}
+/* ================= RPS ================= */
 
-
-/* =========================
-   RPS MENU
-========================= */
-
-#rpsMenu{
+#rpsMenu,#rpsGame{
  background:linear-gradient(135deg,#14532d,#052e16);
 }
 
-.rpsMenuButton{
- width:280px;
- padding:15px;
- border:0;
- border-radius:15px;
- color:white;
- font-size:21px;
- font-weight:bold;
+#rpsMenu .menuBtn{
  background:#16a34a;
- box-shadow:0 4px #166534;
+ box-shadow:0 5px #166534;
 }
 
-.rpsMenuButton.bot{
+#rpsMenu .bot{
  background:#2563eb;
- box-shadow:0 4px #1647a5;
-}
-
-.rpsMenuButton:active{
- transform:translateY(3px);
-}
-
-
-/* =========================
-   RPS GAME
-========================= */
-
-#rpsGame{
- background:linear-gradient(135deg,#14532d,#052e16);
+ box-shadow:0 5px #1647a5;
 }
 
 .rpsButtons{
@@ -570,37 +552,22 @@ button{
  font-size:45px;
  width:90px;
  height:80px;
- border:0;
  border-radius:15px;
- background:#fff;
 }
 
 #rpsResult{
- font-size:23px;
+ font-size:21px;
  text-align:center;
  min-height:60px;
 }
 
-#rpsTurn{
- font-size:22px;
- font-weight:bold;
-}
-
-#rpsReset{
- margin-top:5px;
-}
-
-
-/* =========================
-   DIFFERENT EMOJI
-========================= */
+/* ================= EMOJI ================= */
 
 #emojiGame{
  flex-direction:column;
  align-items:center;
  justify-content:center;
  background:linear-gradient(135deg,#7c2d12,#431407);
- gap:15px;
 }
 
 #emojiGrid{
@@ -613,16 +580,12 @@ button{
 .emojiCell{
  width:55px;
  height:55px;
- border:0;
  border-radius:10px;
- background:#fff;
+ background:white;
  font-size:30px;
 }
 
-
-/* =========================
-   MINECRAFT 3D
-========================= */
+/* ================= MINECRAFT 3D ================= */
 
 #mcGame{
  background:#87ceeb;
@@ -656,7 +619,7 @@ button{
  background:#0008;
  padding:8px 12px;
  border-radius:10px;
- font-size:14px;
+ font-size:13px;
 }
 
 #crosshair{
@@ -665,7 +628,7 @@ button{
  left:50%;
  transform:translate(-50%,-50%);
  font-size:28px;
- text-shadow:0 0 4px black;
+ text-shadow:0 0 5px black;
 }
 
 #hotbar{
@@ -688,7 +651,6 @@ button{
  align-items:center;
  justify-content:center;
  font-size:22px;
- pointer-events:auto;
 }
 
 .slot.selected{
@@ -708,33 +670,25 @@ button{
  direction:ltr;
 }
 
-.mcBtn{
- border:0;
+.mcBtn,#mcJump,.mcAction{
  border-radius:12px;
  background:#0009;
  color:white;
- font-size:25px;
- pointer-events:auto;
+ font-size:23px;
  touch-action:none;
 }
 
-#mcForward{
- grid-column:2;
-}
+#mcForward{grid-column:2}
+#mcLeft{grid-column:1;grid-row:2}
+#mcBack{grid-column:2;grid-row:2}
+#mcRight{grid-column:3;grid-row:2}
 
-#mcLeft{
- grid-column:1;
- grid-row:2;
-}
-
-#mcBack{
- grid-column:2;
- grid-row:2;
-}
-
-#mcRight{
- grid-column:3;
- grid-row:2;
+#mcJump{
+ position:absolute;
+ bottom:140px;
+ left:15px;
+ width:60px;
+ height:55px;
 }
 
 #mcActions{
@@ -747,459 +701,353 @@ button{
 }
 
 .mcAction{
- width:70px;
+ width:75px;
  height:55px;
- border:0;
- border-radius:12px;
- color:white;
- background:#0009;
- font-weight:bold;
- pointer-events:auto;
- touch-action:none;
+ font-size:14px;
 }
 
-#mcJump{
- position:absolute;
- bottom:140px;
- left:15px;
- width:60px;
- height:55px;
- border:0;
- border-radius:12px;
- background:#0009;
- color:white;
- font-size:24px;
- pointer-events:auto;
+/* ================= LANGUAGE ================= */
+
+body.en{
+ direction:ltr;
 }
 </style>
 </head>
 
 <body>
 
-
-<!-- =========================
-     MAIN MENU
-========================= -->
+<!-- ================= MAIN MENU ================= -->
 
 <div id="menu" class="screen active">
 
-<div class="title">🎮 Ahmed Games</div>
+ <div class="top">
 
-<button class="menuBtn" onclick="show('xoMenu')">
-❌⭕ XO
-</button>
+  <div class="language">
 
-<button class="menuBtn" onclick="show('carsGame');startCars()">
-🚗 Cars
-</button>
+   <div class="globe">🌐</div>
 
-<button class="menuBtn green" onclick="show('snakeGame');startSnake()">
-🐍 The Snake
-</button>
+   <button class="lang activeLang" onclick="setLang('ar')">
+    🇸🇦 AR
+   </button>
 
-<button class="menuBtn minecraft" onclick="show('mcGame');startMC()">
-⛏️ Minecraft 3D
-</button>
+   <button class="lang" onclick="setLang('en')">
+    🇬🇧 EN
+   </button>
 
-<button class="menuBtn orange" onclick="show('penaltyGame');startPenalty()">
-⚽ ضربات جزاء
-</button>
+  </div>
 
-<button class="menuBtn cyan" onclick="show('balloonGame');startBalloon()">
-🎈 المنطاد
-</button>
+  <div class="mainTitle">
+   Ahmed<br>Games
+  </div>
 
-<button class="menuBtn purple" onclick="show('quizGame');startQuiz()">
-❓ سؤال جواب
-</button>
+ </div>
 
-<button class="menuBtn green" onclick="show('rpsMenu')">
-✊📄✂️ حجر ورقة مقص
-</button>
+ <div class="gamesGrid">
 
-<button class="menuBtn red" onclick="show('emojiGame');startEmoji()">
-😃 أوجد الإيموجي المختلف
-</button>
+  <button class="gameButton blue"
+   onclick="show('xoMenu')">
+   XO ❌⭕
+  </button>
 
-<button class="menuBtn purple" onclick="show('info')">
-👤 معلومات عني
-</button>
+  <button class="gameButton blue"
+   onclick="show('carsGame');startCars()">
+   Cars 🚗
+  </button>
 
+  <button class="gameButton yellow"
+   onclick="show('snakeGame');startSnake()">
+   The Snake 🐍
+  </button>
+
+  <button class="gameButton green"
+   onclick="show('mcGame');startMC()">
+   Minecraft 3D ⛏️
+  </button>
+
+  <button class="gameButton orange"
+   onclick="show('penaltyGame');startPenalty()">
+   ضربات جزاء ⚽
+  </button>
+
+  <button class="gameButton purple"
+   onclick="show('quizGame');startQuiz()">
+   سؤال جواب ❓
+  </button>
+
+  <button class="gameButton cyan"
+   onclick="show('balloonGame');startBalloon()">
+   المنطاد 🎈
+  </button>
+
+  <button class="gameButton red"
+   onclick="show('emojiGame');startEmoji()">
+   أوجد الإيموجي المختلف 😀
+  </button>
+
+  <button class="gameButton green"
+   onclick="show('rpsMenu')">
+   حجر ورقة مقص ✂️📄✊
+  </button>
+
+  <button class="gameButton purple"
+   onclick="show('info')">
+   معلومات عني 👤
+  </button>
+
+ </div>
 </div>
 
 
-<!-- =========================
-     XO MENU
-========================= -->
+<!-- ================= XO MENU ================= -->
 
 <div id="xoMenu" class="screen">
 
-<button class="back" onclick="show('menu')">
-رجوع
-</button>
+ <button class="back" onclick="show('menu')">رجوع</button>
 
-<h1>❌⭕ XO</h1>
+ <h1>❌⭕ XO</h1>
 
-<button class="menuBtn" onclick="startXO('bot')">
-🤖 لعب مع بوت
-</button>
+ <button class="menuBtn"
+  onclick="startXO('bot')">
+  🤖 لعب مع بوت
+ </button>
 
-<button class="menuBtn" onclick="startXO('friend')">
-👥 لعب مع صديق
-</button>
+ <button class="menuBtn green"
+  onclick="startXO('friend')">
+  👥 لعب مع صديق
+ </button>
 
 </div>
 
 
-<!-- =========================
-     XO GAME
-========================= -->
+<!-- ================= XO GAME ================= -->
 
 <div id="xoGame" class="screen">
 
-<button class="back" onclick="show('xoMenu')">
-رجوع
-</button>
+ <button class="back" onclick="show('xoMenu')">رجوع</button>
 
-<h1>❌⭕ XO</h1>
+ <h1>❌⭕ XO</h1>
 
-<div id="xoTurn"></div>
+ <div id="xoTurn"></div>
 
-<div class="board">
+ <div class="board">
 
-<button class="cell" onclick="xoPlay(0)"></button>
-<button class="cell" onclick="xoPlay(1)"></button>
-<button class="cell" onclick="xoPlay(2)"></button>
-<button class="cell" onclick="xoPlay(3)"></button>
-<button class="cell" onclick="xoPlay(4)"></button>
-<button class="cell" onclick="xoPlay(5)"></button>
-<button class="cell" onclick="xoPlay(6)"></button>
-<button class="cell" onclick="xoPlay(7)"></button>
-<button class="cell" onclick="xoPlay(8)"></button>
+  <button class="cell" onclick="xoPlay(0)"></button>
+  <button class="cell" onclick="xoPlay(1)"></button>
+  <button class="cell" onclick="xoPlay(2)"></button>
+  <button class="cell" onclick="xoPlay(3)"></button>
+  <button class="cell" onclick="xoPlay(4)"></button>
+  <button class="cell" onclick="xoPlay(5)"></button>
+  <button class="cell" onclick="xoPlay(6)"></button>
+  <button class="cell" onclick="xoPlay(7)"></button>
+  <button class="cell" onclick="xoPlay(8)"></button>
 
-</div>
+ </div>
 
-<div id="xoResult"></div>
+ <div id="xoResult"></div>
 
-<button class="bigBtn" onclick="xoRestart()">
-🔄 إعادة
-</button>
+ <button class="bigBtn" onclick="xoRestart()">
+  🔄 إعادة
+ </button>
 
 </div>
 
 
-<!-- =========================
-     CARS
-========================= -->
+<!-- ================= CARS ================= -->
 
 <div id="carsGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div id="carScore">
-النقاط: 0
-</div>
+ <div id="carScore">النقاط: 0</div>
 
-<div id="carRoad">
+ <div id="carRoad">
 
-<div class="carPlayer" id="carPlayer"></div>
+  <div class="carPlayer" id="carPlayer"></div>
 
-<div id="carOver">
+  <div id="carOver">
+   <h1>💥 انتهت اللعبة</h1>
+   <h2 id="carFinal"></h2>
+   <button onclick="startCars()">🔄 إعادة</button>
+  </div>
 
-<h1>💥 انتهت اللعبة</h1>
+ </div>
 
-<h2 id="carFinal"></h2>
-
-<button onclick="startCars()">
-🔄 إعادة
-</button>
-
-</div>
-
-</div>
-
-<div class="carControls">
-
-<button class="carControl" id="carLeft">
-⬅️
-</button>
-
-<button class="carControl" id="carRight">
-➡️
-</button>
-
-</div>
+ <div class="carControls">
+  <button class="carControl" id="carLeft">⬅️</button>
+  <button class="carControl" id="carRight">➡️</button>
+ </div>
 
 </div>
 
 
-<!-- =========================
-     SNAKE
-========================= -->
+<!-- ================= SNAKE ================= -->
 
 <div id="snakeGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<h1>🐍 The Snake</h1>
+ <h1>🐍 The Snake</h1>
 
-<div id="snakeScore">
-النقاط: 0
-</div>
+ <div id="snakeScore">النقاط: 0</div>
 
-<canvas id="snakeCanvas" width="320" height="320"></canvas>
+ <canvas id="snakeCanvas" width="320" height="320"></canvas>
 
-<div class="snakeControls">
-
-<button class="snakeControl" id="up">
-⬆️
-</button>
-
-<button class="snakeControl" id="leftS">
-⬅️
-</button>
-
-<button class="snakeControl" id="down">
-⬇️
-</button>
-
-<button class="snakeControl" id="rightS">
-➡️
-</button>
-
-</div>
+ <div class="snakeControls">
+  <button class="snakeControl" id="up">⬆️</button>
+  <button class="snakeControl" id="leftS">⬅️</button>
+  <button class="snakeControl" id="down">⬇️</button>
+  <button class="snakeControl" id="rightS">➡️</button>
+ </div>
 
 </div>
 
 
-<!-- =========================
-     PENALTY
-========================= -->
+<!-- ================= PENALTY ================= -->
 
 <div id="penaltyGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div class="gameTitle">
-⚽ ضربات جزاء
-</div>
+ <h1>⚽ ضربات جزاء</h1>
 
-<div class="info">
-اختر مكان التسديدة
-</div>
+ <div id="goal">
 
-<div id="goal">
+  <div class="net"></div>
+  <div id="keeper"></div>
+  <div id="ball"></div>
 
-<div class="net"></div>
+ </div>
 
-<div id="keeper"></div>
+ <div class="penaltyButtons">
 
-<div id="ball"></div>
+  <button onclick="kickPenalty('left')">⬅️</button>
+  <button onclick="kickPenalty('center')">⬆️</button>
+  <button onclick="kickPenalty('right')">➡️</button>
 
-</div>
+ </div>
 
-<div class="penaltyButtons">
-
-<button onclick="kickPenalty('left')">
-⬅️
-</button>
-
-<button onclick="kickPenalty('center')">
-⬆️
-</button>
-
-<button onclick="kickPenalty('right')">
-➡️
-</button>
-
-</div>
-
-<div id="penaltyResult">
-5 تسديدات
-</div>
+ <h3 id="penaltyResult">5 تسديدات</h3>
 
 </div>
 
 
-<!-- =========================
-     BALLOON
-========================= -->
+<!-- ================= BALLOON ================= -->
 
 <div id="balloonGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div class="gameTitle">
-🎈 المنطاد
-</div>
+ <h1>🎈 المنطاد</h1>
 
-<div id="balloonResult">
-اضغط على المناطيد!
-</div>
+ <div id="balloonResult">
+  النقاط: 0
+ </div>
 
-<div id="balloonArea"></div>
+ <div id="balloonArea"></div>
 
 </div>
 
 
-<!-- =========================
-     QUIZ
-========================= -->
+<!-- ================= QUIZ ================= -->
 
 <div id="quizGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div class="gameTitle">
-❓ سؤال جواب
-</div>
+ <h1>❓ سؤال جواب</h1>
 
-<div id="quizScore">
-النقاط: 0
-</div>
+ <div id="quizScore">النقاط: 0</div>
 
-<div id="question"></div>
+ <div id="question"></div>
 
-<div class="answers" id="answers"></div>
+ <div class="answers" id="answers"></div>
 
-<div id="quizResult"></div>
+ <h3 id="quizResult"></h3>
 
 </div>
 
 
-<!-- =========================
-     RPS MENU
-========================= -->
+<!-- ================= RPS MENU ================= -->
 
 <div id="rpsMenu" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<h1>✊📄✂️</h1>
+ <h1>✊📄✂️</h1>
 
-<h2>حجر ورقة مقص</h2>
+ <h2>حجر ورقة مقص</h2>
 
-<button class="rpsMenuButton bot"
-onclick="startRPS('bot')">
+ <button class="menuBtn bot"
+  onclick="startRPS('bot')">
+  🤖 لعب مع بوت
+ </button>
 
-🤖 لعب مع بوت
-
-</button>
-
-<button class="rpsMenuButton"
-onclick="startRPS('friend')">
-
-👥 لعب مع صديق
-
-</button>
+ <button class="menuBtn green"
+  onclick="startRPS('friend')">
+  👥 لعب مع صديق
+ </button>
 
 </div>
 
 
-<!-- =========================
-     RPS GAME
-========================= -->
+<!-- ================= RPS GAME ================= -->
 
 <div id="rpsGame" class="screen">
 
-<button class="back" onclick="show('rpsMenu')">
-رجوع
-</button>
+ <button class="back" onclick="show('rpsMenu')">رجوع</button>
 
-<div class="gameTitle">
-✊📄✂️ حجر ورقة مقص
-</div>
+ <h1>✊📄✂️</h1>
 
-<div id="rpsTurn">
-</div>
+ <div id="rpsTurn"></div>
 
-<div id="rpsScore">
-أنت 0 - 0 الكمبيوتر
-</div>
+ <div id="rpsScore"></div>
 
-<div class="rpsButtons">
+ <div class="rpsButtons">
 
-<button class="rps" onclick="playRPS('rock')">
-✊
-</button>
+  <button class="rps" onclick="playRPS('rock')">✊</button>
+  <button class="rps" onclick="playRPS('paper')">📄</button>
+  <button class="rps" onclick="playRPS('scissors')">✂️</button>
 
-<button class="rps" onclick="playRPS('paper')">
-📄
-</button>
+ </div>
 
-<button class="rps" onclick="playRPS('scissors')">
-✂️
-</button>
+ <div id="rpsResult">اختر!</div>
 
-</div>
-
-<div id="rpsResult">
-اختر!
-</div>
-
-<button class="bigBtn" id="rpsReset">
-🔄 إعادة
-</button>
+ <button class="bigBtn"
+  onclick="startRPS(rpsMode)">
+  🔄 إعادة
+ </button>
 
 </div>
 
 
-<!-- =========================
-     DIFFERENT EMOJI
-========================= -->
+<!-- ================= EMOJI ================= -->
 
 <div id="emojiGame" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div class="gameTitle">
-😃 أوجد الإيموجي المختلف
-</div>
+ <h1>😀 أوجد المختلف</h1>
 
-<div id="emojiScore">
-النقاط: 0
-</div>
+ <div id="emojiScore">النقاط: 0</div>
 
-<div id="emojiGrid"></div>
+ <div id="emojiGrid"></div>
 
-<div id="emojiResult">
-أوجد المختلف!
-</div>
+ <h3 id="emojiResult">أوجد المختلف!</h3>
 
 </div>
 
 
-<!-- =========================
-     INFO
-========================= -->
+<!-- ================= INFO ================= -->
 
 <div id="info" class="screen">
 
-<button class="back" onclick="show('menu')">
-🏠
-</button>
+ <button class="back" onclick="show('menu')">🏠</button>
 
-<div class="infoBox">
+ <div class="infoBox">
 
-<h1>
-👤 معلومات عني
-</h1>
+  <h1>👤 معلومات عني</h1>
 
-<div class="infoText">
+  <div class="infoText">
 
 ========المنشئ========
                 Ahmed_am
@@ -1212,1653 +1060,1082 @@ onclick="startRPS('friend')">
 مجموعة ألعاب صغيرة وممتعة
 في لعبة واحدة 🎮
 
-</div>
+  </div>
+
+ </div>
 
 </div>
 
-</div>
 
-
-<!-- =========================
-     MINECRAFT 3D
-========================= -->
+<!-- ================= MINECRAFT 3D ================= -->
 
 <div id="mcGame" class="screen">
 
-<button class="back"
-onclick="show('menu')"
-style="pointer-events:auto">
+ <button class="back"
+  onclick="show('menu')">
+  🏠
+ </button>
 
-🏠
+ <canvas id="mcCanvas"></canvas>
 
-</button>
+ <div id="mcUI">
 
-<canvas id="mcCanvas"></canvas>
+  <div id="mcTitle">⛏️ Minecraft 3D</div>
 
-<div id="mcUI">
+  <div id="crosshair">+</div>
 
-<div id="mcTitle">
-⛏️ Minecraft 3D
-</div>
+  <div id="hotbar">
 
-<div id="crosshair">
-+
-</div>
+   <div class="slot selected" data-block="grass">🌱</div>
+   <div class="slot" data-block="dirt">🟫</div>
+   <div class="slot" data-block="stone">🪨</div>
+   <div class="slot" data-block="wood">🪵</div>
+   <div class="slot" data-block="leaf">🍃</div>
 
-<div id="hotbar">
+  </div>
 
-<div class="slot selected" data-block="grass">
-🌱
-</div>
+  <div id="mcMove">
 
-<div class="slot" data-block="dirt">
-🟫
-</div>
+   <button class="mcBtn" id="mcForward">⬆️</button>
+   <button class="mcBtn" id="mcLeft">⬅️</button>
+   <button class="mcBtn" id="mcBack">⬇️</button>
+   <button class="mcBtn" id="mcRight">➡️</button>
 
-<div class="slot" data-block="stone">
-🪨
-</div>
+  </div>
 
-<div class="slot" data-block="wood">
-🪵
-</div>
+  <button id="mcJump">🦘</button>
 
-<div class="slot" data-block="leaf">
-🍃
-</div>
+  <div id="mcActions">
+   <button class="mcAction" id="mcBreak">⛏️ كسر</button>
+   <button class="mcAction" id="mcPlace">🧱 وضع</button>
+  </div>
 
-</div>
-
-
-<div id="mcMove">
-
-<button class="mcBtn" id="mcForward">
-⬆️
-</button>
-
-<button class="mcBtn" id="mcLeft">
-⬅️
-</button>
-
-<button class="mcBtn" id="mcBack">
-⬇️
-</button>
-
-<button class="mcBtn" id="mcRight">
-➡️
-</button>
+ </div>
 
 </div>
 
 
-<button id="mcJump">
-🦘
-</button>
-
-
-<div id="mcActions">
-
-<button class="mcAction" id="mcBreak">
-⛏️ كسر
-</button>
-
-<button class="mcAction" id="mcPlace">
-🧱 وضع
-</button>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- THREE.JS -->
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <script>
 
-/* =========================
-   GENERAL
-========================= */
+/* ================= GENERAL ================= */
 
 function show(id){
 
-document.querySelectorAll(".screen")
-.forEach(s=>s.classList.remove("active"));
+ document.querySelectorAll(".screen")
+ .forEach(x=>x.classList.remove("active"));
 
-document.getElementById(id)
-.classList.add("active");
+ document.getElementById(id)
+ .classList.add("active");
 
 }
 
 
-/* =========================
-   XO
-========================= */
+/* ================= LANGUAGE ================= */
+
+function setLang(lang){
+
+ document.querySelectorAll(".lang")
+ .forEach(x=>x.classList.remove("activeLang"));
+
+ if(lang==="ar"){
+
+  document.body.classList.remove("en");
+
+  document.querySelectorAll(".lang")[1]
+  .classList.add("activeLang");
+
+ }else{
+
+  document.body.classList.add("en");
+
+  document.querySelectorAll(".lang")[1]
+  .classList.add("activeLang");
+
+  alert("English version coming soon 🇬🇧");
+
+ }
+
+}
+
+
+/* ================= XO ================= */
 
 let xoMode="friend";
-
 let xo=[];
-
 let xoTurn="X";
-
 let xoOver=false;
 
-const xoCells=
-document.querySelectorAll(".cell");
-
+const cells=document.querySelectorAll(".cell");
 
 function startXO(mode){
 
-xoMode=mode;
-
-show("xoGame");
-
-xoRestart();
+ xoMode=mode;
+ show("xoGame");
+ xoRestart();
 
 }
-
 
 function xoRestart(){
 
-xo=[
-"",
-"",
-"",
-"",
-"",
-"",
-"",
-"",
-""
-];
+ xo=["","","","","","","","",""];
+ xoTurn="X";
+ xoOver=false;
 
-xoTurn="X";
+ document.getElementById("xoResult").textContent="";
 
-xoOver=false;
-
-document.getElementById("xoResult")
-.textContent="";
-
-updateXO();
+ updateXO();
 
 }
-
 
 function updateXO(){
 
-xoCells.forEach((c,i)=>{
+ cells.forEach((c,i)=>{
+  c.textContent=
+   xo[i]==="X"?"❌":
+   xo[i]==="O"?"⭕":"";
+ });
 
-c.textContent=
-xo[i]=="X"
-?"❌"
-:
-xo[i]=="O"
-?"⭕"
-:
-"";
-
-});
-
-document.getElementById("xoTurn")
-.textContent=
-xoOver
-?""
-:
-(
-xoTurn=="X"
-?
-"دور ❌"
-:
-"دور ⭕"
-);
+ document.getElementById("xoTurn").textContent=
+ xoOver?"":("دور "+(xoTurn==="X"?"❌":"⭕"));
 
 }
-
 
 function xoPlay(i){
 
-if(xoOver||xo[i])
-return;
+ if(xoOver||xo[i])return;
 
-if(
-xoMode=="bot"&&
-xoTurn=="O"
-)
-return;
+ if(xoMode==="bot"&&xoTurn==="O")return;
 
-xo[i]=xoTurn;
+ xo[i]=xoTurn;
 
-let r=xoWinner();
+ let w=xoWinner();
 
-if(r){
+ if(w){
+  xoFinish(w);
+  return;
+ }
 
-xoFinish(r);
+ xoTurn=xoTurn==="X"?"O":"X";
 
-return;
+ updateXO();
 
-}
-
-xoTurn=
-xoTurn=="X"
-?
-"O"
-:
-"X";
-
-updateXO();
-
-if(
-xoMode=="bot"&&
-xoTurn=="O"
-){
-
-setTimeout(xoBot,300);
+ if(xoMode==="bot"&&xoTurn==="O")
+  setTimeout(xoBot,300);
 
 }
-
-}
-
 
 function xoWinner(){
 
-const w=[
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6]
-];
+ const wins=[
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]
+ ];
 
-for(let a of w){
+ for(let w of wins){
 
-if(
-xo[a[0]]&&
-xo[a[0]]==
-xo[a[1]]&&
-xo[a[0]]==
-xo[a[2]]
-)
+  if(
+   xo[w[0]]&&
+   xo[w[0]]===xo[w[1]]&&
+   xo[w[0]]===xo[w[2]]
+  )return xo[w[0]];
 
-return xo[a[0]];
+ }
+
+ return xo.includes("")?null:"draw";
 
 }
 
-return xo.includes("")
-?
-null
-:
-"draw";
+function xoFinish(w){
+
+ xoOver=true;
+
+ document.getElementById("xoResult")
+ .textContent=
+ w==="draw"?"🤝 تعادل!":
+ "🎉 الفائز "+(w==="X"?"❌":"⭕");
+
+ updateXO();
 
 }
-
-
-function xoFinish(r){
-
-xoOver=true;
-
-document.getElementById("xoResult")
-.textContent=
-r=="draw"
-?
-"🤝 تعادل!"
-:
-"🎉 الفائز "+
-(
-r=="X"
-?
-"❌"
-:
-"⭕"
-);
-
-updateXO();
-
-}
-
 
 function xoBot(){
 
-if(xoOver)
-return;
+ if(xoOver)return;
 
-let empty=
-xo
-.map((v,i)=>v?null:i)
-.filter(x=>x!==null);
+ let empty=xo
+ .map((v,i)=>v?null:i)
+ .filter(x=>x!==null);
 
-if(!empty.length)
-return;
+ let i=xoFind("O");
 
-let i=xoFind("O");
+ if(i<0)i=xoFind("X");
 
-if(i<0)
-i=xoFind("X");
+ if(i<0&&xo[4]==="")i=4;
 
-if(i<0&&xo[4]=="")
-i=4;
+ if(i<0)
+  i=empty[Math.floor(Math.random()*empty.length)];
 
-if(i<0)
-i=
-empty[
-Math.floor(
-Math.random()*empty.length
-)
-];
+ xo[i]="O";
 
-xo[i]="O";
+ let w=xoWinner();
 
-let r=xoWinner();
+ if(w){
+  xoFinish(w);
+  return;
+ }
 
-if(r){
-
-xoFinish(r);
-
-return;
+ xoTurn="X";
+ updateXO();
 
 }
-
-xoTurn="X";
-
-updateXO();
-
-}
-
 
 function xoFind(p){
 
-const w=[
-[0,1,2],
-[3,4,5],
-[6,7,8],
-[0,3,6],
-[1,4,7],
-[2,5,8],
-[0,4,8],
-[2,4,6]
-];
+ const wins=[
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6]
+ ];
 
-for(let a of w){
+ for(let w of wins){
 
-let vals=
-a.map(i=>xo[i]);
+  let a=w.map(i=>xo[i]);
 
-if(
-vals.filter(x=>x==p).length==2&&
-vals.includes("")
-)
+  if(
+   a.filter(x=>x===p).length===2&&
+   a.includes("")
+  ){
+   return w[a.indexOf("")];
+  }
 
-return a[
-vals.indexOf("")
-];
+ }
 
-}
-
-return -1;
+ return -1;
 
 }
 
 
-/* =========================
-   CARS
-========================= */
+/* ================= CARS ================= */
 
 let carX=155;
-
-let carMoveL=false;
-
-let carMoveR=false;
-
+let carLeft=false;
+let carRight=false;
 let carEnemies=[];
-
 let carScore=0;
-
-let carRunning=false;
-
 let carSpeed=5;
-
+let carRunning=false;
 
 function startCars(){
 
-carRunning=true;
+ carRunning=true;
+ carX=155;
+ carScore=0;
+ carSpeed=5;
+ carEnemies=[];
 
-carX=155;
+ document.getElementById("carOver").style.display="none";
+ document.getElementById("carScore").textContent="النقاط: 0";
 
-carScore=0;
+ const road=document.getElementById("carRoad");
 
-carSpeed=5;
+ road.querySelectorAll(".line,.enemy")
+ .forEach(x=>x.remove());
 
-carEnemies=[];
+ for(let i=0;i<8;i++){
 
-document.getElementById("carOver")
-.style.display="none";
+  let line=document.createElement("div");
+  line.className="line";
+  line.style.top=(i*100-100)+"px";
+  road.appendChild(line);
 
-document.getElementById("carScore")
-.textContent="النقاط: 0";
+ }
 
-const road=
-document.getElementById("carRoad");
-
-road
-.querySelectorAll(".line,.enemy")
-.forEach(x=>x.remove());
-
-for(let i=0;i<8;i++){
-
-let l=document.createElement("div");
-
-l.className="line";
-
-l.style.top=
-(i*100-100)+"px";
-
-road.appendChild(l);
+ document.getElementById("carPlayer")
+ .style.left=carX+"px";
 
 }
-
-document.getElementById("carPlayer")
-.style.left=carX+"px";
-
-}
-
 
 setInterval(()=>{
 
-if(
-carRunning&&
-document
-.getElementById("carsGame")
-.classList.contains("active")
-){
+ if(
+  carRunning&&
+  document.getElementById("carsGame")
+  .classList.contains("active")
+ ){
 
-let e=
-document.createElement("div");
+  let e=document.createElement("div");
+  e.className="enemy";
 
-e.className="enemy";
+  let lanes=[55,155,255];
 
-let lanes=[
-55,
-155,
-255
-];
+  e.style.left=
+   lanes[Math.floor(Math.random()*3)]+"px";
 
-e.style.left=
-lanes[
-Math.floor(
-Math.random()*3
-)
-]+"px";
+  e.style.top="-100px";
 
-e.style.top="-100px";
+  document.getElementById("carRoad")
+  .appendChild(e);
 
-document
-.getElementById("carRoad")
-.appendChild(e);
+  carEnemies.push({e:e,y:-100});
 
-carEnemies.push({
-e:e,
-y:-100
-});
-
-}
+ }
 
 },1200);
 
+function carCollision(a,b){
+
+ let x=a.getBoundingClientRect();
+ let y=b.getBoundingClientRect();
+
+ return !(
+  x.bottom<y.top||
+  x.top>y.bottom||
+  x.right<y.left||
+  x.left>y.right
+ );
+
+}
 
 function carLoop(){
 
-if(
-carRunning&&
-document
-.getElementById("carsGame")
-.classList.contains("active")
-){
+ if(
+  carRunning&&
+  document.getElementById("carsGame")
+  .classList.contains("active")
+ ){
 
-if(carMoveL)
-carX-=7;
+  if(carLeft)carX-=7;
+  if(carRight)carX+=7;
 
-if(carMoveR)
-carX+=7;
+  carX=Math.max(10,Math.min(300,carX));
 
-carX=
-Math.max(
-10,
-Math.min(300,carX)
-);
+  document.getElementById("carPlayer")
+  .style.left=carX+"px";
 
-document
-.getElementById("carPlayer")
-.style.left=carX+"px";
+  document.querySelectorAll("#carRoad .line")
+  .forEach(l=>{
 
+   let y=parseInt(l.style.top)+carSpeed;
 
-document
-.querySelectorAll("#carRoad .line")
-.forEach(l=>{
+   if(y>700)y=-80;
 
-let y=
-parseInt(l.style.top)
-+
-carSpeed;
+   l.style.top=y+"px";
 
-if(y>700)
-y=-80;
+  });
 
-l.style.top=y+"px";
+  for(let i=carEnemies.length-1;i>=0;i--){
 
-});
+   let a=carEnemies[i];
 
+   a.y+=carSpeed;
+   a.e.style.top=a.y+"px";
 
-for(
-let i=carEnemies.length-1;
-i>=0;
-i--
-){
+   if(
+    carCollision(
+     document.getElementById("carPlayer"),
+     a.e
+    )
+   ){
 
-let a=carEnemies[i];
+    carRunning=false;
 
-a.y+=carSpeed;
+    document.getElementById("carFinal")
+    .textContent="نقاطك: "+carScore;
 
-a.e.style.top=
-a.y+"px";
+    document.getElementById("carOver")
+    .style.display="block";
 
+   }
 
-if(
-hit(
-document.getElementById("carPlayer"),
-a.e
-)
-){
+   if(a.y>750){
 
-carRunning=false;
+    a.e.remove();
+    carEnemies.splice(i,1);
 
-document.getElementById("carFinal")
-.textContent=
-"نقاطك: "+carScore;
+    carScore++;
 
-document.getElementById("carOver")
-.style.display="block";
+    document.getElementById("carScore")
+    .textContent="النقاط: "+carScore;
 
-}
+    if(carScore%10===0)carSpeed++;
 
+   }
 
-if(a.y>750){
+  }
 
-a.e.remove();
+ }
 
-carEnemies.splice(i,1);
-
-carScore++;
-
-document.getElementById("carScore")
-.textContent=
-"النقاط: "+carScore;
-
-if(carScore%10==0)
-carSpeed++;
-
-}
-
-}
+ requestAnimationFrame(carLoop);
 
 }
 
 requestAnimationFrame(carLoop);
 
-}
+function hold(id,set){
 
-function hit(a,b){
+ let b=document.getElementById(id);
 
-let x=
-a.getBoundingClientRect();
+ b.addEventListener("touchstart",e=>{
+  e.preventDefault();
+  set(true);
+ },{passive:false});
 
-let y=
-b.getBoundingClientRect();
+ b.addEventListener("touchend",e=>{
+  e.preventDefault();
+  set(false);
+ },{passive:false});
 
-return !(
-x.bottom<y.top||
-x.top>y.bottom||
-x.right<y.left||
-x.left>y.right
-);
+ b.addEventListener("touchcancel",()=>set(false));
 
-}
-
-requestAnimationFrame(carLoop);
-
-
-function holdButton(id,set){
-
-let b=
-document.getElementById(id);
-
-b.addEventListener(
-"touchstart",
-e=>{
-e.preventDefault();
-set(true);
-},
-{passive:false}
-);
-
-b.addEventListener(
-"touchend",
-e=>{
-e.preventDefault();
-set(false);
-},
-{passive:false}
-);
-
-b.addEventListener(
-"touchcancel",
-()=>set(false)
-);
-
-b.addEventListener(
-"mousedown",
-()=>set(true)
-);
-
-b.addEventListener(
-"mouseup",
-()=>set(false)
-);
-
-b.addEventListener(
-"mouseleave",
-()=>set(false)
-);
+ b.addEventListener("mousedown",()=>set(true));
+ b.addEventListener("mouseup",()=>set(false));
+ b.addEventListener("mouseleave",()=>set(false));
 
 }
 
-holdButton(
-"carLeft",
-v=>carMoveL=v
-);
-
-holdButton(
-"carRight",
-v=>carMoveR=v
-);
+hold("carLeft",v=>carLeft=v);
+hold("carRight",v=>carRight=v);
 
 
-/* =========================
-   SNAKE
-========================= */
+/* ================= SNAKE ================= */
 
-const sc=
-document.getElementById("snakeCanvas");
+const snakeCanvas=document.getElementById("snakeCanvas");
+const sctx=snakeCanvas.getContext("2d");
 
-const sx=sc.getContext("2d");
-
-let snake;
-
-let food;
-
-let sdx;
-
-let sdy;
-
-let sScore;
-
-let sTimer;
-
+let snake=[];
+let food={};
+let sx=1,sy=0;
+let snakeScore=0;
+let snakeTimer;
 
 function startSnake(){
 
-clearInterval(sTimer);
+ clearInterval(snakeTimer);
 
-snake=[
-{x:10,y:10},
-{x:9,y:10},
-{x:8,y:10}
-];
+ snake=[
+  {x:10,y:10},
+  {x:9,y:10},
+  {x:8,y:10}
+ ];
 
-sdx=1;
+ sx=1;
+ sy=0;
+ snakeScore=0;
 
-sdy=0;
+ newFood();
 
-sScore=0;
+ document.getElementById("snakeScore")
+ .textContent="النقاط: 0";
 
-foodNew();
+ snakeTimer=setInterval(snakeMove,120);
 
-document.getElementById("snakeScore")
-.textContent="النقاط: 0";
-
-
-sTimer=setInterval(()=>{
-
-let h={
-x:snake[0].x+sdx,
-y:snake[0].y+sdy
-};
-
-
-if(
-h.x<0||
-h.x>=20||
-h.y<0||
-h.y>=20||
-snake.some(
-p=>p.x==h.x&&p.y==h.y
-)
-){
-
-startSnake();
-
-return;
+ drawSnake();
 
 }
 
+function newFood(){
 
-snake.unshift(h);
-
-
-if(
-h.x==food.x&&
-h.y==food.y
-){
-
-sScore++;
-
-document.getElementById("snakeScore")
-.textContent=
-"النقاط: "+sScore;
-
-foodNew();
-
-}else{
-
-snake.pop();
+ food={
+  x:Math.floor(Math.random()*20),
+  y:Math.floor(Math.random()*20)
+ };
 
 }
 
-snakeDraw();
+function snakeMove(){
 
-},120);
+ let head={
+  x:snake[0].x+sx,
+  y:snake[0].y+sy
+ };
 
-snakeDraw();
+ if(
+  head.x<0||
+  head.x>=20||
+  head.y<0||
+  head.y>=20||
+  snake.some(p=>p.x===head.x&&p.y===head.y)
+ ){
 
-}
+  startSnake();
+  return;
 
+ }
 
-function foodNew(){
+ snake.unshift(head);
 
-food={
-x:Math.floor(Math.random()*20),
-y:Math.floor(Math.random()*20)
-};
+ if(head.x===food.x&&head.y===food.y){
 
-}
+  snakeScore++;
 
+  document.getElementById("snakeScore")
+  .textContent="النقاط: "+snakeScore;
 
-function snakeDraw(){
+  newFood();
 
-sx.fillStyle="#111827";
+ }else{
+  snake.pop();
+ }
 
-sx.fillRect(
-0,
-0,
-320,
-320
-);
-
-sx.fillStyle="#ef4444";
-
-sx.fillRect(
-food.x*16,
-food.y*16,
-15,
-15
-);
-
-sx.fillStyle="#22c55e";
-
-snake.forEach(p=>
-sx.fillRect(
-p.x*16,
-p.y*16,
-15,
-15
-)
-);
+ drawSnake();
 
 }
 
+function drawSnake(){
 
-function sd(dx,dy){
+ sctx.fillStyle="#111827";
+ sctx.fillRect(0,0,320,320);
 
-if(
-dx==-sdx&&
-dy==-sdy
-)
-return;
+ sctx.fillStyle="#ef4444";
+ sctx.fillRect(food.x*16,food.y*16,15,15);
 
-sdx=dx;
+ sctx.fillStyle="#22c55e";
 
-sdy=dy;
+ snake.forEach(p=>{
+  sctx.fillRect(p.x*16,p.y*16,15,15);
+ });
 
 }
 
+function snakeDir(x,y){
 
-document.getElementById("up")
-.onclick=()=>sd(0,-1);
+ if(x===-sx&&y===-sy)return;
 
-document.getElementById("down")
-.onclick=()=>sd(0,1);
+ sx=x;
+ sy=y;
 
-document.getElementById("leftS")
-.onclick=()=>sd(-1,0);
+}
 
-document.getElementById("rightS")
-.onclick=()=>sd(1,0);
+document.getElementById("up").onclick=()=>snakeDir(0,-1);
+document.getElementById("down").onclick=()=>snakeDir(0,1);
+document.getElementById("leftS").onclick=()=>snakeDir(-1,0);
+document.getElementById("rightS").onclick=()=>snakeDir(1,0);
 
 
-/* =========================
-   PENALTY
-========================= */
+/* ================= PENALTY ================= */
 
-let penaltyShots;
-
-let penaltyScore;
-
+let penaltyShots=5;
+let penaltyScore=0;
 
 function startPenalty(){
 
-penaltyShots=5;
+ penaltyShots=5;
+ penaltyScore=0;
 
-penaltyScore=0;
+ document.getElementById("penaltyResult")
+ .textContent="5 تسديدات";
 
-document.getElementById("penaltyResult")
-.textContent=
-"5 تسديدات متبقية";
-
-document.getElementById("ball")
-.style.left="151px";
-
-document.getElementById("ball")
-.style.bottom="15px";
-
-document.getElementById("keeper")
-.style.left="145px";
+ document.getElementById("ball").style.left="151px";
+ document.getElementById("ball").style.bottom="15px";
 
 }
-
 
 function kickPenalty(dir){
 
-if(penaltyShots<=0)
-return;
+ if(penaltyShots<=0)return;
 
-let ball=
-document.getElementById("ball");
+ const positions={
+  left:35,
+  center:151,
+  right:267
+ };
 
-let keeper=
-document.getElementById("keeper");
+ let keeperPositions=[35,145,267];
 
-let positions={
-left:35,
-center:151,
-right:267
-};
+ let keeper=
+ keeperPositions[
+  Math.floor(Math.random()*3)
+ ];
 
-let k=
-[35,145,267]
-[
-Math.floor(
-Math.random()*3
-)
-];
+ document.getElementById("keeper")
+ .style.left=keeper+"px";
 
-keeper.style.left=k+"px";
+ document.getElementById("ball")
+ .style.left=positions[dir]+"px";
 
-ball.style.left=
-positions[dir]+"px";
+ document.getElementById("ball")
+ .style.bottom="145px";
 
-ball.style.bottom="145px";
+ setTimeout(()=>{
 
+  if(Math.abs(positions[dir]-keeper)<55){
 
-setTimeout(()=>{
+   document.getElementById("penaltyResult")
+   .textContent="🧤 الحارس صدها!";
 
-if(
-Math.abs(
-positions[dir]-k
-)<55
-){
+  }else{
 
-document.getElementById("penaltyResult")
-.textContent=
-"🧤 الحارس صدها!";
+   penaltyScore++;
 
-}else{
+   document.getElementById("penaltyResult")
+   .textContent="⚽ هدف! "+penaltyScore;
 
-penaltyScore++;
+  }
 
-document.getElementById("penaltyResult")
-.textContent=
-"⚽ هدف! "+penaltyScore;
+  penaltyShots--;
 
-}
+  if(penaltyShots<=0)
+   document.getElementById("penaltyResult")
+   .textContent+=" | انتهت اللعبة";
 
-penaltyShots--;
+  setTimeout(()=>{
 
-if(penaltyShots==0){
+   document.getElementById("ball").style.left="151px";
+   document.getElementById("ball").style.bottom="15px";
 
-document.getElementById("penaltyResult")
-.textContent+=
-" | انتهت التسديدات";
+  },400);
 
-}
-
-setTimeout(()=>{
-
-ball.style.left="151px";
-
-ball.style.bottom="15px";
-
-},500);
-
-},350);
+ },350);
 
 }
 
 
-/* =========================
-   BALLOON
-========================= */
+/* ================= BALLOON ================= */
 
 let balloonScore=0;
-
 let balloonTimer;
-
 
 function startBalloon(){
 
-clearInterval(balloonTimer);
+ clearInterval(balloonTimer);
 
-balloonScore=0;
+ balloonScore=0;
 
-const area=
-document.getElementById("balloonArea");
+ let area=document.getElementById("balloonArea");
 
-area.innerHTML="";
+ area.innerHTML="";
 
-document.getElementById("balloonResult")
-.textContent=
-"اضغط على المناطيد!";
+ document.getElementById("balloonResult")
+ .textContent="النقاط: 0";
 
+ for(let i=0;i<5;i++)createBalloon();
 
-for(let i=0;i<7;i++)
-createBalloon();
-
-
-balloonTimer=
-setInterval(
-()=>{
-createBalloon();
-},
-900
-);
+ balloonTimer=setInterval(createBalloon,800);
 
 }
-
 
 function createBalloon(){
 
-const area=
-document.getElementById("balloonArea");
+ let area=document.getElementById("balloonArea");
 
-if(area.children.length>12)
-return;
+ if(area.children.length>12)return;
 
-let b=
-document.createElement("div");
+ let b=document.createElement("div");
 
-b.className="balloon";
+ b.className="balloon";
 
-b.style.background=[
-"#ef4444",
-"#3b82f6",
-"#eab308",
-"#a855f7",
-"#22c55e"
-][
-Math.floor(Math.random()*5)
-];
+ b.style.background=[
+  "#ef4444",
+  "#3b82f6",
+  "#eab308",
+  "#a855f7",
+  "#22c55e"
+ ][Math.floor(Math.random()*5)];
 
-b.style.left=
-Math.random()*
-(area.clientWidth-75)
-+"px";
+ b.style.left=
+ Math.random()*(area.clientWidth-75)+"px";
 
-b.style.top=
-area.clientHeight+"px";
+ b.style.top=area.clientHeight+"px";
 
-area.appendChild(b);
+ area.appendChild(b);
 
-let y=
-area.clientHeight;
+ let y=area.clientHeight;
+ let speed=1+Math.random()*2;
 
-let speed=
-1+Math.random()*2;
+ function fly(){
 
+  if(!b.isConnected)return;
 
-function fly(){
+  y-=speed;
+  b.style.top=y+"px";
 
-if(!b.isConnected)
-return;
+  if(y<-100){
+   b.remove();
+   return;
+  }
 
-y-=speed;
+  requestAnimationFrame(fly);
 
-b.style.top=y+"px";
+ }
 
-if(y<-100){
+ fly();
 
-b.remove();
+ b.onclick=()=>{
 
-return;
+  balloonScore++;
 
-}
+  document.getElementById("balloonResult")
+  .textContent="النقاط: "+balloonScore;
 
-requestAnimationFrame(fly);
+  b.remove();
 
-}
-
-fly();
-
-
-b.onclick=()=>{
-
-balloonScore++;
-
-document.getElementById("balloonResult")
-.textContent=
-"🎈 النقاط: "+balloonScore;
-
-b.remove();
-
-};
+ };
 
 }
 
 
-/* =========================
-   QUIZ
-========================= */
+/* ================= QUIZ ================= */
 
 const questions=[
-
-{
-q:"ما هي عاصمة العراق؟",
-a:[
-"بغداد",
-"البصرة",
-"أربيل",
-"الموصل"
-],
-c:0
-},
-
-{
-q:"كم عدد أيام الأسبوع؟",
-a:[
-"5",
-"6",
-"7",
-"8"
-],
-c:2
-},
-
-{
-q:"ما هو الكوكب الأحمر؟",
-a:[
-"الأرض",
-"المريخ",
-"المشتري",
-"الزهرة"
-],
-c:1
-},
-
-{
-q:"كم يساوي 5 × 5؟",
-a:[
-"15",
-"20",
-"25",
-"30"
-],
-c:2
-},
-
-{
-q:"ما الحيوان المعروف بملك الغابة؟",
-a:[
-"النمر",
-"الأسد",
-"الفيل",
-"الذئب"
-],
-c:1
-},
-
-{
-q:"أي لعبة تحتوي على Creeper؟",
-a:[
-"Minecraft",
-"Cars",
-"Snake",
-"XO"
-],
-c:0
-}
-
+ {
+  q:"ما هي عاصمة العراق؟",
+  a:["بغداد","البصرة","أربيل","الموصل"],
+  c:0
+ },
+ {
+  q:"كم عدد أيام الأسبوع؟",
+  a:["5","6","7","8"],
+  c:2
+ },
+ {
+  q:"ما هو الكوكب الأحمر؟",
+  a:["الأرض","المريخ","المشتري","الزهرة"],
+  c:1
+ },
+ {
+  q:"كم يساوي 5 × 5؟",
+  a:["15","20","25","30"],
+  c:2
+ },
+ {
+  q:"أي لعبة تحتوي على Creeper؟",
+  a:["Minecraft","Cars","Snake","XO"],
+  c:0
+ }
 ];
 
-
-let qIndex=0;
-
-let qScore=0;
-
+let qi=0;
+let qscore=0;
 
 function startQuiz(){
 
-qIndex=0;
+ qi=0;
+ qscore=0;
 
-qScore=0;
-
-showQuestion();
+ showQuestion();
 
 }
-
 
 function showQuestion(){
 
-if(qIndex>=questions.length){
+ if(qi>=questions.length){
 
-document.getElementById("question")
-.textContent=
-"🎉 انتهى الاختبار!";
+  document.getElementById("question")
+  .textContent="🎉 انتهى الاختبار!";
 
-document.getElementById("answers")
-.innerHTML="";
+  document.getElementById("answers").innerHTML="";
 
-document.getElementById("quizResult")
-.textContent=
-"نتيجتك: "+
-qScore+
-"/"+
-questions.length;
+  document.getElementById("quizResult")
+  .textContent=
+  "نتيجتك: "+qscore+"/"+questions.length;
 
-return;
+  return;
 
-}
+ }
 
+ let q=questions[qi];
 
-let q=questions[qIndex];
+ document.getElementById("question")
+ .textContent=q.q;
 
-document.getElementById("question")
-.textContent=q.q;
+ document.getElementById("quizScore")
+ .textContent="النقاط: "+qscore;
 
-document.getElementById("quizScore")
-.textContent=
-"النقاط: "+qScore;
+ document.getElementById("quizResult").textContent="";
 
-document.getElementById("quizResult")
-.textContent="";
+ let box=document.getElementById("answers");
 
-let box=
-document.getElementById("answers");
+ box.innerHTML="";
 
-box.innerHTML="";
+ q.a.forEach((a,i)=>{
 
+  let b=document.createElement("button");
 
-q.a.forEach((a,i)=>{
+  b.className="answer";
+  b.textContent=a;
 
-let b=
-document.createElement("button");
+  b.onclick=()=>{
 
-b.className="answer";
+   if(i===q.c){
 
-b.textContent=a;
+    qscore++;
 
-b.onclick=()=>answerQuiz(i);
+    document.getElementById("quizResult")
+    .textContent="✅ صحيح!";
 
-box.appendChild(b);
+   }else{
 
-});
+    document.getElementById("quizResult")
+    .textContent="❌ خطأ!";
 
-}
+   }
 
+   qi++;
 
-function answerQuiz(i){
+   setTimeout(showQuestion,500);
 
-let q=questions[qIndex];
+  };
 
-if(i==q.c){
+  box.appendChild(b);
 
-qScore++;
-
-document.getElementById("quizResult")
-.textContent=
-"✅ صحيح!";
-
-}else{
-
-document.getElementById("quizResult")
-.textContent=
-"❌ خطأ!";
-
-}
-
-qIndex++;
-
-setTimeout(
-showQuestion,
-500
-);
+ });
 
 }
 
 
-/* =========================
-   RPS
-========================= */
+/* ================= RPS ================= */
 
 let rpsMode="bot";
 
 let rpsYou=0;
-
 let rpsBotScore=0;
 
-let rpsPlayer1=0;
-
-let rpsPlayer2=0;
+let p1=0;
+let p2=0;
 
 let rpsTurn=1;
-
-let rpsChoice1=null;
-
-let rpsChoice2=null;
-
+let choice1=null;
 
 function startRPS(mode){
 
-rpsMode=mode;
+ rpsMode=mode;
 
-rpsYou=0;
+ rpsYou=0;
+ rpsBotScore=0;
 
-rpsBotScore=0;
+ p1=0;
+ p2=0;
 
-rpsPlayer1=0;
+ rpsTurn=1;
+ choice1=null;
 
-rpsPlayer2=0;
+ show("rpsGame");
 
-rpsTurn=1;
-
-rpsChoice1=null;
-
-rpsChoice2=null;
-
-show("rpsGame");
-
-updateRPS();
+ updateRPS();
 
 }
-
 
 function updateRPS(){
 
-if(rpsMode=="bot"){
+ if(rpsMode==="bot"){
 
-document.getElementById("rpsTurn")
-.textContent=
-"اختر حجر أو ورقة أو مقص";
+  document.getElementById("rpsTurn")
+  .textContent="اختر حركتك";
 
-document.getElementById("rpsScore")
-.textContent=
-"أنت "+rpsYou+
-" - "+
-rpsBotScore+
-" الكمبيوتر";
+  document.getElementById("rpsScore")
+  .textContent=
+  "أنت "+rpsYou+" - "+rpsBotScore+" البوت";
 
-}else{
+ }else{
 
-document.getElementById("rpsTurn")
-.textContent=
-rpsTurn==1
-?
-"👤 دور اللاعب الأول"
-:
-"👤 دور اللاعب الثاني";
+  document.getElementById("rpsTurn")
+  .textContent=
+  rpsTurn===1?
+  "👤 دور اللاعب الأول":
+  "👤 دور اللاعب الثاني";
 
-document.getElementById("rpsScore")
-.textContent=
-"اللاعب الأول "+
-rpsPlayer1+
-" - "+
-rpsPlayer2+
-" اللاعب الثاني";
+  document.getElementById("rpsScore")
+  .textContent=
+  "اللاعب الأول "+p1+" - "+p2+" اللاعب الثاني";
+
+ }
 
 }
-
-}
-
 
 function playRPS(choice){
 
-if(rpsMode=="bot"){
+ if(rpsMode==="bot"){
 
-playRPSBot(choice);
+  let arr=["rock","paper","scissors"];
 
-}else{
+  let bot=arr[Math.floor(Math.random()*3)];
 
-playRPSFriend(choice);
+  let names={
+   rock:"✊ حجر",
+   paper:"📄 ورقة",
+   scissors:"✂️ مقص"
+  };
 
-}
+  if(choice===bot){
 
-}
+   document.getElementById("rpsResult")
+   .innerHTML=
+   "🤝 تعادل!<br>"+
+   names[choice]+" ضد "+names[bot];
 
+  }else if(
+   choice==="rock"&&bot==="scissors"||
+   choice==="paper"&&bot==="rock"||
+   choice==="scissors"&&bot==="paper"
+  ){
 
-/* بوت */
+   rpsYou++;
 
-function playRPSBot(me){
+   document.getElementById("rpsResult")
+   .innerHTML=
+   "🎉 أنت فزت!<br>"+
+   names[choice]+" ضد "+names[bot];
 
-const choices=[
-"rock",
-"paper",
-"scissors"
-];
+  }else{
 
-let bot=
-choices[
-Math.floor(
-Math.random()*3
-)
-];
+   rpsBotScore++;
 
-let names={
-rock:"✊ حجر",
-paper:"📄 ورقة",
-scissors:"✂️ مقص"
-};
+   document.getElementById("rpsResult")
+   .innerHTML=
+   "🤖 البوت فاز!<br>"+
+   names[choice]+" ضد "+names[bot];
 
-let result="";
+  }
 
-if(me==bot){
+  updateRPS();
 
-result=
-"🤝 تعادل!<br>"+
-names[me]+
-" ضد "+
-names[bot];
+ }else{
 
-}else if(
+  if(rpsTurn===1){
 
-(me=="rock"&&bot=="scissors")||
-(me=="paper"&&bot=="rock")||
-(me=="scissors"&&bot=="paper")
+   choice1=choice;
+   rpsTurn=2;
 
-){
+   document.getElementById("rpsResult")
+   .textContent=
+   "تم اختيار اللاعب الأول. أعطِ الهاتف للاعب الثاني.";
 
-rpsYou++;
+   updateRPS();
 
-result=
-"🎉 أنت فزت!<br>"+
-names[me]+
-" ضد "+
-names[bot];
+  }else{
 
-}else{
+   let names={
+    rock:"✊ حجر",
+    paper:"📄 ورقة",
+    scissors:"✂️ مقص"
+   };
 
-rpsBotScore++;
+   let result="";
 
-result=
-"🤖 البوت فاز!<br>"+
-names[me]+
-" ضد "+
-names[bot];
+   if(choice1===choice){
 
-}
+    result="🤝 تعادل!";
 
-document.getElementById("rpsResult")
-.innerHTML=result;
+   }else if(
+    choice1==="rock"&&choice==="scissors"||
+    choice1==="paper"&&choice==="rock"||
+    choice1==="scissors"&&choice==="paper"
+   ){
 
-updateRPS();
+    p1++;
+    result="🏆 اللاعب الأول فاز!";
 
-}
+   }else{
 
+    p2++;
+    result="🏆 اللاعب الثاني فاز!";
 
-/* لاعبين */
+   }
 
-function playRPSFriend(choice){
+   document.getElementById("rpsResult")
+   .innerHTML=
+   result+"<br>"+
+   names[choice1]+" ضد "+names[choice];
 
-if(rpsTurn==1){
+   choice1=null;
+   rpsTurn=1;
 
-rpsChoice1=choice;
+   updateRPS();
 
-rpsTurn=2;
+  }
 
-document.getElementById("rpsResult")
-.textContent=
-"تم اختيار اللاعب الأول. أعطِ الهاتف للاعب الثاني.";
-
-updateRPS();
-
-}else{
-
-rpsChoice2=choice;
-
-showRPSFriendResult();
-
-}
+ }
 
 }
 
 
-function showRPSFriendResult(){
-
-let names={
-rock:"✊ حجر",
-paper:"📄 ورقة",
-scissors:"✂️ مقص"
-};
-
-let result="";
-
-if(rpsChoice1==rpsChoice2){
-
-result=
-"🤝 تعادل!<br>"+
-names[rpsChoice1]+
-" ضد "+
-names[rpsChoice2];
-
-}else if(
-
-(rpsChoice1=="rock"&&rpsChoice2=="scissors")||
-(rpsChoice1=="paper"&&rpsChoice2=="rock")||
-(rpsChoice1=="scissors"&&rpsChoice2=="paper")
-
-){
-
-rpsPlayer1++;
-
-result=
-"🏆 اللاعب الأول فاز!<br>"+
-names[rpsChoice1]+
-" ضد "+
-names[rpsChoice2];
-
-}else{
-
-rpsPlayer2++;
-
-result=
-"🏆 اللاعب الثاني فاز!<br>"+
-names[rpsChoice1]+
-" ضد "+
-names[rpsChoice2];
-
-}
-
-document.getElementById("rpsResult")
-.innerHTML=result;
-
-rpsChoice1=null;
-
-rpsChoice2=null;
-
-rpsTurn=1;
-
-updateRPS();
-
-}
-
-
-document.getElementById("rpsReset")
-.onclick=()=>{
-
-startRPS(rpsMode);
-
-};
-
-
-/* =========================
-   DIFFERENT EMOJI
-========================= */
+/* ================= EMOJI ================= */
 
 let emojiScore=0;
 
-
 function startEmoji(){
 
-emojiScore=0;
+ emojiScore=0;
 
-newEmojiRound();
+ document.getElementById("emojiScore")
+ .textContent="النقاط: 0";
+
+ emojiRound();
+
+}
+
+function emojiRound(){
+
+ let grid=document.getElementById("emojiGrid");
+
+ grid.innerHTML="";
+
+ let normal="😀";
+ let different="😃";
+
+ let correct=Math.floor(Math.random()*25);
+
+ for(let i=0;i<25;i++){
+
+  let b=document.createElement("button");
+
+  b.className="emojiCell";
+
+  b.textContent=i===correct?different:normal;
+
+  b.onclick=()=>{
+
+   if(i===correct){
+
+    emojiScore++;
+
+    document.getElementById("emojiResult")
+    .textContent="🎉 صحيح!";
+
+   }else{
+
+    document.getElementById("emojiResult")
+    .textContent="❌ خطأ!";
+
+   }
+
+   document.getElementById("emojiScore")
+   .textContent="النقاط: "+emojiScore;
+
+   setTimeout(emojiRound,450);
+
+  };
+
+  grid.appendChild(b);
+
+ }
 
 }
 
 
-function newEmojiRound(){
-
-let grid=
-document.getElementById("emojiGrid");
-
-grid.innerHTML="";
-
-let emojis=[
-"😀",
-"😃",
-"😄",
-"😁",
-"😆",
-"😅"
-];
-
-let normal=
-emojis[
-Math.floor(
-Math.random()*emojis.length
-)
-];
-
-let different=
-emojis.filter(
-x=>x!=normal
-)[
-Math.floor(
-Math.random()*
-(emojis.length-1)
-)
-];
-
-let correct=
-Math.floor(
-Math.random()*25
-);
-
-
-for(let i=0;i<25;i++){
-
-let b=
-document.createElement("button");
-
-b.className="emojiCell";
-
-b.textContent=
-i==correct
-?
-different
-:
-normal;
-
-b.onclick=()=>{
-
-if(i==correct){
-
-emojiScore++;
-
-document.getElementById("emojiResult")
-.textContent=
-"🎉 صحيح!";
-
-}else{
-
-document.getElementById("emojiResult")
-.textContent=
-"❌ خطأ!";
-
-}
-
-document.getElementById("emojiScore")
-.textContent=
-"النقاط: "+emojiScore;
-
-setTimeout(
-newEmojiRound,
-450
-);
-
-};
-
-grid.appendChild(b);
-
-}
-
-}
-
-
-/* =========================
-   MINECRAFT 3D
-========================= */
+/* ================= MINECRAFT 3D ================= */
 
 let renderer;
-
 let scene;
-
 let camera;
-
 let mcStarted=false;
-
 let blocks=[];
 
 let selectedBlock="grass";
-
 
 let player={
  x:0,
  y:3,
  z:5,
  vy:0,
- speed:.12,
+ speed:.13,
  onGround:false
 };
-
 
 let keys={
  forward:false,
@@ -2867,764 +2144,467 @@ let keys={
  right:false
 };
 
+let yaw=0;
+let pitch=0;
 
-let cameraYaw=0;
-
-let cameraPitch=0;
-
-
-const blockColors={
-
-grass:0x55aa35,
-
-dirt:0x8b5a2b,
-
-stone:0x777777,
-
-wood:0x9a6a3a,
-
-leaf:0x287a2e
-
+const colors={
+ grass:0x55aa35,
+ dirt:0x8b5a2b,
+ stone:0x777777,
+ wood:0x9a6a3a,
+ leaf:0x287a2e
 };
-
 
 function startMC(){
 
-if(mcStarted)
-return;
+ if(mcStarted)return;
 
-mcStarted=true;
+ mcStarted=true;
 
-const canvas=
-document.getElementById("mcCanvas");
+ let canvas=document.getElementById("mcCanvas");
 
+ renderer=new THREE.WebGLRenderer({
+  canvas:canvas,
+  antialias:true
+ });
 
-renderer=
-new THREE.WebGLRenderer({
-canvas:canvas,
-antialias:true
-});
+ renderer.setPixelRatio(
+  Math.min(devicePixelRatio,2)
+ );
 
-renderer.setPixelRatio(
-Math.min(devicePixelRatio,2)
-);
+ renderer.setSize(innerWidth,innerHeight);
 
-renderer.setSize(
-innerWidth,
-innerHeight
-);
+ scene=new THREE.Scene();
 
+ scene.background=new THREE.Color(0x87ceeb);
 
-scene=
-new THREE.Scene();
+ camera=new THREE.PerspectiveCamera(
+  70,
+  innerWidth/innerHeight,
+  .1,
+  500
+ );
 
-scene.background=
-new THREE.Color(0x87ceeb);
+ camera.rotation.order="YXZ";
 
+ scene.add(
+  new THREE.AmbientLight(0xffffff,.7)
+ );
 
-camera=
-new THREE.PerspectiveCamera(
-70,
-innerWidth/innerHeight,
-.1,
-500
-);
+ let sun=new THREE.DirectionalLight(
+  0xffffff,
+  1
+ );
 
-camera.rotation.order="YXZ";
+ sun.position.set(20,40,10);
 
+ scene.add(sun);
 
-scene.add(
-new THREE.AmbientLight(
-0xffffff,
-.7
-)
-);
+ generateWorld();
 
-
-let sun=
-new THREE.DirectionalLight(
-0xffffff,
-1
-);
-
-sun.position.set(
-20,
-40,
-10
-);
-
-scene.add(sun);
-
-
-generateWorld();
-
-animateMC();
+ animateMC();
 
 }
-
 
 function addBlock(x,y,z,type){
 
-let geometry=
-new THREE.BoxGeometry(
-1,
-1,
-1
-);
+ let mesh=new THREE.Mesh(
+  new THREE.BoxGeometry(1,1,1),
+  new THREE.MeshLambertMaterial({
+   color:colors[type]||0xffffff
+  })
+ );
 
-let material=
-new THREE.MeshLambertMaterial({
-color:
-blockColors[type]||
-0xffffff
-});
+ mesh.position.set(x,y,z);
 
-let mesh=
-new THREE.Mesh(
-geometry,
-material
-);
+ mesh.userData.block=true;
 
-mesh.position.set(
-x,
-y,
-z
-);
+ scene.add(mesh);
+ blocks.push(mesh);
 
-mesh.userData={
-block:true,
-type:type
-};
-
-scene.add(mesh);
-
-blocks.push(mesh);
-
-return mesh;
+ return mesh;
 
 }
-
 
 function generateWorld(){
 
-for(let x=-16;x<=16;x++){
+ blocks.forEach(b=>scene.remove(b));
 
-for(let z=-16;z<=16;z++){
+ blocks=[];
 
-let h=
-Math.floor(
-1+
-Math.sin(x*.4)*.5+
-Math.cos(z*.35)*.5
-);
+ for(let x=-16;x<=16;x++){
 
-h=
-Math.max(
-0,
-Math.min(2,h)
-);
+  for(let z=-16;z<=16;z++){
 
+   let h=Math.floor(
+    1+
+    Math.sin(x*.4)*.5+
+    Math.cos(z*.35)*.5
+   );
 
-for(let y=0;y<=h;y++){
+   h=Math.max(0,Math.min(2,h));
 
-let type=
-y==h
-?
-"grass"
-:
-y>=h-1
-?
-"dirt"
-:
-"stone";
+   for(let y=0;y<=h;y++){
 
-addBlock(
-x,
-y,
-z,
-type
-);
+    let type=
+     y===h?"grass":
+     y>=h-1?"dirt":"stone";
 
-}
+    addBlock(x,y,z,type);
 
-}
+   }
 
-}
+  }
 
+ }
 
-for(let i=0;i<12;i++){
+ /* أشجار */
 
-let x=
-Math.floor(
-Math.random()*24
-)-12;
+ for(let i=0;i<10;i++){
 
-let z=
-Math.floor(
-Math.random()*24
-)-12;
+  let x=Math.floor(Math.random()*22)-11;
+  let z=Math.floor(Math.random()*22)-11;
 
+  for(let y=2;y<5;y++)
+   addBlock(x,y,z,"wood");
 
-for(let y=2;y<5;y++){
+  for(let xx=-1;xx<=1;xx++){
+   for(let zz=-1;zz<=1;zz++){
+    for(let yy=4;yy<=5;yy++){
 
-addBlock(
-x,
-y,
-z,
-"wood"
-);
+     if(Math.random()>.15)
+      addBlock(x+xx,yy,z+zz,"leaf");
+
+    }
+   }
+  }
+
+ }
+
+ player.x=0;
+ player.y=3;
+ player.z=5;
 
 }
-
-
-for(let xx=-1;xx<=1;xx++){
-
-for(let zz=-1;zz<=1;zz++){
-
-for(let yy=4;yy<=5;yy++){
-
-if(
-Math.random()>.15
-){
-
-addBlock(
-x+xx,
-yy,
-z+zz,
-"leaf"
-);
-
-}
-
-}
-
-}
-
-}
-
-}
-
-player.x=0;
-
-player.y=3;
-
-player.z=5;
-
-}
-
 
 function updateMC(){
 
-let dx=0;
+ let dx=0;
+ let dz=0;
 
-let dz=0;
+ if(keys.forward)dz-=player.speed;
+ if(keys.back)dz+=player.speed;
+ if(keys.left)dx-=player.speed;
+ if(keys.right)dx+=player.speed;
 
+ let sin=Math.sin(yaw);
+ let cos=Math.cos(yaw);
 
-if(keys.forward)
-dz-=player.speed;
+ player.x+=dx*cos-dz*sin;
+ player.z+=dx*sin+dz*cos;
 
-if(keys.back)
-dz+=player.speed;
+ player.vy-=.012;
+ player.y+=player.vy;
 
-if(keys.left)
-dx-=player.speed;
+ if(player.y<2.05){
 
-if(keys.right)
-dx+=player.speed;
+  player.y=2.05;
+  player.vy=0;
+  player.onGround=true;
 
+ }
 
-let sin=
-Math.sin(cameraYaw);
+ player.x=Math.max(-15,Math.min(15,player.x));
+ player.z=Math.max(-15,Math.min(15,player.z));
 
-let cos=
-Math.cos(cameraYaw);
+ camera.position.set(
+  player.x,
+  player.y+.65,
+  player.z
+ );
 
-
-player.x+=
-dx*cos-
-dz*sin;
-
-player.z+=
-dx*sin+
-dz*cos;
-
-
-player.vy-=.012;
-
-player.y+=player.vy;
-
-
-if(player.y<2.05){
-
-player.y=2.05;
-
-player.vy=0;
-
-player.onGround=true;
+ camera.rotation.y=yaw;
+ camera.rotation.x=pitch;
 
 }
-
-
-player.x=
-Math.max(
--15,
-Math.min(15,player.x)
-);
-
-player.z=
-Math.max(
--15,
-Math.min(15,player.z)
-);
-
-
-camera.position.set(
-player.x,
-player.y+.65,
-player.z
-);
-
-camera.rotation.y=
-cameraYaw;
-
-camera.rotation.x=
-cameraPitch;
-
-
-document.getElementById("mcTitle")
-.textContent=
-"⛏️ Minecraft 3D | X:"+
-Math.floor(player.x)+
-" Z:"+
-Math.floor(player.z);
-
-}
-
 
 function jumpMC(){
 
-if(player.onGround){
+ if(player.onGround){
 
-player.vy=.22;
+  player.vy=.22;
+  player.onGround=false;
 
-player.onGround=false;
+ }
 
 }
-
-}
-
 
 function raycastBlock(){
 
-let raycaster=
-new THREE.Raycaster();
+ let ray=new THREE.Raycaster();
 
-raycaster.setFromCamera(
-new THREE.Vector2(0,0),
-camera
-);
+ ray.setFromCamera(
+  new THREE.Vector2(0,0),
+  camera
+ );
 
-let hits=
-raycaster.intersectObjects(
-blocks
-);
+ let hit=ray.intersectObjects(blocks);
 
-if(
-hits.length&&
-hits[0].distance<5
-)
-return hits[0];
+ if(hit.length&&hit[0].distance<5)
+  return hit[0];
 
-return null;
+ return null;
 
 }
-
 
 function breakMC(){
 
-let hit=
-raycastBlock();
+ let hit=raycastBlock();
 
-if(!hit)
-return;
+ if(!hit)return;
 
-let obj=
-hit.object;
+ let b=hit.object;
 
-scene.remove(obj);
+ scene.remove(b);
 
-blocks=
-blocks.filter(
-b=>b!==obj
-);
+ blocks=blocks.filter(x=>x!==b);
 
-obj.geometry.dispose();
-
-obj.material.dispose();
+ b.geometry.dispose();
+ b.material.dispose();
 
 }
-
 
 function placeMC(){
 
-let hit=
-raycastBlock();
+ let hit=raycastBlock();
 
-if(!hit)
-return;
+ if(!hit)return;
 
-let normal=
-hit.face.normal.clone();
+ let normal=hit.face.normal.clone();
 
-let pos=
-hit.object.position.clone();
+ let pos=hit.object.position.clone();
 
-pos.add(normal);
+ pos.add(normal);
 
-addBlock(
-Math.round(pos.x),
-Math.round(pos.y),
-Math.round(pos.z),
-selectedBlock
-);
+ addBlock(
+  Math.round(pos.x),
+  Math.round(pos.y),
+  Math.round(pos.z),
+  selectedBlock
+ );
 
 }
 
 
-/* =========================
-   TOUCH CAMERA
-========================= */
+/* حركة الماوس/الشاشة */
 
-let touchingCamera=false;
+let cameraTouch=false;
+let lastTX=0;
+let lastTY=0;
 
-let touchX=0;
-
-let touchY=0;
-
-const mcCanvas=
-document.getElementById("mcCanvas");
-
+const mcCanvas=document.getElementById("mcCanvas");
 
 mcCanvas.addEventListener(
-"touchstart",
-e=>{
+ "touchstart",
+ e=>{
 
-if(e.touches.length!==1)
-return;
+  if(e.touches.length!==1)return;
 
-touchingCamera=true;
+  cameraTouch=true;
 
-touchX=
-e.touches[0].clientX;
+  lastTX=e.touches[0].clientX;
+  lastTY=e.touches[0].clientY;
 
-touchY=
-e.touches[0].clientY;
-
-},
-{passive:false}
+ },
+ {passive:false}
 );
-
 
 mcCanvas.addEventListener(
-"touchmove",
-e=>{
+ "touchmove",
+ e=>{
 
-if(!touchingCamera)
-return;
+  if(!cameraTouch)return;
 
-e.preventDefault();
+  e.preventDefault();
 
-let x=
-e.touches[0].clientX;
+  let x=e.touches[0].clientX;
+  let y=e.touches[0].clientY;
 
-let y=
-e.touches[0].clientY;
+  let dx=x-lastTX;
+  let dy=y-lastTY;
 
-let dx=
-x-touchX;
+  lastTX=x;
+  lastTY=y;
 
-let dy=
-y-touchY;
+  yaw-=dx*.006;
+  pitch-=dy*.006;
 
-touchX=x;
+  pitch=Math.max(
+   -Math.PI/2+.1,
+   Math.min(Math.PI/2-.1,pitch)
+  );
 
-touchY=y;
-
-cameraYaw-=
-dx*.006;
-
-cameraPitch-=
-dy*.006;
-
-cameraPitch=
-Math.max(
--Math.PI/2+.1,
-Math.min(
-Math.PI/2-.1,
-cameraPitch
-)
+ },
+ {passive:false}
 );
-
-},
-{passive:false}
-);
-
 
 mcCanvas.addEventListener(
-"touchend",
-()=>touchingCamera=false
+ "touchend",
+ ()=>cameraTouch=false
 );
 
+
+/* أزرار الحركة */
 
 function mcHold(id,key){
 
-let b=
-document.getElementById(id);
+ let b=document.getElementById(id);
 
+ b.addEventListener(
+  "touchstart",
+  e=>{
+   e.preventDefault();
+   keys[key]=true;
+  },
+  {passive:false}
+ );
 
-b.addEventListener(
-"touchstart",
-e=>{
+ b.addEventListener(
+  "touchend",
+  e=>{
+   e.preventDefault();
+   keys[key]=false;
+  },
+  {passive:false}
+ );
 
-e.preventDefault();
+ b.addEventListener(
+  "touchcancel",
+  ()=>keys[key]=false
+ );
 
-keys[key]=true;
+ b.addEventListener(
+  "mousedown",
+  ()=>keys[key]=true
+ );
 
-},
-{passive:false}
-);
+ b.addEventListener(
+  "mouseup",
+  ()=>keys[key]=false
+ );
 
-
-b.addEventListener(
-"touchend",
-e=>{
-
-e.preventDefault();
-
-keys[key]=false;
-
-},
-{passive:false}
-);
-
-
-b.addEventListener(
-"touchcancel",
-()=>keys[key]=false
-);
-
-
-b.addEventListener(
-"mousedown",
-()=>keys[key]=true
-);
-
-
-b.addEventListener(
-"mouseup",
-()=>keys[key]=false
-);
-
-
-b.addEventListener(
-"mouseleave",
-()=>keys[key]=false
-);
+ b.addEventListener(
+  "mouseleave",
+  ()=>keys[key]=false
+ );
 
 }
 
+mcHold("mcForward","forward");
+mcHold("mcBack","back");
+mcHold("mcLeft","left");
+mcHold("mcRight","right");
 
-mcHold(
-"mcForward",
-"forward"
-);
-
-mcHold(
-"mcBack",
-"back"
-);
-
-mcHold(
-"mcLeft",
-"left"
-);
-
-mcHold(
-"mcRight",
-"right"
-);
+document.getElementById("mcJump").onclick=jumpMC;
+document.getElementById("mcBreak").onclick=breakMC;
+document.getElementById("mcPlace").onclick=placeMC;
 
 
-document.getElementById("mcJump")
-.onclick=jumpMC;
+/* اختيار البلوك */
 
-document.getElementById("mcBreak")
-.onclick=breakMC;
-
-document.getElementById("mcPlace")
-.onclick=placeMC;
-
-
-document
-.querySelectorAll(".slot")
+document.querySelectorAll(".slot")
 .forEach(slot=>{
 
-slot.addEventListener(
-"click",
-e=>{
+ slot.onclick=e=>{
 
-e.stopPropagation();
+  e.stopPropagation();
 
-document
-.querySelectorAll(".slot")
-.forEach(
-s=>s.classList.remove("selected")
-);
+  document.querySelectorAll(".slot")
+  .forEach(x=>x.classList.remove("selected"));
 
-slot.classList.add("selected");
+  slot.classList.add("selected");
 
-selectedBlock=
-slot.dataset.block;
+  selectedBlock=slot.dataset.block;
 
-});
+ };
 
 });
 
 
-document.addEventListener(
-"keydown",
-e=>{
+/* لوحة المفاتيح */
 
-if(
-!document
-.getElementById("mcGame")
-.classList
-.contains("active")
-)
-return;
+document.addEventListener("keydown",e=>{
 
+ if(!document.getElementById("mcGame")
+ .classList.contains("active"))return;
 
-if(
-e.key=="w"||
-e.key=="ArrowUp"
-)
-keys.forward=true;
+ if(e.key==="w"||e.key==="ArrowUp")
+  keys.forward=true;
 
+ if(e.key==="s"||e.key==="ArrowDown")
+  keys.back=true;
 
-if(
-e.key=="s"||
-e.key=="ArrowDown"
-)
-keys.back=true;
+ if(e.key==="a"||e.key==="ArrowLeft")
+  keys.left=true;
 
+ if(e.key==="d"||e.key==="ArrowRight")
+  keys.right=true;
 
-if(
-e.key=="a"||
-e.key=="ArrowLeft"
-)
-keys.left=true;
+ if(e.code==="Space")
+  jumpMC();
 
+ if(e.key==="q")
+  breakMC();
 
-if(
-e.key=="d"||
-e.key=="ArrowRight"
-)
-keys.right=true;
-
-
-if(e.code=="Space")
-jumpMC();
-
-
-if(e.key=="q")
-breakMC();
-
-
-if(e.key=="e")
-placeMC();
+ if(e.key==="e")
+  placeMC();
 
 });
 
+document.addEventListener("keyup",e=>{
 
-document.addEventListener(
-"keyup",
-e=>{
+ if(e.key==="w"||e.key==="ArrowUp")
+  keys.forward=false;
 
-if(
-e.key=="w"||
-e.key=="ArrowUp"
-)
-keys.forward=false;
+ if(e.key==="s"||e.key==="ArrowDown")
+  keys.back=false;
 
+ if(e.key==="a"||e.key==="ArrowLeft")
+  keys.left=false;
 
-if(
-e.key=="s"||
-e.key=="ArrowDown"
-)
-keys.back=false;
-
-
-if(
-e.key=="a"||
-e.key=="ArrowLeft"
-)
-keys.left=false;
-
-
-if(
-e.key=="d"||
-e.key=="ArrowRight"
-)
-keys.right=false;
+ if(e.key==="d"||e.key==="ArrowRight")
+  keys.right=false;
 
 });
-
 
 function animateMC(){
 
-requestAnimationFrame(
-animateMC
-);
+ requestAnimationFrame(animateMC);
 
-if(
-document
-.getElementById("mcGame")
-.classList
-.contains("active")
-){
+ if(
+  document.getElementById("mcGame")
+  .classList.contains("active")
+ ){
 
-updateMC();
+  updateMC();
 
-renderer.render(
-scene,
-camera
-);
+  renderer.render(scene,camera);
+
+ }
 
 }
 
-}
+window.addEventListener("resize",()=>{
 
+ if(!renderer||!camera)return;
 
-window.addEventListener(
-"resize",
-()=>{
+ renderer.setSize(innerWidth,innerHeight);
 
-if(!renderer||!camera)
-return;
+ camera.aspect=innerWidth/innerHeight;
 
-renderer.setSize(
-innerWidth,
-innerHeight
-);
+ camera.updateProjectionMatrix();
 
-camera.aspect=
-innerWidth/
-innerHeight;
-
-camera.updateProjectionMatrix();
-
-}
-);
+});
 
 </script>
 
