@@ -2,2609 +2,1479 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>Ahmed Games</title>
 
 <style>
 *{
- box-sizing:border-box;
- user-select:none;
- -webkit-user-select:none;
+    box-sizing:border-box;
+    user-select:none;
+    -webkit-user-select:none;
 }
 
-html,body{
- margin:0;
- width:100%;
- height:100%;
- overflow:hidden;
- font-family:Arial,sans-serif;
- background:#111536;
- color:white;
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:white;
+    background:
+      radial-gradient(circle at 20% 20%,#253b9b 0,#111936 35%,#080d20 100%);
+    overflow-x:hidden;
 }
 
-button{
- font-family:Arial,sans-serif;
- border:0;
- cursor:pointer;
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 80% 10%,rgba(70,120,255,.25),transparent 30%),
+      radial-gradient(circle at 10% 90%,rgba(160,40,255,.2),transparent 30%);
+    pointer-events:none;
+}
+
+#app{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:20px 15px 40px;
+    position:relative;
+    z-index:2;
+}
+
+header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo{
+    font-size:60px;
+    margin-bottom:5px;
+}
+
+h1{
+    font-size:45px;
+    margin:0;
+    text-shadow:0 5px 15px #000;
+}
+
+.subtitle{
+    opacity:.8;
+    margin-top:5px;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.btn{
+    border:0;
+    border-radius:24px;
+    min-height:105px;
+    color:white;
+    font-size:25px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 0 rgba(0,0,0,.25);
+    transition:.12s;
+}
+
+.btn:active{
+    transform:translateY(6px);
+    box-shadow:0 2px 0 rgba(0,0,0,.25);
+}
+
+.blue{background:linear-gradient(135deg,#1677ff,#2543d8)}
+.green{background:linear-gradient(135deg,#13c957,#07953b)}
+.yellow{background:linear-gradient(135deg,#c7d900,#7f9700)}
+.orange{background:linear-gradient(135deg,#ff9418,#f04c00)}
+.purple{background:linear-gradient(135deg,#a52cff,#6220d7)}
+.red{background:linear-gradient(135deg,#ff3b3b,#c81717)}
+.cyan{background:linear-gradient(135deg,#18cce8,#087fa9)}
+
+.full{
+    grid-column:1/-1;
 }
 
 .screen{
- display:none;
- width:100vw;
- height:100vh;
- position:relative;
+    display:none;
 }
 
 .screen.active{
- display:flex;
+    display:block;
 }
-
-/* ================= MAIN MENU ================= */
-
-#menu{
- flex-direction:column;
- align-items:center;
- justify-content:flex-start;
- padding:20px 15px 35px;
- overflow-y:auto;
- background:
- radial-gradient(circle at 50% -10%,#30386f,#191d4d 45%,#111536);
-}
-
-.top{
- width:100%;
- max-width:650px;
- display:flex;
- justify-content:space-between;
- align-items:flex-start;
- margin-bottom:22px;
-}
-
-.language{
- width:115px;
- display:flex;
- flex-wrap:wrap;
- gap:7px;
-}
-
-.globe{
- width:70px;
- height:70px;
- font-size:52px;
- display:flex;
- align-items:center;
- justify-content:center;
-}
-
-.lang{
- width:50px;
- height:48px;
- border-radius:10px;
- color:white;
- background:#ffffff12;
- font-size:15px;
- font-weight:bold;
-}
-
-.activeLang{
- background:#2864dc;
-}
-
-.mainTitle{
- font-size:52px;
- line-height:.9;
- font-weight:900;
- text-align:center;
- text-shadow:3px 4px 0 #0005;
- margin-top:8px;
-}
-
-.gamesGrid{
- width:100%;
- max-width:650px;
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:13px;
-}
-
-.gameButton{
- min-height:105px;
- border-radius:24px;
- color:white;
- font-size:24px;
- font-weight:900;
- padding:10px;
- box-shadow:
- 0 8px 0 #0004,
- 0 12px 20px #0003;
- transition:.12s;
-}
-
-.gameButton:active{
- transform:translateY(7px);
- box-shadow:0 2px 0 #0004;
-}
-
-.blue{
- background:linear-gradient(145deg,#3282f5,#1555d2);
-}
-
-.yellow{
- background:linear-gradient(145deg,#c7d41a,#8b9500);
-}
-
-.green{
- background:linear-gradient(145deg,#20d449,#0a9c31);
-}
-
-.orange{
- background:linear-gradient(145deg,#ff8a00,#f05a00);
-}
-
-.purple{
- background:linear-gradient(145deg,#a52df0,#7120c4);
-}
-
-.cyan{
- background:linear-gradient(145deg,#17c8db,#0799ad);
-}
-
-.red{
- background:linear-gradient(145deg,#ef2b2b,#c80e16);
-}
-
-@media(max-width:500px){
- .mainTitle{font-size:43px}
- .gameButton{font-size:20px;min-height:100px}
- .gamesGrid{gap:11px}
-}
-
-@media(max-width:360px){
- .mainTitle{font-size:36px}
- .gameButton{font-size:17px;min-height:90px}
-}
-
-/* ================= GENERAL ================= */
 
 .back{
- position:absolute;
- top:12px;
- right:12px;
- z-index:1000;
- background:#ef3333;
- color:white;
- padding:10px 17px;
- border-radius:12px;
- font-weight:bold;
- font-size:16px;
+    background:#202b55;
+    padding:12px 20px;
+    border:0;
+    border-radius:15px;
+    color:white;
+    font-size:18px;
+    margin-bottom:15px;
+    cursor:pointer;
 }
 
-.bigBtn{
- background:#2563eb;
- color:white;
- padding:13px 25px;
- border-radius:13px;
- font-size:19px;
- font-weight:bold;
+.panel{
+    background:rgba(13,20,50,.9);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    padding:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-/* ================= XO MENU ================= */
-
-#xoMenu,#xoGame,#rpsMenu,#rpsGame{
- flex-direction:column;
- align-items:center;
- justify-content:center;
- gap:12px;
+.center{
+    text-align:center;
 }
 
-#xoMenu,#xoGame{
- background:linear-gradient(135deg,#172554,#1e3a8a);
+.choice{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
 }
 
-#xoMenu h1,#xoGame h1{
- font-size:35px;
+.choice button{
+    min-height:90px;
 }
 
-#xoMenu .menuBtn,
-#rpsMenu .menuBtn{
- width:280px;
- padding:15px;
- border-radius:15px;
- color:white;
- font-size:20px;
- font-weight:bold;
+h2{
+    font-size:32px;
 }
 
-.menuBtn{
- background:#2563eb;
- box-shadow:0 5px #123e98;
+#status{
+    font-size:24px;
+    margin:15px;
+    font-weight:bold;
 }
 
-.menuBtn.green{
- background:#16a34a;
- box-shadow:0 5px #11632e;
+/* XO */
+.xoboard{
+    display:grid;
+    grid-template-columns:repeat(3,90px);
+    gap:8px;
+    justify-content:center;
+    margin:20px auto;
 }
 
-.board{
- width:315px;
- height:315px;
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:7px;
+.xocell{
+    width:90px;
+    height:90px;
+    border:0;
+    border-radius:15px;
+    background:#26355f;
+    color:white;
+    font-size:45px;
+    font-weight:bold;
 }
 
-.cell{
- background:#172033;
- color:white;
- border-radius:15px;
- font-size:55px;
+/* Cars */
+#carGame{
+    width:320px;
+    height:520px;
+    margin:auto;
+    background:#333;
+    border-left:7px solid white;
+    border-right:7px solid white;
+    position:relative;
+    overflow:hidden;
+    border-radius:10px;
 }
 
-#xoTurn,#xoResult{
- font-size:21px;
- min-height:27px;
+.roadline{
+    position:absolute;
+    width:8px;
+    height:70px;
+    background:white;
+    left:50%;
 }
 
-/* ================= CARS ================= */
-
-#carsGame{
- background:#111;
- justify-content:center;
- align-items:center;
+.car{
+    position:absolute;
+    width:45px;
+    height:75px;
+    border-radius:12px;
 }
 
-#carRoad{
- width:360px;
- height:100vh;
- max-height:750px;
- position:relative;
- overflow:hidden;
- background:#333;
- border-left:5px solid white;
- border-right:5px solid white;
+.playerCar{
+    background:#ef3030;
+    bottom:25px;
 }
 
-.line{
- position:absolute;
- width:8px;
- height:80px;
- background:white;
- left:50%;
- transform:translateX(-50%);
+.enemyCar{
+    background:#ffd92e;
 }
 
-.carPlayer,.enemy{
- position:absolute;
- width:50px;
- height:90px;
- border-radius:10px;
-}
-
-.carPlayer{
- background:red;
- left:155px;
- bottom:30px;
- z-index:5;
-}
-
-.enemy{
- background:#ffd000;
- z-index:4;
-}
-
-#carScore{
- position:absolute;
- top:15px;
- left:15px;
- z-index:20;
- font-size:22px;
- font-weight:bold;
-}
-
-.carControls{
- position:absolute;
- bottom:18px;
- left:50%;
- transform:translateX(-50%);
- display:flex;
- gap:20px;
- z-index:30;
- direction:ltr;
-}
-
-.carControl{
- width:75px;
- height:65px;
- border-radius:15px;
- background:#eee;
- font-size:32px;
-}
-
-#carOver{
- display:none;
- position:absolute;
- inset:0;
- background:#000d;
- z-index:50;
- text-align:center;
- padding-top:220px;
-}
-
-#carOver button{
- padding:13px 25px;
- border-radius:10px;
- background:#2563eb;
- color:white;
- font-size:19px;
-}
-
-/* ================= SNAKE ================= */
-
-#snakeGame{
- flex-direction:column;
- align-items:center;
- padding-top:45px;
- background:#052e16;
-}
-
+/* Snake */
 #snakeCanvas{
- width:320px;
- height:320px;
- background:#111827;
- border:5px solid #22c55e;
+    background:#101827;
+    border:5px solid #29d66f;
+    border-radius:15px;
+    display:block;
+    margin:auto;
+    max-width:100%;
 }
 
-.snakeControls{
- display:grid;
- grid-template-columns:60px 60px 60px;
- grid-template-rows:50px 50px;
- gap:5px;
- margin-top:8px;
- direction:ltr;
+/* Simple games */
+.bigEmoji{
+    font-size:80px;
+    text-align:center;
+    padding:20px;
 }
 
-.snakeControl{
- border-radius:10px;
- background:#22c55e;
- color:white;
- font-size:22px;
+.gameButtons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
 }
 
-#up{grid-column:2}
-#leftS{grid-column:1;grid-row:2}
-#down{grid-column:2;grid-row:2}
-#rightS{grid-column:3;grid-row:2}
-
-/* ================= INFO ================= */
-
-#info{
- justify-content:center;
- align-items:center;
- text-align:center;
- background:linear-gradient(135deg,#3b0764,#111827);
-}
-
-.infoBox{
- width:min(92%,430px);
- padding:25px;
- border-radius:25px;
- background:#ffffff12;
- border:2px solid #ffffff22;
-}
-
-.infoText{
- white-space:pre-line;
- font-size:18px;
- line-height:2;
-}
-
-/* ================= PENALTY ================= */
-
-#penaltyGame{
- flex-direction:column;
- align-items:center;
- background:linear-gradient(#38bdf8,#0f766e);
- padding-top:50px;
-}
-
-#goal{
- position:relative;
- width:330px;
- height:190px;
- border:8px solid white;
- background:#ffffff20;
-}
-
-.net{
- position:absolute;
- inset:0;
- background:
- repeating-linear-gradient(0deg,#fff3 0 2px,transparent 2px 18px),
- repeating-linear-gradient(90deg,#fff3 0 2px,transparent 2px 18px);
-}
-
-#keeper{
- position:absolute;
- width:35px;
- height:60px;
- background:#facc15;
- bottom:0;
- left:145px;
- border-radius:12px 12px 5px 5px;
-}
-
-#ball{
- position:absolute;
- width:28px;
- height:28px;
- border-radius:50%;
- background:white;
- bottom:15px;
- left:151px;
- transition:.35s;
-}
-
-.penaltyButtons{
- display:flex;
- gap:8px;
- margin-top:20px;
- direction:ltr;
-}
-
-.penaltyButtons button{
- padding:12px 18px;
- border-radius:12px;
- font-size:18px;
-}
-
-/* ================= BALLOON ================= */
-
-#balloonGame{
- flex-direction:column;
- align-items:center;
- background:linear-gradient(#38bdf8,#dbeafe);
- color:#111827;
- padding-top:50px;
-}
-
-#balloonArea{
- width:min(94vw,420px);
- height:430px;
- position:relative;
- overflow:hidden;
- background:#7dd3fc;
- border-radius:20px;
-}
-
-.balloon{
- position:absolute;
- width:70px;
- height:90px;
- border-radius:50%;
- box-shadow:inset -10px -10px #0002;
-}
-
-.balloon:after{
- content:"";
- position:absolute;
- width:2px;
- height:60px;
- background:#555;
- bottom:-55px;
- left:34px;
-}
-
-/* ================= QUIZ ================= */
-
-#quizGame{
- flex-direction:column;
- align-items:center;
- justify-content:center;
- background:linear-gradient(135deg,#1e1b4b,#312e81);
- padding:20px;
-}
-
-#question{
- font-size:25px;
- text-align:center;
- max-width:500px;
- margin:20px;
-}
-
-.answers{
- display:flex;
- flex-direction:column;
- gap:10px;
- width:min(90%,400px);
+.gameButtons button{
+    min-height:75px;
+    font-size:30px;
+    border:0;
+    border-radius:18px;
+    background:#293866;
+    color:white;
 }
 
 .answer{
- border-radius:12px;
- padding:14px;
- background:#2563eb;
- color:white;
- font-size:19px;
+    display:block;
+    width:100%;
+    padding:17px;
+    margin:10px 0;
+    border:0;
+    border-radius:15px;
+    background:#27365e;
+    color:white;
+    font-size:20px;
 }
 
-/* ================= RPS ================= */
-
-#rpsMenu,#rpsGame{
- background:linear-gradient(135deg,#14532d,#052e16);
+/* Bomb */
+.players{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-#rpsMenu .menuBtn{
- background:#16a34a;
- box-shadow:0 5px #166534;
+.playerBox{
+    background:#182443;
+    padding:15px;
+    border-radius:20px;
 }
 
-#rpsMenu .bot{
- background:#2563eb;
- box-shadow:0 5px #1647a5;
+.board{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
 }
 
-.rpsButtons{
- display:flex;
- gap:10px;
- direction:ltr;
+.tile{
+    aspect-ratio:1;
+    border:0;
+    border-radius:10px;
+    background:#f5b77c;
+    font-size:30px;
+    cursor:pointer;
 }
 
-.rps{
- font-size:45px;
- width:90px;
- height:80px;
- border-radius:15px;
+.tile.open{
+    background:#7ed321;
 }
 
-#rpsResult{
- font-size:21px;
- text-align:center;
- min-height:60px;
+.tile.bomb{
+    background:#8b8b8b;
 }
 
-/* ================= EMOJI ================= */
-
-#emojiGame{
- flex-direction:column;
- align-items:center;
- justify-content:center;
- background:linear-gradient(135deg,#7c2d12,#431407);
+.info{
+    line-height:1.8;
+    font-size:20px;
 }
 
-#emojiGrid{
- display:grid;
- grid-template-columns:repeat(5,55px);
- gap:8px;
- direction:ltr;
+/* Minecraft */
+#minecraft{
+    width:100%;
+    height:500px;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    background:linear-gradient(#66b8ff 0 55%,#63bd43 55%);
 }
 
-.emojiCell{
- width:55px;
- height:55px;
- border-radius:10px;
- background:white;
- font-size:30px;
+.block{
+    position:absolute;
+    width:70px;
+    height:70px;
+    background:#55a936;
+    border:4px solid rgba(0,0,0,.15);
 }
 
-/* ================= MINECRAFT 3D ================= */
-
-#mcGame{
- background:#87ceeb;
- display:none;
+.mcControls{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:12px;
+    flex-wrap:wrap;
 }
 
-#mcGame.active{
- display:block;
+.mcControls button{
+    width:70px;
+    height:60px;
+    border:0;
+    border-radius:15px;
+    font-size:25px;
+    background:#34446e;
+    color:white;
 }
 
-#mcCanvas{
- position:absolute;
- inset:0;
- width:100%;
- height:100%;
- display:block;
- touch-action:none;
-}
-
-#mcUI{
- position:absolute;
- inset:0;
- z-index:20;
- pointer-events:none;
-}
-
-#mcTitle{
- position:absolute;
- top:12px;
- left:12px;
- background:#0008;
- padding:8px 12px;
- border-radius:10px;
- font-size:13px;
-}
-
-#crosshair{
- position:absolute;
- top:50%;
- left:50%;
- transform:translate(-50%,-50%);
- font-size:28px;
- text-shadow:0 0 5px black;
-}
-
-#hotbar{
- position:absolute;
- bottom:15px;
- left:50%;
- transform:translateX(-50%);
- display:flex;
- gap:4px;
- direction:ltr;
- pointer-events:auto;
-}
-
-.slot{
- width:48px;
- height:48px;
- border:3px solid #777;
- background:#333d;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:22px;
-}
-
-.slot.selected{
- border-color:white;
- transform:scale(1.08);
-}
-
-#mcMove{
- position:absolute;
- bottom:15px;
- left:15px;
- display:grid;
- grid-template-columns:55px 55px 55px;
- grid-template-rows:55px 55px;
- gap:4px;
- pointer-events:auto;
- direction:ltr;
-}
-
-.mcBtn,#mcJump,.mcAction{
- border-radius:12px;
- background:#0009;
- color:white;
- font-size:23px;
- touch-action:none;
-}
-
-#mcForward{grid-column:2}
-#mcLeft{grid-column:1;grid-row:2}
-#mcBack{grid-column:2;grid-row:2}
-#mcRight{grid-column:3;grid-row:2}
-
-#mcJump{
- position:absolute;
- bottom:140px;
- left:15px;
- width:60px;
- height:55px;
-}
-
-#mcActions{
- position:absolute;
- bottom:15px;
- right:15px;
- display:flex;
- gap:7px;
- pointer-events:auto;
-}
-
-.mcAction{
- width:75px;
- height:55px;
- font-size:14px;
-}
-
-/* ================= LANGUAGE ================= */
-
-body.en{
- direction:ltr;
+/* mobile */
+@media(max-width:600px){
+    h1{font-size:38px}
+    .menu{gap:12px}
+    .btn{font-size:20px;min-height:90px}
+    .xoboard{grid-template-columns:repeat(3,75px)}
+    .xocell{width:75px;height:75px}
+    .players{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= MAIN MENU ================= -->
+<div id="app">
 
-<div id="menu" class="screen active">
+<header>
+    <div class="logo">🌐</div>
+    <h1>Ahmed Games</h1>
+    <div class="subtitle">🎮 مجموعة ألعاب أحمد</div>
+</header>
 
- <div class="top">
+<!-- القائمة -->
+<section id="home" class="screen active">
+    <div class="menu">
 
-  <div class="language">
+        <button class="btn blue" onclick="openScreen('xo')">
+            XO ⭕❌
+        </button>
 
-   <div class="globe">🌐</div>
+        <button class="btn blue" onclick="openScreen('cars')">
+            Cars 🚗
+        </button>
 
-   <button class="lang activeLang" onclick="setLang('ar')">
-    🇸🇦 AR
-   </button>
+        <button class="btn yellow" onclick="openScreen('snake')">
+            The Snake 🐍
+        </button>
 
-   <button class="lang" onclick="setLang('en')">
-    🇬🇧 EN
-   </button>
+        <button class="btn green" onclick="openScreen('minecraft')">
+            Minecraft 3D ⛏️
+        </button>
 
-  </div>
+        <button class="btn orange" onclick="openScreen('penalty')">
+            ضربات جزاء ⚽
+        </button>
 
-  <div class="mainTitle">
-   Ahmed<br>Games
-  </div>
+        <button class="btn purple" onclick="openScreen('quiz')">
+            سؤال جواب ❓
+        </button>
 
- </div>
+        <button class="btn cyan" onclick="openScreen('balloon')">
+            المنطاد 🎈
+        </button>
 
- <div class="gamesGrid">
+        <button class="btn red" onclick="openScreen('emoji')">
+            أوجد الإيموجي المختلف 😃
+        </button>
 
-  <button class="gameButton blue"
-   onclick="show('xoMenu')">
-   XO ❌⭕
-  </button>
+        <button class="btn green" onclick="openScreen('rps')">
+            حجر ورقة مقص ✊📄✂️
+        </button>
 
-  <button class="gameButton blue"
-   onclick="show('carsGame');startCars()">
-   Cars 🚗
-  </button>
+        <button class="btn purple" onclick="openScreen('bomb')">
+            لعبة القنابل 💣
+        </button>
 
-  <button class="gameButton yellow"
-   onclick="show('snakeGame');startSnake()">
-   The Snake 🐍
-  </button>
+        <button class="btn purple full" onclick="openScreen('info')">
+            معلومات عني 👤
+        </button>
 
-  <button class="gameButton green"
-   onclick="show('mcGame');startMC()">
-   Minecraft 3D ⛏️
-  </button>
+    </div>
+</section>
 
-  <button class="gameButton orange"
-   onclick="show('penaltyGame');startPenalty()">
-   ضربات جزاء ⚽
-  </button>
+<!-- XO -->
+<section id="xo" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
-  <button class="gameButton purple"
-   onclick="show('quizGame');startQuiz()">
-   سؤال جواب ❓
-  </button>
+<div class="panel center">
+<h2>⭕ XO ❌</h2>
 
-  <button class="gameButton cyan"
-   onclick="show('balloonGame');startBalloon()">
-   المنطاد 🎈
-  </button>
-
-  <button class="gameButton red"
-   onclick="show('emojiGame');startEmoji()">
-   أوجد الإيموجي المختلف 😀
-  </button>
-
-  <button class="gameButton green"
-   onclick="show('rpsMenu')">
-   حجر ورقة مقص ✂️📄✊
-  </button>
-
-  <button class="gameButton purple"
-   onclick="show('info')">
-   معلومات عني 👤
-  </button>
-
- </div>
+<div class="choice" id="xoMode">
+<button class="btn blue" onclick="startXO('bot')">🤖 لعب مع بوت</button>
+<button class="btn green" onclick="startXO('friend')">👥 لعب مع صديق</button>
 </div>
 
+<div id="xoGame" style="display:none">
+<div id="xoStatus"></div>
+<div class="xoboard" id="xoBoard"></div>
+<button class="back" onclick="startXO(currentXOmode)">🔄 إعادة</button>
+</div>
+</div>
+</section>
 
-<!-- ================= XO MENU ================= -->
+<!-- Cars -->
+<section id="cars" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
+<div class="panel center">
+<h2>🚗 Cars</h2>
+<div id="carScore">النقاط: 0</div>
 
-<div id="xoMenu" class="screen">
-
- <button class="back" onclick="show('menu')">رجوع</button>
-
- <h1>❌⭕ XO</h1>
-
- <button class="menuBtn"
-  onclick="startXO('bot')">
-  🤖 لعب مع بوت
- </button>
-
- <button class="menuBtn green"
-  onclick="startXO('friend')">
-  👥 لعب مع صديق
- </button>
-
+<div id="carGame">
+<div class="car playerCar" id="playerCar"></div>
 </div>
 
+<div class="mcControls">
+<button id="carLeft">⬅️</button>
+<button id="carRight">➡️</button>
+</div>
+</div>
+</section>
 
-<!-- ================= XO GAME ================= -->
+<!-- Snake -->
+<section id="snake" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
+<div class="panel center">
+<h2>🐍 The Snake</h2>
+<div id="snakeScore">النقاط: 0</div>
+<canvas id="snakeCanvas" width="320" height="320"></canvas>
 
-<div id="xoGame" class="screen">
+<div class="mcControls">
+<button onclick="snakeDir(0,-1)">⬆️</button>
+<button onclick="snakeDir(-1,0)">⬅️</button>
+<button onclick="snakeDir(1,0)">➡️</button>
+<button onclick="snakeDir(0,1)">⬇️</button>
+</div>
+</div>
+</section>
 
- <button class="back" onclick="show('xoMenu')">رجوع</button>
+<!-- Minecraft -->
+<section id="minecraft" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
- <h1>❌⭕ XO</h1>
+<div class="panel center">
+<h2>⛏️ Minecraft 3D</h2>
 
- <div id="xoTurn"></div>
+<div id="minecraft">
+<div class="block" style="left:20px;bottom:20px"></div>
+<div class="block" style="left:90px;bottom:20px"></div>
+<div class="block" style="left:160px;bottom:20px"></div>
+<div class="block" style="left:230px;bottom:20px"></div>
+<div class="block" style="left:300px;bottom:20px"></div>
 
- <div class="board">
-
-  <button class="cell" onclick="xoPlay(0)"></button>
-  <button class="cell" onclick="xoPlay(1)"></button>
-  <button class="cell" onclick="xoPlay(2)"></button>
-  <button class="cell" onclick="xoPlay(3)"></button>
-  <button class="cell" onclick="xoPlay(4)"></button>
-  <button class="cell" onclick="xoPlay(5)"></button>
-  <button class="cell" onclick="xoPlay(6)"></button>
-  <button class="cell" onclick="xoPlay(7)"></button>
-  <button class="cell" onclick="xoPlay(8)"></button>
-
- </div>
-
- <div id="xoResult"></div>
-
- <button class="bigBtn" onclick="xoRestart()">
-  🔄 إعادة
- </button>
-
+<div id="mcPlayer"
+style="
+position:absolute;
+width:40px;
+height:60px;
+background:#e9c46a;
+bottom:90px;
+left:150px;
+border:4px solid #222;
+"></div>
 </div>
 
+<div class="mcControls">
+<button onclick="mcMove(-20)">⬅️</button>
+<button onclick="mcJump()">⬆️</button>
+<button onclick="mcMove(20)">➡️</button>
+</div>
+</div>
+</section>
 
-<!-- ================= CARS ================= -->
+<!-- Penalty -->
+<section id="penalty" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
-<div id="carsGame" class="screen">
+<div class="panel center">
+<h2>⚽ ضربات جزاء</h2>
+<div id="goal" style="font-size:100px">🥅</div>
+<div id="penaltyText">اختر مكان التسديدة</div>
 
- <button class="back" onclick="show('menu')">🏠</button>
+<div class="gameButtons">
+<button onclick="shoot('left')">⬅️</button>
+<button onclick="shoot('center')">⬆️</button>
+<button onclick="shoot('right')">➡️</button>
+</div>
+</div>
+</section>
 
- <div id="carScore">النقاط: 0</div>
+<!-- Quiz -->
+<section id="quiz" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
- <div id="carRoad">
+<div class="panel">
+<h2 class="center">❓ سؤال جواب</h2>
+<h3 id="question"></h3>
+<div id="answers"></div>
+<div id="quizScore" class="center"></div>
+</div>
+</section>
 
-  <div class="carPlayer" id="carPlayer"></div>
+<!-- Balloon -->
+<section id="balloon" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
-  <div id="carOver">
-   <h1>💥 انتهت اللعبة</h1>
-   <h2 id="carFinal"></h2>
-   <button onclick="startCars()">🔄 إعادة</button>
-  </div>
+<div class="panel center">
+<h2>🎈 المنطاد</h2>
+<div id="balloonObj" style="font-size:120px">🎈</div>
+<h3>اضغط بسرعة قبل أن يطير!</h3>
+<button class="btn red full" onclick="popBalloon()">💥 اضرب المنطاد</button>
+<div id="balloonScore"></div>
+</div>
+</section>
 
- </div>
+<!-- Emoji -->
+<section id="emoji" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
- <div class="carControls">
-  <button class="carControl" id="carLeft">⬅️</button>
-  <button class="carControl" id="carRight">➡️</button>
- </div>
+<div class="panel center">
+<h2>😃 أوجد المختلف</h2>
+<div id="emojiGrid"
+style="
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:8px;
+font-size:38px;
+"></div>
+<div id="emojiResult"></div>
+</div>
+</section>
 
+<!-- RPS -->
+<section id="rps" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
+
+<div class="panel center">
+<h2>✊📄✂️ حجر ورقة مقص</h2>
+
+<div class="choice" id="rpsMode">
+<button class="btn blue" onclick="startRPS('bot')">
+🤖 لعب مع بوت
+</button>
+
+<button class="btn green" onclick="startRPS('friend')">
+👥 لعب مع صديق
+</button>
 </div>
 
+<div id="rpsGame" style="display:none">
+<h3 id="rpsTurn"></h3>
 
-<!-- ================= SNAKE ================= -->
-
-<div id="snakeGame" class="screen">
-
- <button class="back" onclick="show('menu')">🏠</button>
-
- <h1>🐍 The Snake</h1>
-
- <div id="snakeScore">النقاط: 0</div>
-
- <canvas id="snakeCanvas" width="320" height="320"></canvas>
-
- <div class="snakeControls">
-  <button class="snakeControl" id="up">⬆️</button>
-  <button class="snakeControl" id="leftS">⬅️</button>
-  <button class="snakeControl" id="down">⬇️</button>
-  <button class="snakeControl" id="rightS">➡️</button>
- </div>
-
+<div class="gameButtons">
+<button onclick="rpsChoose('rock')">✊</button>
+<button onclick="rpsChoose('paper')">📄</button>
+<button onclick="rpsChoose('scissors')">✂️</button>
 </div>
 
+<div id="rpsResult"></div>
+</div>
+</div>
+</section>
 
-<!-- ================= PENALTY ================= -->
+<!-- Bomb -->
+<section id="bomb" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
-<div id="penaltyGame" class="screen">
+<div class="panel center">
+<h2>💣 لعبة القنابل</h2>
 
- <button class="back" onclick="show('menu')">🏠</button>
+<div id="bombModes" class="choice">
+<button class="btn blue" onclick="startBomb('bot')">
+🤖 لعب مع بوت
+</button>
 
- <h1>⚽ ضربات جزاء</h1>
-
- <div id="goal">
-
-  <div class="net"></div>
-  <div id="keeper"></div>
-  <div id="ball"></div>
-
- </div>
-
- <div class="penaltyButtons">
-
-  <button onclick="kickPenalty('left')">⬅️</button>
-  <button onclick="kickPenalty('center')">⬆️</button>
-  <button onclick="kickPenalty('right')">➡️</button>
-
- </div>
-
- <h3 id="penaltyResult">5 تسديدات</h3>
-
+<button class="btn green" onclick="startBomb('friend')">
+👥 لعب مع صديق
+</button>
 </div>
 
+<div id="bombGame" style="display:none">
+<h3 id="bombTurn"></h3>
 
-<!-- ================= BALLOON ================= -->
-
-<div id="balloonGame" class="screen">
-
- <button class="back" onclick="show('menu')">🏠</button>
-
- <h1>🎈 المنطاد</h1>
-
- <div id="balloonResult">
-  النقاط: 0
- </div>
-
- <div id="balloonArea"></div>
-
+<div class="players">
+<div class="playerBox">
+<h3>👤 اللاعب 1</h3>
+<div class="board" id="board1"></div>
 </div>
 
-
-<!-- ================= QUIZ ================= -->
-
-<div id="quizGame" class="screen">
-
- <button class="back" onclick="show('menu')">🏠</button>
-
- <h1>❓ سؤال جواب</h1>
-
- <div id="quizScore">النقاط: 0</div>
-
- <div id="question"></div>
-
- <div class="answers" id="answers"></div>
-
- <h3 id="quizResult"></h3>
-
+<div class="playerBox">
+<h3>👤 اللاعب 2</h3>
+<div class="board" id="board2"></div>
+</div>
 </div>
 
+<p id="bombResult"></p>
+</div>
+</div>
+</section>
 
-<!-- ================= RPS MENU ================= -->
+<!-- Info -->
+<section id="info" class="screen">
+<button class="back" onclick="goHome()">⬅️ رجوع</button>
 
-<div id="rpsMenu" class="screen">
+<div class="panel center info">
+<h2>👤 معلومات عني</h2>
 
- <button class="back" onclick="show('menu')">🏠</button>
+<p>
+========المنشئ========<br>
+Ahmed_am
+</p>
 
- <h1>✊📄✂️</h1>
+<p>
+========المساعد========<br>
+Ahmed_am
+</p>
 
- <h2>حجر ورقة مقص</h2>
+<p>
+=======فكرة اللعبة=======<br>
+مجموعة ألعاب بسيطة وممتعة في تطبيق واحد 🎮
+</p>
 
- <button class="menuBtn bot"
-  onclick="startRPS('bot')">
-  🤖 لعب مع بوت
- </button>
-
- <button class="menuBtn green"
-  onclick="startRPS('friend')">
-  👥 لعب مع صديق
- </button>
+<p>❤️ شكراً على تجربة Ahmed Games</p>
+</div>
+</section>
 
 </div>
-
-
-<!-- ================= RPS GAME ================= -->
-
-<div id="rpsGame" class="screen">
-
- <button class="back" onclick="show('rpsMenu')">رجوع</button>
-
- <h1>✊📄✂️</h1>
-
- <div id="rpsTurn"></div>
-
- <div id="rpsScore"></div>
-
- <div class="rpsButtons">
-
-  <button class="rps" onclick="playRPS('rock')">✊</button>
-  <button class="rps" onclick="playRPS('paper')">📄</button>
-  <button class="rps" onclick="playRPS('scissors')">✂️</button>
-
- </div>
-
- <div id="rpsResult">اختر!</div>
-
- <button class="bigBtn"
-  onclick="startRPS(rpsMode)">
-  🔄 إعادة
- </button>
-
-</div>
-
-
-<!-- ================= EMOJI ================= -->
-
-<div id="emojiGame" class="screen">
-
- <button class="back" onclick="show('menu')">🏠</button>
-
- <h1>😀 أوجد المختلف</h1>
-
- <div id="emojiScore">النقاط: 0</div>
-
- <div id="emojiGrid"></div>
-
- <h3 id="emojiResult">أوجد المختلف!</h3>
-
-</div>
-
-
-<!-- ================= INFO ================= -->
-
-<div id="info" class="screen">
-
- <button class="back" onclick="show('menu')">🏠</button>
-
- <div class="infoBox">
-
-  <h1>👤 معلومات عني</h1>
-
-  <div class="infoText">
-
-========المنشئ========
-                Ahmed_am
-
-========المساعد========
-                Ahmed_am
-
-=======فكرة اللعبه=======
-
-مجموعة ألعاب صغيرة وممتعة
-في لعبة واحدة 🎮
-
-  </div>
-
- </div>
-
-</div>
-
-
-<!-- ================= MINECRAFT 3D ================= -->
-
-<div id="mcGame" class="screen">
-
- <button class="back"
-  onclick="show('menu')">
-  🏠
- </button>
-
- <canvas id="mcCanvas"></canvas>
-
- <div id="mcUI">
-
-  <div id="mcTitle">⛏️ Minecraft 3D</div>
-
-  <div id="crosshair">+</div>
-
-  <div id="hotbar">
-
-   <div class="slot selected" data-block="grass">🌱</div>
-   <div class="slot" data-block="dirt">🟫</div>
-   <div class="slot" data-block="stone">🪨</div>
-   <div class="slot" data-block="wood">🪵</div>
-   <div class="slot" data-block="leaf">🍃</div>
-
-  </div>
-
-  <div id="mcMove">
-
-   <button class="mcBtn" id="mcForward">⬆️</button>
-   <button class="mcBtn" id="mcLeft">⬅️</button>
-   <button class="mcBtn" id="mcBack">⬇️</button>
-   <button class="mcBtn" id="mcRight">➡️</button>
-
-  </div>
-
-  <button id="mcJump">🦘</button>
-
-  <div id="mcActions">
-   <button class="mcAction" id="mcBreak">⛏️ كسر</button>
-   <button class="mcAction" id="mcPlace">🧱 وضع</button>
-  </div>
-
- </div>
-
-</div>
-
-
-<!-- THREE.JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <script>
 
-/* ================= GENERAL ================= */
+/* =========================
+   الصوت
+========================= */
 
-function show(id){
+let audioCtx=null;
 
- document.querySelectorAll(".screen")
- .forEach(x=>x.classList.remove("active"));
+function sound(){
+    try{
+        if(!audioCtx){
+            audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+        }
 
- document.getElementById(id)
- .classList.add("active");
+        if(audioCtx.state==="suspended"){
+            audioCtx.resume();
+        }
 
+        const o=audioCtx.createOscillator();
+        const g=audioCtx.createGain();
+
+        o.connect(g);
+        g.connect(audioCtx.destination);
+
+        o.frequency.value=500;
+        g.gain.setValueAtTime(.05,audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.15);
+
+        o.start();
+        o.stop(audioCtx.currentTime+.15);
+    }catch(e){}
 }
 
+/* =========================
+   التنقل
+========================= */
 
-/* ================= LANGUAGE ================= */
+function openScreen(id){
+    sound();
 
-function setLang(lang){
+    document.querySelectorAll(".screen").forEach(s=>{
+        s.classList.remove("active");
+    });
 
- document.querySelectorAll(".lang")
- .forEach(x=>x.classList.remove("activeLang"));
+    document.getElementById(id).classList.add("active");
 
- if(lang==="ar"){
-
-  document.body.classList.remove("en");
-
-  document.querySelectorAll(".lang")[1]
-  .classList.add("activeLang");
-
- }else{
-
-  document.body.classList.add("en");
-
-  document.querySelectorAll(".lang")[1]
-  .classList.add("activeLang");
-
-  alert("English version coming soon 🇬🇧");
-
- }
-
+    if(id==="cars") startCars();
+    if(id==="snake") startSnake();
+    if(id==="emoji") startEmoji();
+    if(id==="quiz") nextQuestion();
 }
 
+function goHome(){
+    document.querySelectorAll(".screen").forEach(s=>{
+        s.classList.remove("active");
+    });
 
-/* ================= XO ================= */
+    document.getElementById("home").classList.add("active");
+}
 
-let xoMode="friend";
-let xo=[];
+/* =========================
+   XO
+========================= */
+
+let xoBoard=[];
 let xoTurn="X";
-let xoOver=false;
-
-const cells=document.querySelectorAll(".cell");
+let currentXOmode="bot";
 
 function startXO(mode){
+    currentXOmode=mode;
 
- xoMode=mode;
- show("xoGame");
- xoRestart();
+    document.getElementById("xoMode").style.display="none";
+    document.getElementById("xoGame").style.display="block";
 
+    xoBoard=["","","","","","","","",""];
+    xoTurn="X";
+
+    drawXO();
 }
 
-function xoRestart(){
+function drawXO(){
 
- xo=["","","","","","","","",""];
- xoTurn="X";
- xoOver=false;
+    const board=document.getElementById("xoBoard");
+    board.innerHTML="";
 
- document.getElementById("xoResult").textContent="";
+    xoBoard.forEach((v,i)=>{
+        const b=document.createElement("button");
+        b.className="xocell";
+        b.textContent=v;
+        b.onclick=()=>xoClick(i);
+        board.appendChild(b);
+    });
 
- updateXO();
-
+    document.getElementById("xoStatus").textContent=
+        "الدور: "+xoTurn;
 }
 
-function updateXO(){
+function xoClick(i){
 
- cells.forEach((c,i)=>{
-  c.textContent=
-   xo[i]==="X"?"❌":
-   xo[i]==="O"?"⭕":"";
- });
+    if(xoBoard[i] || checkWinner()) return;
 
- document.getElementById("xoTurn").textContent=
- xoOver?"":("دور "+(xoTurn==="X"?"❌":"⭕"));
+    sound();
 
+    xoBoard[i]=xoTurn;
+
+    if(checkWinner()) return;
+
+    xoTurn=xoTurn==="X"?"O":"X";
+
+    drawXO();
+
+    if(currentXOmode==="bot" && xoTurn==="O"){
+        setTimeout(()=>{
+            const free=xoBoard
+                .map((x,i)=>x===""?i:null)
+                .filter(x=>x!==null);
+
+            if(free.length){
+                xoBoard[free[Math.floor(Math.random()*free.length)]]="O";
+
+                if(!checkWinner()){
+                    xoTurn="X";
+                    drawXO();
+                }
+            }
+        },500);
+    }
 }
 
-function xoPlay(i){
+function checkWinner(){
 
- if(xoOver||xo[i])return;
+    const wins=[
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+    ];
 
- if(xoMode==="bot"&&xoTurn==="O")return;
+    for(const w of wins){
 
- xo[i]=xoTurn;
+        const [a,b,c]=w;
 
- let w=xoWinner();
+        if(
+            xoBoard[a] &&
+            xoBoard[a]===xoBoard[b] &&
+            xoBoard[a]===xoBoard[c]
+        ){
+            document.getElementById("xoStatus").textContent=
+                "🎉 الفائز: "+xoBoard[a];
 
- if(w){
-  xoFinish(w);
-  return;
- }
+            return true;
+        }
+    }
 
- xoTurn=xoTurn==="X"?"O":"X";
+    if(xoBoard.every(x=>x)){
+        document.getElementById("xoStatus").textContent=
+            "🤝 تعادل";
 
- updateXO();
+        return true;
+    }
 
- if(xoMode==="bot"&&xoTurn==="O")
-  setTimeout(xoBot,300);
-
+    return false;
 }
 
-function xoWinner(){
+/* =========================
+   Cars
+========================= */
 
- const wins=[
-  [0,1,2],[3,4,5],[6,7,8],
-  [0,3,6],[1,4,7],[2,5,8],
-  [0,4,8],[2,4,6]
- ];
-
- for(let w of wins){
-
-  if(
-   xo[w[0]]&&
-   xo[w[0]]===xo[w[1]]&&
-   xo[w[0]]===xo[w[2]]
-  )return xo[w[0]];
-
- }
-
- return xo.includes("")?null:"draw";
-
-}
-
-function xoFinish(w){
-
- xoOver=true;
-
- document.getElementById("xoResult")
- .textContent=
- w==="draw"?"🤝 تعادل!":
- "🎉 الفائز "+(w==="X"?"❌":"⭕");
-
- updateXO();
-
-}
-
-function xoBot(){
-
- if(xoOver)return;
-
- let empty=xo
- .map((v,i)=>v?null:i)
- .filter(x=>x!==null);
-
- let i=xoFind("O");
-
- if(i<0)i=xoFind("X");
-
- if(i<0&&xo[4]==="")i=4;
-
- if(i<0)
-  i=empty[Math.floor(Math.random()*empty.length)];
-
- xo[i]="O";
-
- let w=xoWinner();
-
- if(w){
-  xoFinish(w);
-  return;
- }
-
- xoTurn="X";
- updateXO();
-
-}
-
-function xoFind(p){
-
- const wins=[
-  [0,1,2],[3,4,5],[6,7,8],
-  [0,3,6],[1,4,7],[2,5,8],
-  [0,4,8],[2,4,6]
- ];
-
- for(let w of wins){
-
-  let a=w.map(i=>xo[i]);
-
-  if(
-   a.filter(x=>x===p).length===2&&
-   a.includes("")
-  ){
-   return w[a.indexOf("")];
-  }
-
- }
-
- return -1;
-
-}
-
-
-/* ================= CARS ================= */
-
-let carX=155;
-let carLeft=false;
-let carRight=false;
-let carEnemies=[];
+let carX=137;
 let carScore=0;
-let carSpeed=5;
 let carRunning=false;
+let carEnemies=[];
 
 function startCars(){
 
- carRunning=true;
- carX=155;
- carScore=0;
- carSpeed=5;
- carEnemies=[];
+    const game=document.getElementById("carGame");
 
- document.getElementById("carOver").style.display="none";
- document.getElementById("carScore").textContent="النقاط: 0";
+    game.querySelectorAll(".enemyCar").forEach(x=>x.remove());
 
- const road=document.getElementById("carRoad");
+    carEnemies=[];
+    carX=137;
+    carScore=0;
+    carRunning=true;
 
- road.querySelectorAll(".line,.enemy")
- .forEach(x=>x.remove());
-
- for(let i=0;i<8;i++){
-
-  let line=document.createElement("div");
-  line.className="line";
-  line.style.top=(i*100-100)+"px";
-  road.appendChild(line);
-
- }
-
- document.getElementById("carPlayer")
- .style.left=carX+"px";
-
+    document.getElementById("playerCar").style.left=carX+"px";
+    document.getElementById("carScore").textContent="النقاط: 0";
 }
+
+function moveCar(x){
+    if(!carRunning)return;
+
+    carX+=x;
+
+    if(carX<5)carX=5;
+    if(carX>270)carX=270;
+
+    document.getElementById("playerCar").style.left=carX+"px";
+}
+
+document.getElementById("carLeft").onclick=()=>{
+    sound();
+    moveCar(-25);
+};
+
+document.getElementById("carRight").onclick=()=>{
+    sound();
+    moveCar(25);
+};
 
 setInterval(()=>{
 
- if(
-  carRunning&&
-  document.getElementById("carsGame")
-  .classList.contains("active")
- ){
+    if(!carRunning)return;
 
-  let e=document.createElement("div");
-  e.className="enemy";
+    const game=document.getElementById("carGame");
 
-  let lanes=[55,155,255];
+    const e=document.createElement("div");
+    e.className="car enemyCar";
 
-  e.style.left=
-   lanes[Math.floor(Math.random()*3)]+"px";
+    e.style.left=(Math.floor(Math.random()*6)*45)+"px";
+    e.style.top="-80px";
 
-  e.style.top="-100px";
+    game.appendChild(e);
 
-  document.getElementById("carRoad")
-  .appendChild(e);
+    carEnemies.push({
+        el:e,
+        y:-80
+    });
 
-  carEnemies.push({e:e,y:-100});
+},1000);
 
- }
+setInterval(()=>{
 
-},1200);
+    if(!carRunning)return;
 
-function carCollision(a,b){
+    const p=document.getElementById("playerCar");
 
- let x=a.getBoundingClientRect();
- let y=b.getBoundingClientRect();
+    carEnemies.forEach((e,i)=>{
 
- return !(
-  x.bottom<y.top||
-  x.top>y.bottom||
-  x.right<y.left||
-  x.left>y.right
- );
+        e.y+=5;
+        e.el.style.top=e.y+"px";
 
-}
+        const a=p.getBoundingClientRect();
+        const b=e.el.getBoundingClientRect();
 
-function carLoop(){
+        if(
+            a.left<b.right &&
+            a.right>b.left &&
+            a.top<b.bottom &&
+            a.bottom>b.top
+        ){
+            carRunning=false;
+            alert("💥 انتهت اللعبة!\nنقاطك: "+carScore);
+        }
 
- if(
-  carRunning&&
-  document.getElementById("carsGame")
-  .classList.contains("active")
- ){
+        if(e.y>540){
 
-  if(carLeft)carX-=7;
-  if(carRight)carX+=7;
+            e.el.remove();
+            carEnemies.splice(i,1);
 
-  carX=Math.max(10,Math.min(300,carX));
+            carScore++;
 
-  document.getElementById("carPlayer")
-  .style.left=carX+"px";
+            document.getElementById("carScore").textContent=
+                "النقاط: "+carScore;
+        }
+    });
 
-  document.querySelectorAll("#carRoad .line")
-  .forEach(l=>{
+},40);
 
-   let y=parseInt(l.style.top)+carSpeed;
+/* =========================
+   Snake
+========================= */
 
-   if(y>700)y=-80;
-
-   l.style.top=y+"px";
-
-  });
-
-  for(let i=carEnemies.length-1;i>=0;i--){
-
-   let a=carEnemies[i];
-
-   a.y+=carSpeed;
-   a.e.style.top=a.y+"px";
-
-   if(
-    carCollision(
-     document.getElementById("carPlayer"),
-     a.e
-    )
-   ){
-
-    carRunning=false;
-
-    document.getElementById("carFinal")
-    .textContent="نقاطك: "+carScore;
-
-    document.getElementById("carOver")
-    .style.display="block";
-
-   }
-
-   if(a.y>750){
-
-    a.e.remove();
-    carEnemies.splice(i,1);
-
-    carScore++;
-
-    document.getElementById("carScore")
-    .textContent="النقاط: "+carScore;
-
-    if(carScore%10===0)carSpeed++;
-
-   }
-
-  }
-
- }
-
- requestAnimationFrame(carLoop);
-
-}
-
-requestAnimationFrame(carLoop);
-
-function hold(id,set){
-
- let b=document.getElementById(id);
-
- b.addEventListener("touchstart",e=>{
-  e.preventDefault();
-  set(true);
- },{passive:false});
-
- b.addEventListener("touchend",e=>{
-  e.preventDefault();
-  set(false);
- },{passive:false});
-
- b.addEventListener("touchcancel",()=>set(false));
-
- b.addEventListener("mousedown",()=>set(true));
- b.addEventListener("mouseup",()=>set(false));
- b.addEventListener("mouseleave",()=>set(false));
-
-}
-
-hold("carLeft",v=>carLeft=v);
-hold("carRight",v=>carRight=v);
-
-
-/* ================= SNAKE ================= */
-
-const snakeCanvas=document.getElementById("snakeCanvas");
-const sctx=snakeCanvas.getContext("2d");
+const canvas=document.getElementById("snakeCanvas");
+const ctx=canvas.getContext("2d");
 
 let snake=[];
-let food={};
-let sx=1,sy=0;
-let snakeScore=0;
-let snakeTimer;
+let food={x:10,y:10};
+let dx=1,dy=0;
+let snakeScoreValue=0;
+let snakeStarted=false;
 
 function startSnake(){
 
- clearInterval(snakeTimer);
+    snake=[
+        {x:10,y:10},
+        {x:9,y:10},
+        {x:8,y:10}
+    ];
 
- snake=[
-  {x:10,y:10},
-  {x:9,y:10},
-  {x:8,y:10}
- ];
+    dx=1;
+    dy=0;
+    snakeScoreValue=0;
+    snakeStarted=true;
 
- sx=1;
- sy=0;
- snakeScore=0;
-
- newFood();
-
- document.getElementById("snakeScore")
- .textContent="النقاط: 0";
-
- snakeTimer=setInterval(snakeMove,120);
-
- drawSnake();
-
-}
-
-function newFood(){
-
- food={
-  x:Math.floor(Math.random()*20),
-  y:Math.floor(Math.random()*20)
- };
-
-}
-
-function snakeMove(){
-
- let head={
-  x:snake[0].x+sx,
-  y:snake[0].y+sy
- };
-
- if(
-  head.x<0||
-  head.x>=20||
-  head.y<0||
-  head.y>=20||
-  snake.some(p=>p.x===head.x&&p.y===head.y)
- ){
-
-  startSnake();
-  return;
-
- }
-
- snake.unshift(head);
-
- if(head.x===food.x&&head.y===food.y){
-
-  snakeScore++;
-
-  document.getElementById("snakeScore")
-  .textContent="النقاط: "+snakeScore;
-
-  newFood();
-
- }else{
-  snake.pop();
- }
-
- drawSnake();
-
-}
-
-function drawSnake(){
-
- sctx.fillStyle="#111827";
- sctx.fillRect(0,0,320,320);
-
- sctx.fillStyle="#ef4444";
- sctx.fillRect(food.x*16,food.y*16,15,15);
-
- sctx.fillStyle="#22c55e";
-
- snake.forEach(p=>{
-  sctx.fillRect(p.x*16,p.y*16,15,15);
- });
-
+    placeFood();
+    drawSnake();
 }
 
 function snakeDir(x,y){
 
- if(x===-sx&&y===-sy)return;
+    if(x===-dx && y===-dy)return;
 
- sx=x;
- sy=y;
-
+    dx=x;
+    dy=y;
 }
 
-document.getElementById("up").onclick=()=>snakeDir(0,-1);
-document.getElementById("down").onclick=()=>snakeDir(0,1);
-document.getElementById("leftS").onclick=()=>snakeDir(-1,0);
-document.getElementById("rightS").onclick=()=>snakeDir(1,0);
+function placeFood(){
 
-
-/* ================= PENALTY ================= */
-
-let penaltyShots=5;
-let penaltyScore=0;
-
-function startPenalty(){
-
- penaltyShots=5;
- penaltyScore=0;
-
- document.getElementById("penaltyResult")
- .textContent="5 تسديدات";
-
- document.getElementById("ball").style.left="151px";
- document.getElementById("ball").style.bottom="15px";
-
+    food={
+        x:Math.floor(Math.random()*20),
+        y:Math.floor(Math.random()*20)
+    };
 }
 
-function kickPenalty(dir){
+function drawSnake(){
 
- if(penaltyShots<=0)return;
+    if(!snakeStarted)return;
 
- const positions={
-  left:35,
-  center:151,
-  right:267
- };
+    ctx.fillStyle="#101827";
+    ctx.fillRect(0,0,320,320);
 
- let keeperPositions=[35,145,267];
+    ctx.fillStyle="#e63946";
+    ctx.fillRect(food.x*16,food.y*16,15,15);
 
- let keeper=
- keeperPositions[
-  Math.floor(Math.random()*3)
- ];
+    ctx.fillStyle="#29d66f";
 
- document.getElementById("keeper")
- .style.left=keeper+"px";
-
- document.getElementById("ball")
- .style.left=positions[dir]+"px";
-
- document.getElementById("ball")
- .style.bottom="145px";
-
- setTimeout(()=>{
-
-  if(Math.abs(positions[dir]-keeper)<55){
-
-   document.getElementById("penaltyResult")
-   .textContent="🧤 الحارس صدها!";
-
-  }else{
-
-   penaltyScore++;
-
-   document.getElementById("penaltyResult")
-   .textContent="⚽ هدف! "+penaltyScore;
-
-  }
-
-  penaltyShots--;
-
-  if(penaltyShots<=0)
-   document.getElementById("penaltyResult")
-   .textContent+=" | انتهت اللعبة";
-
-  setTimeout(()=>{
-
-   document.getElementById("ball").style.left="151px";
-   document.getElementById("ball").style.bottom="15px";
-
-  },400);
-
- },350);
-
+    snake.forEach(p=>{
+        ctx.fillRect(p.x*16,p.y*16,15,15);
+    });
 }
 
+setInterval(()=>{
 
-/* ================= BALLOON ================= */
+    if(!snakeStarted)return;
 
-let balloonScore=0;
-let balloonTimer;
+    const head={
+        x:snake[0].x+dx,
+        y:snake[0].y+dy
+    };
 
-function startBalloon(){
+    if(
+        head.x<0 ||
+        head.x>=20 ||
+        head.y<0 ||
+        head.y>=20 ||
+        snake.some(p=>p.x===head.x&&p.y===head.y)
+    ){
+        alert("🐍 انتهت اللعبة!\nالنقاط: "+snakeScoreValue);
+        startSnake();
+        return;
+    }
 
- clearInterval(balloonTimer);
+    snake.unshift(head);
 
- balloonScore=0;
+    if(head.x===food.x && head.y===food.y){
 
- let area=document.getElementById("balloonArea");
+        snakeScoreValue++;
 
- area.innerHTML="";
+        document.getElementById("snakeScore").textContent=
+            "النقاط: "+snakeScoreValue;
 
- document.getElementById("balloonResult")
- .textContent="النقاط: 0";
+        placeFood();
+    }else{
+        snake.pop();
+    }
 
- for(let i=0;i<5;i++)createBalloon();
+    drawSnake();
 
- balloonTimer=setInterval(createBalloon,800);
+},150);
 
+/* =========================
+   Minecraft مبسط
+========================= */
+
+let mcX=150;
+
+function mcMove(x){
+
+    mcX+=x;
+
+    if(mcX<0)mcX=0;
+    if(mcX>430)mcX=430;
+
+    document.getElementById("mcPlayer").style.left=mcX+"px";
 }
 
-function createBalloon(){
+function mcJump(){
 
- let area=document.getElementById("balloonArea");
+    const p=document.getElementById("mcPlayer");
 
- if(area.children.length>12)return;
+    p.style.bottom="180px";
 
- let b=document.createElement("div");
-
- b.className="balloon";
-
- b.style.background=[
-  "#ef4444",
-  "#3b82f6",
-  "#eab308",
-  "#a855f7",
-  "#22c55e"
- ][Math.floor(Math.random()*5)];
-
- b.style.left=
- Math.random()*(area.clientWidth-75)+"px";
-
- b.style.top=area.clientHeight+"px";
-
- area.appendChild(b);
-
- let y=area.clientHeight;
- let speed=1+Math.random()*2;
-
- function fly(){
-
-  if(!b.isConnected)return;
-
-  y-=speed;
-  b.style.top=y+"px";
-
-  if(y<-100){
-   b.remove();
-   return;
-  }
-
-  requestAnimationFrame(fly);
-
- }
-
- fly();
-
- b.onclick=()=>{
-
-  balloonScore++;
-
-  document.getElementById("balloonResult")
-  .textContent="النقاط: "+balloonScore;
-
-  b.remove();
-
- };
-
+    setTimeout(()=>{
+        p.style.bottom="90px";
+    },400);
 }
 
+/* =========================
+   ضربات الجزاء
+========================= */
 
-/* ================= QUIZ ================= */
+function shoot(direction){
+
+    sound();
+
+    const choices=["left","center","right"];
+    const bot=choices[Math.floor(Math.random()*3)];
+
+    if(direction===bot){
+        document.getElementById("goal").textContent="🧤";
+        document.getElementById("penaltyText").textContent=
+            "❌ الحارس صد الكرة!";
+    }else{
+        document.getElementById("goal").textContent="⚽";
+        document.getElementById("penaltyText").textContent=
+            "🎉 هدف!";
+    }
+}
+
+/* =========================
+   Quiz
+========================= */
 
 const questions=[
- {
-  q:"ما هي عاصمة العراق؟",
-  a:["بغداد","البصرة","أربيل","الموصل"],
-  c:0
- },
- {
-  q:"كم عدد أيام الأسبوع؟",
-  a:["5","6","7","8"],
-  c:2
- },
- {
-  q:"ما هو الكوكب الأحمر؟",
-  a:["الأرض","المريخ","المشتري","الزهرة"],
-  c:1
- },
- {
-  q:"كم يساوي 5 × 5؟",
-  a:["15","20","25","30"],
-  c:2
- },
- {
-  q:"أي لعبة تحتوي على Creeper؟",
-  a:["Minecraft","Cars","Snake","XO"],
-  c:0
- }
+    {
+        q:"ما هو أكبر كوكب في المجموعة الشمسية؟",
+        a:["الأرض","المشتري","المريخ"],
+        c:1
+    },
+    {
+        q:"كم عدد أيام الأسبوع؟",
+        a:["5","7","10"],
+        c:1
+    },
+    {
+        q:"ما هو الحيوان المعروف بملك الغابة؟",
+        a:["الأسد","الفيل","الأرنب"],
+        c:0
+    }
 ];
 
-let qi=0;
-let qscore=0;
+let questionIndex=0;
+let quizPoints=0;
 
-function startQuiz(){
+function nextQuestion(){
 
- qi=0;
- qscore=0;
+    const q=questions[questionIndex];
 
- showQuestion();
+    document.getElementById("question").textContent=q.q;
 
+    const box=document.getElementById("answers");
+    box.innerHTML="";
+
+    q.a.forEach((a,i)=>{
+
+        const b=document.createElement("button");
+        b.className="answer";
+        b.textContent=a;
+
+        b.onclick=()=>{
+
+            sound();
+
+            if(i===q.c){
+                quizPoints++;
+                alert("✅ صحيح!");
+            }else{
+                alert("❌ خطأ!");
+            }
+
+            questionIndex=(questionIndex+1)%questions.length;
+
+            nextQuestion();
+        };
+
+        box.appendChild(b);
+    });
+
+    document.getElementById("quizScore").textContent=
+        "النقاط: "+quizPoints;
 }
 
-function showQuestion(){
+/* =========================
+   Balloon
+========================= */
 
- if(qi>=questions.length){
+let balloonScoreValue=0;
 
-  document.getElementById("question")
-  .textContent="🎉 انتهى الاختبار!";
+function popBalloon(){
 
-  document.getElementById("answers").innerHTML="";
+    sound();
 
-  document.getElementById("quizResult")
-  .textContent=
-  "نتيجتك: "+qscore+"/"+questions.length;
+    balloonScoreValue++;
 
-  return;
+    document.getElementById("balloonScore").textContent=
+        "النقاط: "+balloonScoreValue;
 
- }
+    const b=document.getElementById("balloonObj");
 
- let q=questions[qi];
+    b.textContent="💥";
 
- document.getElementById("question")
- .textContent=q.q;
-
- document.getElementById("quizScore")
- .textContent="النقاط: "+qscore;
-
- document.getElementById("quizResult").textContent="";
-
- let box=document.getElementById("answers");
-
- box.innerHTML="";
-
- q.a.forEach((a,i)=>{
-
-  let b=document.createElement("button");
-
-  b.className="answer";
-  b.textContent=a;
-
-  b.onclick=()=>{
-
-   if(i===q.c){
-
-    qscore++;
-
-    document.getElementById("quizResult")
-    .textContent="✅ صحيح!";
-
-   }else{
-
-    document.getElementById("quizResult")
-    .textContent="❌ خطأ!";
-
-   }
-
-   qi++;
-
-   setTimeout(showQuestion,500);
-
-  };
-
-  box.appendChild(b);
-
- });
-
+    setTimeout(()=>{
+        b.textContent="🎈";
+    },250);
 }
 
-
-/* ================= RPS ================= */
-
-let rpsMode="bot";
-
-let rpsYou=0;
-let rpsBotScore=0;
-
-let p1=0;
-let p2=0;
-
-let rpsTurn=1;
-let choice1=null;
-
-function startRPS(mode){
-
- rpsMode=mode;
-
- rpsYou=0;
- rpsBotScore=0;
-
- p1=0;
- p2=0;
-
- rpsTurn=1;
- choice1=null;
-
- show("rpsGame");
-
- updateRPS();
-
-}
-
-function updateRPS(){
-
- if(rpsMode==="bot"){
-
-  document.getElementById("rpsTurn")
-  .textContent="اختر حركتك";
-
-  document.getElementById("rpsScore")
-  .textContent=
-  "أنت "+rpsYou+" - "+rpsBotScore+" البوت";
-
- }else{
-
-  document.getElementById("rpsTurn")
-  .textContent=
-  rpsTurn===1?
-  "👤 دور اللاعب الأول":
-  "👤 دور اللاعب الثاني";
-
-  document.getElementById("rpsScore")
-  .textContent=
-  "اللاعب الأول "+p1+" - "+p2+" اللاعب الثاني";
-
- }
-
-}
-
-function playRPS(choice){
-
- if(rpsMode==="bot"){
-
-  let arr=["rock","paper","scissors"];
-
-  let bot=arr[Math.floor(Math.random()*3)];
-
-  let names={
-   rock:"✊ حجر",
-   paper:"📄 ورقة",
-   scissors:"✂️ مقص"
-  };
-
-  if(choice===bot){
-
-   document.getElementById("rpsResult")
-   .innerHTML=
-   "🤝 تعادل!<br>"+
-   names[choice]+" ضد "+names[bot];
-
-  }else if(
-   choice==="rock"&&bot==="scissors"||
-   choice==="paper"&&bot==="rock"||
-   choice==="scissors"&&bot==="paper"
-  ){
-
-   rpsYou++;
-
-   document.getElementById("rpsResult")
-   .innerHTML=
-   "🎉 أنت فزت!<br>"+
-   names[choice]+" ضد "+names[bot];
-
-  }else{
-
-   rpsBotScore++;
-
-   document.getElementById("rpsResult")
-   .innerHTML=
-   "🤖 البوت فاز!<br>"+
-   names[choice]+" ضد "+names[bot];
-
-  }
-
-  updateRPS();
-
- }else{
-
-  if(rpsTurn===1){
-
-   choice1=choice;
-   rpsTurn=2;
-
-   document.getElementById("rpsResult")
-   .textContent=
-   "تم اختيار اللاعب الأول. أعطِ الهاتف للاعب الثاني.";
-
-   updateRPS();
-
-  }else{
-
-   let names={
-    rock:"✊ حجر",
-    paper:"📄 ورقة",
-    scissors:"✂️ مقص"
-   };
-
-   let result="";
-
-   if(choice1===choice){
-
-    result="🤝 تعادل!";
-
-   }else if(
-    choice1==="rock"&&choice==="scissors"||
-    choice1==="paper"&&choice==="rock"||
-    choice1==="scissors"&&choice==="paper"
-   ){
-
-    p1++;
-    result="🏆 اللاعب الأول فاز!";
-
-   }else{
-
-    p2++;
-    result="🏆 اللاعب الثاني فاز!";
-
-   }
-
-   document.getElementById("rpsResult")
-   .innerHTML=
-   result+"<br>"+
-   names[choice1]+" ضد "+names[choice];
-
-   choice1=null;
-   rpsTurn=1;
-
-   updateRPS();
-
-  }
-
- }
-
-}
-
-
-/* ================= EMOJI ================= */
-
-let emojiScore=0;
+/* =========================
+   Emoji
+========================= */
 
 function startEmoji(){
 
- emojiScore=0;
+    const grid=document.getElementById("emojiGrid");
+    grid.innerHTML="";
 
- document.getElementById("emojiScore")
- .textContent="النقاط: 0";
+    const normal="😀";
+    const different="😃";
 
- emojiRound();
+    const differentIndex=Math.floor(Math.random()*25);
 
-}
+    for(let i=0;i<25;i++){
 
-function emojiRound(){
+        const b=document.createElement("button");
 
- let grid=document.getElementById("emojiGrid");
+        b.style.border="0";
+        b.style.borderRadius="12px";
+        b.style.background="#27365e";
+        b.style.fontSize="35px";
+        b.style.padding="5px";
 
- grid.innerHTML="";
+        b.textContent=i===differentIndex?different:normal;
 
- let normal="😀";
- let different="😃";
+        b.onclick=()=>{
 
- let correct=Math.floor(Math.random()*25);
+            if(i===differentIndex){
 
- for(let i=0;i<25;i++){
+                document.getElementById("emojiResult").textContent=
+                    "🎉 أحسنت! وجدته!";
 
-  let b=document.createElement("button");
+                setTimeout(startEmoji,700);
 
-  b.className="emojiCell";
+            }else{
 
-  b.textContent=i===correct?different:normal;
+                document.getElementById("emojiResult").textContent=
+                    "❌ مو هذا!";
+            }
+        };
 
-  b.onclick=()=>{
-
-   if(i===correct){
-
-    emojiScore++;
-
-    document.getElementById("emojiResult")
-    .textContent="🎉 صحيح!";
-
-   }else{
-
-    document.getElementById("emojiResult")
-    .textContent="❌ خطأ!";
-
-   }
-
-   document.getElementById("emojiScore")
-   .textContent="النقاط: "+emojiScore;
-
-   setTimeout(emojiRound,450);
-
-  };
-
-  grid.appendChild(b);
-
- }
-
-}
-
-
-/* ================= MINECRAFT 3D ================= */
-
-let renderer;
-let scene;
-let camera;
-let mcStarted=false;
-let blocks=[];
-
-let selectedBlock="grass";
-
-let player={
- x:0,
- y:3,
- z:5,
- vy:0,
- speed:.13,
- onGround:false
-};
-
-let keys={
- forward:false,
- back:false,
- left:false,
- right:false
-};
-
-let yaw=0;
-let pitch=0;
-
-const colors={
- grass:0x55aa35,
- dirt:0x8b5a2b,
- stone:0x777777,
- wood:0x9a6a3a,
- leaf:0x287a2e
-};
-
-function startMC(){
-
- if(mcStarted)return;
-
- mcStarted=true;
-
- let canvas=document.getElementById("mcCanvas");
-
- renderer=new THREE.WebGLRenderer({
-  canvas:canvas,
-  antialias:true
- });
-
- renderer.setPixelRatio(
-  Math.min(devicePixelRatio,2)
- );
-
- renderer.setSize(innerWidth,innerHeight);
-
- scene=new THREE.Scene();
-
- scene.background=new THREE.Color(0x87ceeb);
-
- camera=new THREE.PerspectiveCamera(
-  70,
-  innerWidth/innerHeight,
-  .1,
-  500
- );
-
- camera.rotation.order="YXZ";
-
- scene.add(
-  new THREE.AmbientLight(0xffffff,.7)
- );
-
- let sun=new THREE.DirectionalLight(
-  0xffffff,
-  1
- );
-
- sun.position.set(20,40,10);
-
- scene.add(sun);
-
- generateWorld();
-
- animateMC();
-
-}
-
-function addBlock(x,y,z,type){
-
- let mesh=new THREE.Mesh(
-  new THREE.BoxGeometry(1,1,1),
-  new THREE.MeshLambertMaterial({
-   color:colors[type]||0xffffff
-  })
- );
-
- mesh.position.set(x,y,z);
-
- mesh.userData.block=true;
-
- scene.add(mesh);
- blocks.push(mesh);
-
- return mesh;
-
-}
-
-function generateWorld(){
-
- blocks.forEach(b=>scene.remove(b));
-
- blocks=[];
-
- for(let x=-16;x<=16;x++){
-
-  for(let z=-16;z<=16;z++){
-
-   let h=Math.floor(
-    1+
-    Math.sin(x*.4)*.5+
-    Math.cos(z*.35)*.5
-   );
-
-   h=Math.max(0,Math.min(2,h));
-
-   for(let y=0;y<=h;y++){
-
-    let type=
-     y===h?"grass":
-     y>=h-1?"dirt":"stone";
-
-    addBlock(x,y,z,type);
-
-   }
-
-  }
-
- }
-
- /* أشجار */
-
- for(let i=0;i<10;i++){
-
-  let x=Math.floor(Math.random()*22)-11;
-  let z=Math.floor(Math.random()*22)-11;
-
-  for(let y=2;y<5;y++)
-   addBlock(x,y,z,"wood");
-
-  for(let xx=-1;xx<=1;xx++){
-   for(let zz=-1;zz<=1;zz++){
-    for(let yy=4;yy<=5;yy++){
-
-     if(Math.random()>.15)
-      addBlock(x+xx,yy,z+zz,"leaf");
-
+        grid.appendChild(b);
     }
-   }
-  }
-
- }
-
- player.x=0;
- player.y=3;
- player.z=5;
-
 }
 
-function updateMC(){
+/* =========================
+   Rock Paper Scissors
+========================= */
 
- let dx=0;
- let dz=0;
+let rpsMode="bot";
+let rpsTurn=1;
+let rpsP1=null;
 
- if(keys.forward)dz-=player.speed;
- if(keys.back)dz+=player.speed;
- if(keys.left)dx-=player.speed;
- if(keys.right)dx+=player.speed;
+function startRPS(mode){
 
- let sin=Math.sin(yaw);
- let cos=Math.cos(yaw);
+    rpsMode=mode;
+    rpsTurn=1;
+    rpsP1=null;
 
- player.x+=dx*cos-dz*sin;
- player.z+=dx*sin+dz*cos;
+    document.getElementById("rpsMode").style.display="none";
+    document.getElementById("rpsGame").style.display="block";
 
- player.vy-=.012;
- player.y+=player.vy;
-
- if(player.y<2.05){
-
-  player.y=2.05;
-  player.vy=0;
-  player.onGround=true;
-
- }
-
- player.x=Math.max(-15,Math.min(15,player.x));
- player.z=Math.max(-15,Math.min(15,player.z));
-
- camera.position.set(
-  player.x,
-  player.y+.65,
-  player.z
- );
-
- camera.rotation.y=yaw;
- camera.rotation.x=pitch;
-
+    document.getElementById("rpsTurn").textContent=
+        "👤 اللاعب 1 اختار";
 }
 
-function jumpMC(){
+function rpsChoose(choice){
 
- if(player.onGround){
+    sound();
 
-  player.vy=.22;
-  player.onGround=false;
+    if(rpsMode==="bot"){
 
- }
+        const arr=["rock","paper","scissors"];
+        const bot=arr[Math.floor(Math.random()*3)];
 
+        document.getElementById("rpsResult").textContent=
+            "أنت: "+emojiRPS(choice)+
+            " | البوت: "+emojiRPS(bot)+
+            "\n"+rpsWinner(choice,bot);
+
+        return;
+    }
+
+    if(rpsTurn===1){
+
+        rpsP1=choice;
+        rpsTurn=2;
+
+        document.getElementById("rpsTurn").textContent=
+            "👤 اللاعب 2 اختار";
+
+    }else{
+
+        const result=rpsWinner(rpsP1,choice);
+
+        document.getElementById("rpsResult").textContent=
+            "اللاعب 1: "+emojiRPS(rpsP1)+
+            " | اللاعب 2: "+emojiRPS(choice)+
+            "\n"+result;
+
+        rpsTurn=1;
+
+        setTimeout(()=>{
+            document.getElementById("rpsTurn").textContent=
+                "👤 اللاعب 1 اختار";
+        },700);
+    }
 }
 
-function raycastBlock(){
+function emojiRPS(x){
 
- let ray=new THREE.Raycaster();
-
- ray.setFromCamera(
-  new THREE.Vector2(0,0),
-  camera
- );
-
- let hit=ray.intersectObjects(blocks);
-
- if(hit.length&&hit[0].distance<5)
-  return hit[0];
-
- return null;
-
+    return x==="rock"?"✊":
+           x==="paper"?"📄":"✂️";
 }
 
-function breakMC(){
+function rpsWinner(a,b){
 
- let hit=raycastBlock();
+    if(a===b)return"🤝 تعادل";
 
- if(!hit)return;
+    if(
+        (a==="rock"&&b==="scissors")||
+        (a==="paper"&&b==="rock")||
+        (a==="scissors"&&b==="paper")
+    )return"🏆 اللاعب الأول فاز!";
 
- let b=hit.object;
-
- scene.remove(b);
-
- blocks=blocks.filter(x=>x!==b);
-
- b.geometry.dispose();
- b.material.dispose();
-
+    return"🏆 اللاعب الثاني فاز!";
 }
 
-function placeMC(){
+/* =========================
+   لعبة القنابل
+========================= */
 
- let hit=raycastBlock();
+let bombMode="bot";
+let bombTurn=1;
+let board1=[];
+let board2=[];
 
- if(!hit)return;
+function makeBombBoard(){
 
- let normal=hit.face.normal.clone();
+    let arr=Array(9).fill(false);
 
- let pos=hit.object.position.clone();
+    let count=0;
 
- pos.add(normal);
+    while(count<2){
 
- addBlock(
-  Math.round(pos.x),
-  Math.round(pos.y),
-  Math.round(pos.z),
-  selectedBlock
- );
+        const i=Math.floor(Math.random()*9);
 
+        if(!arr[i]){
+            arr[i]=true;
+            count++;
+        }
+    }
+
+    return arr;
 }
 
+function startBomb(mode){
 
-/* حركة الماوس/الشاشة */
+    bombMode=mode;
+    bombTurn=1;
 
-let cameraTouch=false;
-let lastTX=0;
-let lastTY=0;
+    board1=makeBombBoard();
+    board2=makeBombBoard();
 
-const mcCanvas=document.getElementById("mcCanvas");
+    document.getElementById("bombModes").style.display="none";
+    document.getElementById("bombGame").style.display="block";
 
-mcCanvas.addEventListener(
- "touchstart",
- e=>{
+    document.getElementById("bombResult").textContent="";
 
-  if(e.touches.length!==1)return;
-
-  cameraTouch=true;
-
-  lastTX=e.touches[0].clientX;
-  lastTY=e.touches[0].clientY;
-
- },
- {passive:false}
-);
-
-mcCanvas.addEventListener(
- "touchmove",
- e=>{
-
-  if(!cameraTouch)return;
-
-  e.preventDefault();
-
-  let x=e.touches[0].clientX;
-  let y=e.touches[0].clientY;
-
-  let dx=x-lastTX;
-  let dy=y-lastTY;
-
-  lastTX=x;
-  lastTY=y;
-
-  yaw-=dx*.006;
-  pitch-=dy*.006;
-
-  pitch=Math.max(
-   -Math.PI/2+.1,
-   Math.min(Math.PI/2-.1,pitch)
-  );
-
- },
- {passive:false}
-);
-
-mcCanvas.addEventListener(
- "touchend",
- ()=>cameraTouch=false
-);
-
-
-/* أزرار الحركة */
-
-function mcHold(id,key){
-
- let b=document.getElementById(id);
-
- b.addEventListener(
-  "touchstart",
-  e=>{
-   e.preventDefault();
-   keys[key]=true;
-  },
-  {passive:false}
- );
-
- b.addEventListener(
-  "touchend",
-  e=>{
-   e.preventDefault();
-   keys[key]=false;
-  },
-  {passive:false}
- );
-
- b.addEventListener(
-  "touchcancel",
-  ()=>keys[key]=false
- );
-
- b.addEventListener(
-  "mousedown",
-  ()=>keys[key]=true
- );
-
- b.addEventListener(
-  "mouseup",
-  ()=>keys[key]=false
- );
-
- b.addEventListener(
-  "mouseleave",
-  ()=>keys[key]=false
- );
-
+    drawBombBoards();
 }
 
-mcHold("mcForward","forward");
-mcHold("mcBack","back");
-mcHold("mcLeft","left");
-mcHold("mcRight","right");
+function drawBombBoards(){
 
-document.getElementById("mcJump").onclick=jumpMC;
-document.getElementById("mcBreak").onclick=breakMC;
-document.getElementById("mcPlace").onclick=placeMC;
+    drawBombBoard(
+        "board1",
+        board1,
+        1
+    );
 
+    drawBombBoard(
+        "board2",
+        board2,
+        2
+    );
 
-/* اختيار البلوك */
+    document.getElementById("bombTurn").textContent=
+        "دور اللاعب "+bombTurn;
+}
 
-document.querySelectorAll(".slot")
-.forEach(slot=>{
+function drawBombBoard(id,data,owner){
 
- slot.onclick=e=>{
+    const board=document.getElementById(id);
+    board.innerHTML="";
 
-  e.stopPropagation();
+    for(let i=0;i<9;i++){
 
-  document.querySelectorAll(".slot")
-  .forEach(x=>x.classList.remove("selected"));
+        const b=document.createElement("button");
+        b.className="tile";
+        b.textContent="🥔";
 
-  slot.classList.add("selected");
+        b.onclick=()=>bombClick(owner,i);
 
-  selectedBlock=slot.dataset.block;
+        board.appendChild(b);
+    }
+}
 
- };
+function bombClick(owner,index){
 
-});
+    if(bombTurn===owner)return;
 
+    sound();
 
-/* لوحة المفاتيح */
+    const target=owner===1?board1:board2;
+
+    const buttons=
+        document.querySelectorAll("#"+
+        (owner===1?"board1":"board2")+
+        " .tile");
+
+    const b=buttons[index];
+
+    if(target[index]){
+
+        b.textContent="💣";
+        b.classList.add("bomb");
+
+        document.getElementById("bombResult").textContent=
+            "💥 اللاعب "+bombTurn+" خسر!";
+
+        disableBombs();
+
+        return;
+
+    }else{
+
+        b.textContent="🥔";
+        b.classList.add("open");
+
+        document.getElementById("bombResult").textContent=
+            "😎 آمن!";
+
+        bombTurn=bombTurn===1?2:1;
+
+        drawTurnOnly();
+
+        if(bombMode==="bot" && bombTurn===2){
+
+            setTimeout(botBombMove,600);
+        }
+    }
+}
+
+function drawTurnOnly(){
+
+    document.getElementById("bombTurn").textContent=
+        "دور اللاعب "+bombTurn;
+}
+
+function botBombMove(){
+
+    if(bombTurn!==2)return;
+
+    const safe=[];
+
+    board1.forEach((v,i)=>{
+        const b=document.querySelectorAll("#board1 .tile")[i];
+
+        if(!b.classList.contains("open") && !b.classList.contains("bomb")){
+            safe.push(i);
+        }
+    });
+
+    if(!safe.length)return;
+
+    const index=
+        safe[Math.floor(Math.random()*safe.length)];
+
+    const buttons=document.querySelectorAll("#board1 .tile");
+    const b=buttons[index];
+
+    if(board1[index]){
+
+        b.textContent="💣";
+        b.classList.add("bomb");
+
+        document.getElementById("bombResult").textContent=
+            "🤖 البوت انفجر! أنت فزت 🎉";
+
+        disableBombs();
+
+    }else{
+
+        b.textContent="🥔";
+        b.classList.add("open");
+
+        bombTurn=1;
+        drawTurnOnly();
+    }
+}
+
+function disableBombs(){
+
+    document.querySelectorAll(".tile").forEach(b=>{
+        b.onclick=null;
+    });
+}
+
+/* =========================
+   لوحة المفاتيح
+========================= */
 
 document.addEventListener("keydown",e=>{
 
- if(!document.getElementById("mcGame")
- .classList.contains("active"))return;
+    if(e.key==="ArrowLeft")moveCar(-20);
+    if(e.key==="ArrowRight")moveCar(20);
 
- if(e.key==="w"||e.key==="ArrowUp")
-  keys.forward=true;
-
- if(e.key==="s"||e.key==="ArrowDown")
-  keys.back=true;
-
- if(e.key==="a"||e.key==="ArrowLeft")
-  keys.left=true;
-
- if(e.key==="d"||e.key==="ArrowRight")
-  keys.right=true;
-
- if(e.code==="Space")
-  jumpMC();
-
- if(e.key==="q")
-  breakMC();
-
- if(e.key==="e")
-  placeMC();
-
+    if(e.key==="ArrowUp")snakeDir(0,-1);
+    if(e.key==="ArrowDown")snakeDir(0,1);
+    if(e.key==="a")snakeDir(-1,0);
+    if(e.key==="d")snakeDir(1,0);
 });
 
-document.addEventListener("keyup",e=>{
-
- if(e.key==="w"||e.key==="ArrowUp")
-  keys.forward=false;
-
- if(e.key==="s"||e.key==="ArrowDown")
-  keys.back=false;
-
- if(e.key==="a"||e.key==="ArrowLeft")
-  keys.left=false;
-
- if(e.key==="d"||e.key==="ArrowRight")
-  keys.right=false;
-
-});
-
-function animateMC(){
-
- requestAnimationFrame(animateMC);
-
- if(
-  document.getElementById("mcGame")
-  .classList.contains("active")
- ){
-
-  updateMC();
-
-  renderer.render(scene,camera);
-
- }
-
-}
-
-window.addEventListener("resize",()=>{
-
- if(!renderer||!camera)return;
-
- renderer.setSize(innerWidth,innerHeight);
-
- camera.aspect=innerWidth/innerHeight;
-
- camera.updateProjectionMatrix();
-
-});
+/* تشغيل صوت عند أول لمسة */
+document.addEventListener("pointerdown",sound,{once:true});
 
 </script>
 
