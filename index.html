@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ة<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -29,6 +29,12 @@ cursor:pointer;
 -webkit-appearance:none;
 appearance:none;
 touch-action:manipulation;
+position:relative;
+z-index:50;
+}
+
+button:active{
+transform:scale(.96);
 }
 
 .screen{
@@ -38,28 +44,36 @@ width:100%;
 padding:15px;
 }
 
-.screen.show{display:block}
+.screen.show{
+display:block;
+}
 
 .container{
 width:min(700px,100%);
 margin:auto;
 }
 
-h1,h2,h3{text-align:center}
+h1,h2,h3{
+text-align:center;
+}
 
 .logo{
 text-align:center;
 padding:25px 0;
 }
 
-.logo .icon{font-size:55px}
+.logo .icon{
+font-size:55px;
+}
 
 .logo h1{
 font-size:42px;
 margin:5px;
 }
 
-.logo p{opacity:.7}
+.logo p{
+opacity:.7;
+}
 
 .menu{
 display:grid;
@@ -73,15 +87,6 @@ border-radius:22px;
 font-size:21px;
 font-weight:bold;
 box-shadow:0 6px 0 #0005;
-}
-
-.menu button:active,
-.big:active,
-.back:active,
-.mode:active,
-.gameBtn:active,
-.kick:active{
-transform:scale(.96);
 }
 
 .blue{background:#2563eb}
@@ -182,6 +187,7 @@ height:80px;
 background:white;
 left:50%;
 transform:translateX(-50%);
+pointer-events:none;
 }
 
 .player{
@@ -193,6 +199,7 @@ border-radius:10px;
 bottom:30px;
 left:155px;
 z-index:5;
+pointer-events:none;
 }
 
 .enemy{
@@ -202,6 +209,7 @@ height:90px;
 background:#ffd21c;
 border-radius:10px;
 z-index:4;
+pointer-events:none;
 }
 
 .carControls{
@@ -231,9 +239,13 @@ align-items:center;
 justify-content:center;
 }
 
-.carOver.show{display:flex}
+.carOver.show{
+display:flex;
+}
 
-.carOver div{text-align:center}
+.carOver div{
+text-align:center;
+}
 
 /* SNAKE */
 .snakeBoard{
@@ -252,6 +264,7 @@ position:absolute;
 width:8.333%;
 height:8.333%;
 background:#20d968;
+pointer-events:none;
 }
 
 .food{
@@ -260,6 +273,7 @@ width:8.333%;
 height:8.333%;
 background:red;
 border-radius:50%;
+pointer-events:none;
 }
 
 .snakeControls{
@@ -305,16 +319,19 @@ background:
 repeating-linear-gradient(90deg,transparent 0,transparent 24px,#ffffff55 25px),
 repeating-linear-gradient(0deg,transparent 0,transparent 24px,#ffffff55 25px);
 z-index:2;
+pointer-events:none;
 }
 
 .keeper{
 position:absolute;
 left:50%;
-bottom:15px;
+top:60px;
+bottom:auto;
 transform:translateX(-50%);
 font-size:65px;
 z-index:8;
 transition:.45s;
+pointer-events:none;
 }
 
 .ball{
@@ -325,6 +342,7 @@ transform:translateX(-50%);
 font-size:42px;
 z-index:10;
 transition:.65s;
+pointer-events:none;
 }
 
 .penaltyPlayer{
@@ -335,6 +353,7 @@ transform:translateX(-50%);
 font-size:75px;
 z-index:7;
 transition:.35s;
+pointer-events:none;
 }
 
 .penaltyResult{
@@ -350,9 +369,12 @@ z-index:20;
 text-shadow:0 3px 5px #000;
 opacity:0;
 transition:.2s;
+pointer-events:none;
 }
 
-.penaltyResult.show{opacity:1}
+.penaltyResult.show{
+opacity:1;
+}
 
 .kicks{
 display:grid;
@@ -387,6 +409,7 @@ position:relative;
 overflow:hidden;
 border-radius:20px;
 background:linear-gradient(#47c5ff,#c5f2ff);
+border:4px solid white;
 }
 
 .balloon{
@@ -394,6 +417,8 @@ position:absolute;
 width:60px;
 height:75px;
 border-radius:50%;
+border:0;
+z-index:10;
 }
 
 /* QUIZ */
@@ -401,6 +426,7 @@ border-radius:50%;
 text-align:center;
 font-size:25px;
 margin:25px 5px;
+line-height:1.5;
 }
 
 .answers{
@@ -443,27 +469,11 @@ background:#293e6b;
 font-size:40px;
 }
 
-/* BOMB */
-.bombGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px;
-}
-
-.bombGrid button{
-aspect-ratio:1;
-border-radius:14px;
-background:#725331;
-font-size:28px;
-}
-
-.bombGrid button:disabled{opacity:.5}
-
-/* ================= LIQUID ================= */
-
+/* LIQUID */
 .liquidInfo{
 text-align:center;
 font-size:20px;
+line-height:1.7;
 margin-bottom:15px;
 }
 
@@ -489,7 +499,9 @@ flex-direction:column-reverse;
 overflow:hidden;
 position:relative;
 cursor:pointer;
+touch-action:manipulation;
 transition:.2s;
+z-index:10;
 }
 
 .tube.selected{
@@ -503,6 +515,7 @@ width:100%;
 height:25%;
 flex-shrink:0;
 border-top:2px solid #ffffff55;
+pointer-events:none;
 }
 
 .liquid.redL{background:#ef4444}
@@ -544,24 +557,35 @@ font-size:18px;
 grid-template-columns:1fr;
 }
 
-.logo h1{font-size:34px}
+.logo h1{
+font-size:34px;
+}
 
-.penaltyField{height:520px}
+.penaltyField{
+height:520px;
+}
 
 .goal{
 width:280px;
 height:140px;
 }
 
-.keeper{font-size:58px}
+.keeper{
+font-size:58px;
+top:55px;
+}
 
-.penaltyPlayer{font-size:65px}
+.penaltyPlayer{
+font-size:65px;
+}
 
-.ball{font-size:38px}
+.ball{
+font-size:38px;
+}
 
 .tubes{
 grid-template-columns:repeat(4,1fr);
-gap:9px;
+gap:7px;
 }
 
 .tube{
@@ -578,7 +602,6 @@ grid-template-columns:1fr;
 
 <body>
 
-<!-- HOME -->
 <section id="home" class="screen show">
 <div class="container">
 
@@ -598,18 +621,13 @@ grid-template-columns:1fr;
 <button class="cyan" onclick="show('quiz')">❓<br>سؤال جواب</button>
 <button class="red" onclick="show('rpsMenu')">✊📄✂️<br>حجر ورقة مقص</button>
 <button class="yellow" onclick="show('emoji')">😀<br>أوجد المختلف</button>
-<button class="pink" onclick="show('bomb')">💣<br>لعبة القنابل</button>
-
-<!-- اللعبة الجديدة -->
 <button class="blue" onclick="show('liquid')">🧪💧<br>لعبة السوائل</button>
-
 <button class="purple" onclick="show('info')">👤<br>معلومات عني</button>
 
 </div>
 </div>
 </section>
 
-<!-- XO MENU -->
 <section id="xoMenu" class="screen">
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
 <div class="panel">
@@ -621,7 +639,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- XO -->
 <section id="xoGame" class="screen">
 <button class="back" onclick="show('xoMenu')">⬅️ رجوع</button>
 <div class="panel">
@@ -632,7 +649,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- CARS -->
 <section id="cars" class="screen">
 <button class="back" onclick="leaveCars()">⬅️ رجوع</button>
 <div id="carScore" class="result">النقاط: 0</div>
@@ -655,7 +671,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- SNAKE -->
 <section id="snake" class="screen">
 <button class="back" onclick="leaveSnake()">⬅️ رجوع</button>
 <div class="panel">
@@ -674,7 +689,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- PENALTY -->
 <section id="penalty" class="screen">
 <button class="back" onclick="leavePenalty()">⬅️ رجوع</button>
 <div class="panel">
@@ -686,12 +700,11 @@ grid-template-columns:1fr;
 
 <div class="goal"></div>
 
+<!-- الحارس صار داخل الجول -->
 <div id="keeper" class="keeper">🤾</div>
 
 <div id="penaltyResult" class="penaltyResult"></div>
-
 <div id="penaltyBall" class="ball">⚽</div>
-
 <div id="penaltyPlayer" class="penaltyPlayer">🧍</div>
 
 </div>
@@ -707,18 +720,17 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- BALLOON -->
 <section id="balloon" class="screen">
 <button class="back" onclick="leaveBalloon()">⬅️ رجوع</button>
 <div class="panel">
 <h2>🎈 المنطاد</h2>
 <div id="balloonScore" class="result">النقاط: 0</div>
+<div id="balloonMessage" class="result"></div>
 <div id="balloonArea" class="balloonArea"></div>
 <button class="big" onclick="startBalloon()">🔄 إعادة</button>
 </div>
 </section>
 
-<!-- QUIZ -->
 <section id="quiz" class="screen">
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
 <div class="panel">
@@ -729,7 +741,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- EMOJI -->
 <section id="emoji" class="screen">
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
 <div class="panel">
@@ -739,7 +750,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- RPS MENU -->
 <section id="rpsMenu" class="screen">
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
 <div class="panel">
@@ -751,7 +761,6 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- RPS -->
 <section id="rps" class="screen">
 <button class="back" onclick="show('rpsMenu')">⬅️ رجوع</button>
 <div class="panel">
@@ -767,26 +776,6 @@ grid-template-columns:1fr;
 <div id="rpsResult" class="result"></div>
 </div>
 </section>
-
-<!-- BOMB -->
-<section id="bomb" class="screen">
-<button class="back" onclick="show('home')">⬅️ رجوع</button>
-<div class="panel">
-
-<h2>💣 لعبة القنابل</h2>
-<div id="bombStatus" class="result">دور اللاعب 1</div>
-
-<h3>اللاعب 1</h3>
-<div id="bomb1" class="bombGrid"></div>
-
-<h3>اللاعب 2</h3>
-<div id="bomb2" class="bombGrid"></div>
-
-<button class="big" onclick="startBomb()">🔄 لعبة جديدة</button>
-</div>
-</section>
-
-<!-- ================= LIQUID GAME ================= -->
 
 <section id="liquid" class="screen">
 <button class="back" onclick="leaveLiquid()">⬅️ رجوع</button>
@@ -813,27 +802,32 @@ grid-template-columns:1fr;
 </div>
 </section>
 
-<!-- INFO -->
 <section id="info" class="screen">
 <button class="back" onclick="show('home')">⬅️ رجوع</button>
 <div class="panel info">
 <h2>👤 معلومات عني</h2>
+
 <p>
 ========المنشئ========
 <br>
 Ahmed_am
 </p>
+
 <p>
 ========المساعد========
 <br>
 Ahmed_am
 </p>
+
 <hr>
+
 <p>=======فكرة اللعبة=======</p>
+
 <p>
 تطبيق يجمع مجموعة ألعاب<br>
 خفيفة وممتعة في مكان واحد 🎮
 </p>
+
 </div>
 </section>
 
@@ -858,7 +852,6 @@ if(id==="snake")startSnake();
 if(id==="quiz")startQuiz();
 if(id==="emoji")startEmoji();
 if(id==="balloon")startBalloon();
-if(id==="bomb")startBomb();
 if(id==="penalty")startPenalty();
 if(id==="liquid")startLiquid();
 }
@@ -890,6 +883,7 @@ board.innerHTML="";
 for(let i=0;i<9;i++){
 
 let b=document.createElement("button");
+
 b.textContent=xoBoard[i];
 
 b.onclick=function(){
@@ -967,14 +961,22 @@ document.getElementById("xoStatus").textContent=
 "🎉 الفائز: "+xoBoard[a];
 
 drawXO();
+
 return true;
 }
 }
 
-if(xoBoard.every(function(x){return x!=="";})){
+if(xoBoard.every(function(x){
+return x!=="";
+})){
 
 xoFinished=true;
-document.getElementById("xoStatus").textContent="🤝 تعادل!";
+
+document.getElementById("xoStatus").textContent=
+"🤝 تعادل!";
+
+drawXO();
+
 return true;
 }
 
@@ -1005,7 +1007,9 @@ carRunning=true;
 carEnemies=[];
 
 document.getElementById("playerCar").style.left="155px";
+
 document.getElementById("carScore").textContent="النقاط: 0";
+
 document.getElementById("carOver").classList.remove("show");
 
 var game=document.getElementById("carGame");
@@ -1017,8 +1021,10 @@ x.remove();
 for(var i=0;i<8;i++){
 
 var line=document.createElement("div");
+
 line.className="line";
 line.style.top=(i*100-100)+"px";
+
 game.appendChild(line);
 }
 
@@ -1053,6 +1059,7 @@ carEnemies=[];
 }
 
 function leaveCars(){
+
 clearCars();
 show("home");
 }
@@ -1060,11 +1067,13 @@ show("home");
 function createEnemy(){
 
 var game=document.getElementById("carGame");
+
 var enemy=document.createElement("div");
 
 enemy.className="enemy";
 
 var lanes=[55,155,255];
+
 var lane=lanes[Math.floor(Math.random()*lanes.length)];
 
 enemy.style.left=lane+"px";
@@ -1106,6 +1115,7 @@ document.getElementById("playerCar").style.left=carX+"px";
 document.querySelectorAll("#carGame .line").forEach(function(line){
 
 var y=parseInt(line.style.top)||0;
+
 y+=carSpeed;
 
 if(y>700)y=-80;
@@ -1118,6 +1128,7 @@ for(var i=carEnemies.length-1;i>=0;i--){
 var enemy=carEnemies[i];
 
 enemy.y+=carSpeed;
+
 enemy.el.style.top=enemy.y+"px";
 
 if(collision(
@@ -1138,13 +1149,17 @@ return;
 if(enemy.y>750){
 
 enemy.el.remove();
+
 carEnemies.splice(i,1);
+
 carScore++;
 
 document.getElementById("carScore").textContent=
 "النقاط: "+carScore;
 
-if(carScore%10===0)carSpeed++;
+if(carScore%10===0){
+carSpeed++;
+}
 }
 }
 
@@ -1152,32 +1167,34 @@ carLoopID=requestAnimationFrame(carLoop);
 }
 
 function pressLeft(e){
-e.preventDefault();
+if(e)e.preventDefault();
 leftPressed=true;
 }
 
 function releaseLeft(e){
-e.preventDefault();
+if(e)e.preventDefault();
 leftPressed=false;
 }
 
 function pressRight(e){
-e.preventDefault();
+if(e)e.preventDefault();
 rightPressed=true;
 }
 
 function releaseRight(e){
-e.preventDefault();
+if(e)e.preventDefault();
 rightPressed=false;
 }
 
 document.getElementById("leftCar").addEventListener("pointerdown",pressLeft);
 document.getElementById("leftCar").addEventListener("pointerup",releaseLeft);
 document.getElementById("leftCar").addEventListener("pointercancel",releaseLeft);
+document.getElementById("leftCar").addEventListener("pointerleave",releaseLeft);
 
 document.getElementById("rightCar").addEventListener("pointerdown",pressRight);
 document.getElementById("rightCar").addEventListener("pointerup",releaseRight);
 document.getElementById("rightCar").addEventListener("pointercancel",releaseRight);
+document.getElementById("rightCar").addEventListener("pointerleave",releaseRight);
 
 document.addEventListener("pointerup",function(){
 leftPressed=false;
@@ -1220,6 +1237,7 @@ snake=[
 
 snakeDir={x:1,y:0};
 snakeNext={x:1,y:0};
+
 snakeScore=0;
 
 makeFood();
@@ -1257,6 +1275,8 @@ left:{x:-1,y:0},
 right:{x:1,y:0}
 }[direction];
 
+if(!d)return;
+
 if(d.x===-snakeDir.x&&d.y===-snakeDir.y)return;
 
 snakeNext=d;
@@ -1291,7 +1311,10 @@ return;
 
 snake.unshift(head);
 
-if(head.x===snakeFood.x&&head.y===snakeFood.y){
+if(
+head.x===snakeFood.x&&
+head.y===snakeFood.y
+){
 
 snakeScore++;
 makeFood();
@@ -1308,11 +1331,13 @@ drawSnake();
 function drawSnake(){
 
 var board=document.getElementById("snakeBoard");
+
 board.innerHTML="";
 
 snake.forEach(function(p){
 
 var e=document.createElement("div");
+
 e.className="snakePart";
 
 e.style.left=(p.x*8.333)+"%";
@@ -1322,7 +1347,9 @@ board.appendChild(e);
 });
 
 var f=document.createElement("div");
+
 f.className="food";
+
 f.style.left=(snakeFood.x*8.333)+"%";
 f.style.top=(snakeFood.y*8.333)+"%";
 
@@ -1338,10 +1365,12 @@ document.getElementById("snakeScore").textContent=
 var penaltyGoals=0;
 var penaltyPlaying=false;
 var penaltyRoundTimer=null;
+var penaltyResetTimer=null;
 
 function startPenalty(){
 
 clearTimeout(penaltyRoundTimer);
+clearTimeout(penaltyResetTimer);
 
 penaltyGoals=0;
 penaltyPlaying=true;
@@ -1349,14 +1378,19 @@ penaltyPlaying=true;
 resetPenaltyObjects();
 
 document.getElementById("penaltyScore").textContent="الأهداف: 0";
+
 document.getElementById("penaltyResult").textContent="";
+
 document.getElementById("penaltyResult").classList.remove("show");
 }
 
 function leavePenalty(){
 
 clearTimeout(penaltyRoundTimer);
+clearTimeout(penaltyResetTimer);
+
 penaltyPlaying=false;
+
 show("home");
 }
 
@@ -1371,12 +1405,14 @@ ball.style.bottom="95px";
 ball.style.transform="translateX(-50%) scale(1)";
 
 keeper.style.left="50%";
-keeper.style.bottom="15px";
+keeper.style.top="60px";
+keeper.style.bottom="auto";
 keeper.style.transform="translateX(-50%)";
 
 player.style.left="50%";
 }
 
+/* التسديدة */
 function kick(direction){
 
 if(!penaltyPlaying)return;
@@ -1394,7 +1430,11 @@ center:"50%",
 right:"75%"
 };
 
-var keeperPlaces=["25%","50%","75%"];
+var keeperPlaces=[
+"25%",
+"50%",
+"75%"
+];
 
 var keeperDirection=
 keeperPlaces[Math.floor(Math.random()*3)];
@@ -1403,27 +1443,34 @@ if(direction==="left")player.style.left="42%";
 if(direction==="center")player.style.left="50%";
 if(direction==="right")player.style.left="58%";
 
+/* الحارس يتحرك داخل الجول */
 setTimeout(function(){
 
 keeper.style.left=keeperDirection;
 
-if(keeperDirection==="25%")
-keeper.style.transform="translateX(-50%) rotate(-35deg)";
+if(keeperDirection==="25%"){
+keeper.style.transform=
+"translateX(-50%) rotate(-35deg)";
+}
 
-if(keeperDirection==="50%")
-keeper.style.transform="translateX(-50%) translateY(-25px)";
+if(keeperDirection==="50%"){
+keeper.style.transform=
+"translateX(-50%) translateY(-18px)";
+}
 
-if(keeperDirection==="75%")
-keeper.style.transform="translateX(-50%) rotate(35deg)";
-
-keeper.style.bottom="30px";
+if(keeperDirection==="75%"){
+keeper.style.transform=
+"translateX(-50%) rotate(35deg)";
+}
 
 },180);
 
+/* الكرة تدخل الجول */
 setTimeout(function(){
 
 ball.style.left=positions[direction];
-ball.style.bottom="380px";
+ball.style.bottom="365px";
+
 ball.style.transform=
 "translateX(-50%) scale(.7) rotate(360deg)";
 
@@ -1431,7 +1478,8 @@ ball.style.transform=
 
 penaltyRoundTimer=setTimeout(function(){
 
-var caught=keeperDirection===positions[direction];
+var caught=
+keeperDirection===positions[direction];
 
 result.classList.add("show");
 
@@ -1451,10 +1499,12 @@ result.textContent="⚽ جوووول! 🔥";
 
 },700);
 
-penaltyRoundTimer=setTimeout(function(){
+penaltyResetTimer=setTimeout(function(){
 
 result.classList.remove("show");
+
 resetPenaltyObjects();
+
 penaltyPlaying=true;
 
 },1700);
@@ -1463,6 +1513,8 @@ penaltyPlaying=true;
 function restartPenalty(){
 
 clearTimeout(penaltyRoundTimer);
+clearTimeout(penaltyResetTimer);
+
 startPenalty();
 }
 
@@ -1471,14 +1523,24 @@ startPenalty();
 
 var balloonScore=0;
 var balloonTimer=null;
+var balloonRunning=false;
+var balloonMoveTimers=[];
 
 function startBalloon(){
 
 clearInterval(balloonTimer);
 
+balloonMoveTimers.forEach(function(t){
+clearInterval(t);
+});
+
+balloonMoveTimers=[];
+
 balloonScore=0;
+balloonRunning=true;
 
 document.getElementById("balloonScore").textContent="النقاط: 0";
+document.getElementById("balloonMessage").textContent="";
 document.getElementById("balloonArea").innerHTML="";
 
 balloonTimer=setInterval(createBalloon,850);
@@ -1487,10 +1549,43 @@ balloonTimer=setInterval(createBalloon,850);
 function leaveBalloon(){
 
 clearInterval(balloonTimer);
+
+balloonMoveTimers.forEach(function(t){
+clearInterval(t);
+});
+
+balloonMoveTimers=[];
+
+balloonRunning=false;
+
 show("home");
 }
 
+function balloonLose(){
+
+if(!balloonRunning)return;
+
+balloonRunning=false;
+
+clearInterval(balloonTimer);
+
+balloonMoveTimers.forEach(function(t){
+clearInterval(t);
+});
+
+balloonMoveTimers=[];
+
+document.getElementById("balloonMessage").textContent=
+"💥 خسرت! المنطاد لمس السقف!";
+
+document.querySelectorAll(".balloon").forEach(function(b){
+b.disabled=true;
+});
+}
+
 function createBalloon(){
+
+if(!balloonRunning)return;
 
 var area=document.getElementById("balloonArea");
 
@@ -1498,51 +1593,211 @@ var b=document.createElement("button");
 
 b.className="balloon";
 
-b.style.left=Math.random()*(area.clientWidth-65)+"px";
-b.style.top=area.clientHeight+"px";
+var maxX=Math.max(0,area.clientWidth-65);
+
+b.style.left=Math.random()*maxX+"px";
+
+b.style.top=(area.clientHeight-80)+"px";
 
 b.style.background=[
-"#e93350","#ff9d16","#7c3aed","#18b981","#2485e8"
+"#e93350",
+"#ff9d16",
+"#7c3aed",
+"#18b981",
+"#2485e8"
 ][Math.floor(Math.random()*5)];
 
+var y=area.clientHeight-80;
+
+var move;
+
 b.onclick=function(){
+
+if(!balloonRunning)return;
 
 balloonScore++;
 
 document.getElementById("balloonScore").textContent=
 "النقاط: "+balloonScore;
 
+clearInterval(move);
+
+var index=balloonMoveTimers.indexOf(move);
+
+if(index>=0){
+balloonMoveTimers.splice(index,1);
+}
+
 b.remove();
 };
 
 area.appendChild(b);
 
-var y=area.clientHeight;
+move=setInterval(function(){
 
-var move=setInterval(function(){
+if(!balloonRunning){
+
+clearInterval(move);
+return;
+}
 
 y-=3;
+
 b.style.top=y+"px";
 
-if(y<-100){
+if(y<=0){
 
 clearInterval(move);
 
 if(b.parentNode)b.remove();
+
+balloonLose();
+
 }
 
 },30);
+
+balloonMoveTimers.push(move);
 }
 
 
 /* ================= QUIZ ================= */
 
 var questions=[
-{q:"ما هو أكبر كوكب؟",a:["الأرض","المشتري","المريخ","عطارد"],c:1},
-{q:"كم عدد أيام الأسبوع؟",a:["5","6","7","8"],c:2},
-{q:"ما عاصمة العراق؟",a:["بغداد","البصرة","أربيل","الموصل"],c:0},
-{q:"5 + 5 = ؟",a:["8","9","10","11"],c:2},
-{q:"ملك الغابة؟",a:["الفيل","الأسد","الحصان","القرد"],c:1}
+["ما عاصمة العراق؟",["بغداد","البصرة","أربيل","الموصل"],0],
+["ما أكبر كوكب؟",["الأرض","المشتري","المريخ","عطارد"],1],
+["كم عدد أيام الأسبوع؟",["5","6","7","8"],2],
+["5 + 5 = ؟",["8","9","10","11"],2],
+["ما الحيوان المعروف بملك الغابة؟",["الفيل","الأسد","الحصان","القرد"],1],
+["ما عاصمة مصر؟",["القاهرة","دمشق","عمان","تونس"],0],
+["ما عاصمة السعودية؟",["جدة","الرياض","مكة","الدمام"],1],
+["ما عاصمة الأردن؟",["عمان","العقبة","إربد","الزرقاء"],0],
+["ما عاصمة سوريا؟",["حلب","حمص","دمشق","اللاذقية"],2],
+["ما عاصمة لبنان؟",["طرابلس","صيدا","بيروت","صور"],2],
+["ما عاصمة فرنسا؟",["مدريد","باريس","روما","برلين"],1],
+["ما عاصمة إيطاليا؟",["روما","ميلان","تورينو","نابولي"],0],
+["ما عاصمة ألمانيا؟",["برلين","هامبورغ","ميونخ","فرانكفورت"],0],
+["ما عاصمة إسبانيا؟",["برشلونة","إشبيلية","مدريد","فالنسيا"],2],
+["ما عاصمة بريطانيا؟",["مانشستر","لندن","ليفربول","بريستول"],1],
+["ما عاصمة اليابان؟",["أوساكا","كيوتو","طوكيو","هيروشيما"],2],
+["ما عاصمة الصين؟",["شنغهاي","بكين","شينزن","نانجينغ"],1],
+["ما عاصمة تركيا؟",["إسطنبول","أنقرة","إزمير","بورصة"],1],
+["ما عاصمة روسيا؟",["موسكو","سانت بطرسبرغ","قازان","سوتشي"],0],
+["ما عاصمة أستراليا؟",["سيدني","ملبورن","كانبيرا","بيرث"],2],
+["كم عدد شهور السنة؟",["10","11","12","13"],2],
+["كم عدد ساعات اليوم؟",["12","18","24","30"],2],
+["كم دقيقة في الساعة؟",["30","45","60","90"],2],
+["كم ثانية في الدقيقة؟",["30","45","60","100"],2],
+["كم ضلع للمثلث؟",["2","3","4","5"],1],
+["كم ضلع للمربع؟",["3","4","5","6"],1],
+["كم ضلع للخماسي؟",["4","5","6","7"],1],
+["كم ضلع للسداسي؟",["5","6","7","8"],1],
+["كم ضلع للثماني؟",["6","7","8","9"],2],
+["ما لون السماء غالباً في النهار؟",["أزرق","أخضر","بنفسجي","أسود"],0],
+["ما لون العشب غالباً؟",["أحمر","أخضر","أزرق","بنفسجي"],1],
+["ما الكوكب الذي نعيش عليه؟",["المريخ","الأرض","الزهرة","المشتري"],1],
+["ما أقرب كوكب للشمس؟",["الأرض","عطارد","المريخ","نبتون"],1],
+["ما الكوكب الأحمر؟",["الزهرة","المريخ","زحل","أورانوس"],1],
+["ما الكوكب المشهور بحلقاته؟",["زحل","عطارد","الأرض","المريخ"],0],
+["ما مصدر الضوء والحرارة الرئيسي للأرض؟",["القمر","الشمس","المريخ","النجوم"],1],
+["ما أكبر محيط؟",["الأطلسي","الهندي","الهادئ","المتجمد"],2],
+["ما أكبر قارة؟",["أفريقيا","آسيا","أوروبا","أستراليا"],1],
+["ما أصغر قارة؟",["آسيا","أفريقيا","أستراليا","أوروبا"],2],
+["ما أكبر حيوان معروف؟",["الفيل","الحوت الأزرق","الزرافة","القرش"],1],
+["ما أسرع حيوان بري؟",["الأسد","الفهد","الحصان","الذئب"],1],
+["ما الحيوان الذي يعطي الحليب؟",["البقرة","النسر","الأسد","الثعبان"],0],
+["ما الحيوان الذي له خرطوم؟",["الفيل","الزرافة","النمر","الحصان"],0],
+["ما الحيوان الذي يعيش غالباً في الماء؟",["السمك","الأسد","الجمل","الدجاج"],0],
+["ما الطائر الذي لا يطير؟",["الصقر","النعامة","النسر","الحمامة"],1],
+["كم عدد أرجل العنكبوت؟",["6","8","10","12"],1],
+["كم عدد أرجل الحشرة؟",["4","6","8","10"],1],
+["ماذا تنتج النحلة؟",["الحليب","العسل","الخبز","الزيت"],1],
+["ماذا يأكل الباندا غالباً؟",["الخيزران","اللحم","السمك","العشب فقط"],0],
+["ما الغاز الذي يحتاجه الإنسان للتنفس؟",["الأكسجين","الهيدروجين","الهيليوم","النيون"],0],
+["ما العضو المسؤول عن ضخ الدم؟",["الرئة","القلب","الكبد","المعدة"],1],
+["ما العضو المستخدم للتنفس؟",["القلب","الرئة","المعدة","العين"],1],
+["ما العضو المستخدم للرؤية؟",["الأذن","العين","الأنف","اليد"],1],
+["ما العضو المستخدم للسمع؟",["العين","الأذن","الفم","القدم"],1],
+["كم عدد أصابع اليد الواحدة؟",["4","5","6","7"],1],
+["كم عدد أصابع القدم الواحدة غالباً؟",["3","4","5","6"],2],
+["ما الماء في حالته الصلبة؟",["بخار","ثلج","ضباب","مطر"],1],
+["ما الماء في حالته الغازية؟",["ثلج","بخار","صخر","رمل"],1],
+["عند تجمد الماء يصبح؟",["غازاً","سائلاً","صلباً","بلازما"],2],
+["عند غليان الماء يتحول إلى؟",["بخار","ثلج","رمل","خشب"],0],
+["ما الأداة التي نقيس بها الحرارة؟",["المسطرة","الترمومتر","الميزان","البوصلة"],1],
+["ما الأداة التي تقيس الوزن؟",["الميزان","البوصلة","الساعة","المسطرة"],0],
+["ما الأداة التي تقيس الطول؟",["المسطرة","الساعة","الميزان","البوصلة"],0],
+["ما الشكل الذي له أربعة أضلاع متساوية؟",["الدائرة","المربع","المثلث","البيضاوي"],1],
+["ما الشكل الذي ليس له أضلاع؟",["المربع","المثلث","الدائرة","المستطيل"],2],
+["كم يساوي 10 + 20؟",["20","25","30","40"],2],
+["كم يساوي 50 - 20؟",["20","30","40","50"],1],
+["كم يساوي 6 × 6؟",["30","36","42","48"],1],
+["كم يساوي 100 ÷ 10؟",["5","10","20","50"],1],
+["كم يساوي 7 × 8؟",["48","54","56","64"],2],
+["كم يساوي 9 × 9؟",["72","81","90","99"],1],
+["كم يساوي 12 + 8؟",["18","20","22","24"],1],
+["كم يساوي 100 - 25؟",["50","65","75","85"],2],
+["كم يساوي 5 × 10؟",["15","25","50","55"],2],
+["كم يساوي 81 ÷ 9؟",["7","8","9","10"],2],
+["ما الرقم الذي يأتي بعد 99؟",["98","100","101","90"],1],
+["ما الرقم الذي يأتي قبل 50؟",["48","49","51","52"],1],
+["ما نصف 100؟",["25","40","50","60"],2],
+["ما ضعف 20؟",["30","40","50","60"],1],
+["ما اليوم الذي يأتي بعد الجمعة؟",["الخميس","السبت","الأحد","الاثنين"],1],
+["ما اليوم الذي يأتي قبل الاثنين؟",["الجمعة","السبت","الأحد","الثلاثاء"],2],
+["ما أول شهر في السنة؟",["يناير","مارس","يونيو","ديسمبر"],0],
+["ما آخر شهر في السنة؟",["أكتوبر","نوفمبر","ديسمبر","يناير"],2],
+["كم عدد ألوان قوس قزح الشائعة؟",["5","6","7","8"],2],
+["ما اللون الناتج من خلط الأزرق والأصفر؟",["أخضر","بنفسجي","برتقالي","أحمر"],0],
+["ما اللون الناتج من خلط الأحمر والأصفر؟",["أخضر","برتقالي","أزرق","بنفسجي"],1],
+["ما اللون الناتج من خلط الأحمر والأزرق؟",["بنفسجي","أخضر","أصفر","برتقالي"],0],
+["ما عكس كلمة كبير؟",["طويل","صغير","سريع","قديم"],1],
+["ما عكس كلمة سريع؟",["بطيء","قوي","كبير","قصير"],0],
+["ما عكس كلمة فوق؟",["يمين","تحت","خلف","أمام"],1],
+["ما عكس كلمة يمين؟",["فوق","يسار","تحت","أمام"],1],
+["ما عكس كلمة ليل؟",["مساء","نهار","صباح","ظلام"],1],
+["ما عكس كلمة ساخن؟",["بارد","قوي","طويل","جاف"],0],
+["ما اللغة التي يتحدث بها أغلب سكان البرازيل؟",["الإسبانية","البرتغالية","الإنجليزية","الفرنسية"],1],
+["ما اللغة الرسمية في فرنسا؟",["الفرنسية","الإسبانية","الألمانية","الإيطالية"],0],
+["ما اللغة الرسمية في اليابان؟",["الصينية","اليابانية","الكورية","الروسية"],1],
+["ما العملة المشهورة في الولايات المتحدة؟",["اليورو","الدولار","الجنيه","الين"],1],
+["ما العملة المشهورة في اليابان؟",["الدولار","اليورو","الين","الروبل"],2],
+["ما العملة المستخدمة في بريطانيا؟",["اليورو","الجنيه الإسترليني","الدولار","الين"],1],
+["ما عاصمة الإمارات؟",["دبي","أبوظبي","الشارقة","العين"],1],
+["ما عاصمة الكويت؟",["الكويت","حولي","الفروانية","الجهراء"],0],
+["ما عاصمة قطر؟",["الدوحة","الريان","الخور","الوكرة"],0],
+["ما عاصمة البحرين؟",["المنامة","الرفاع","المحرق","حمد"],0],
+["ما عاصمة عُمان؟",["صلالة","مسقط","نزوى","صحار"],1],
+["ما عاصمة المغرب؟",["الدار البيضاء","الرباط","مراكش","طنجة"],1],
+["ما عاصمة الجزائر؟",["وهران","الجزائر","قسنطينة","عنابة"],1],
+["ما عاصمة تونس؟",["صفاقس","سوسة","تونس","بنزرت"],2],
+["ما عاصمة ليبيا؟",["طرابلس","بنغازي","مصراتة","سبها"],0],
+["ما عاصمة السودان؟",["الخرطوم","بورتسودان","كسلا","الأبيض"],0],
+["ما عاصمة فلسطين؟",["القدس","غزة","رام الله","الخليل"],0],
+["ما البحر الذي يفصل بين أوروبا وأفريقيا؟",["البحر المتوسط","البحر الأحمر","بحر العرب","بحر قزوين"],0],
+["ما النهر المشهور في مصر؟",["دجلة","الفرات","النيل","الأمازون"],2],
+["ما النهران المشهوران في العراق؟",["النيل والفرات","دجلة والفرات","الأمازون والنيل","دجلة والنيل"],1],
+["ما أعلى جبل في العالم؟",["إيفرست","كيليمنجارو","الألب","فوجي"],0],
+["ما الدولة المشهورة بالأهرامات؟",["مصر","العراق","فرنسا","اليابان"],0],
+["أين يوجد برج إيفل؟",["لندن","باريس","روما","مدريد"],1],
+["أين يوجد تمثال الحرية؟",["نيويورك","باريس","لندن","طوكيو"],0],
+["أين يوجد سور الصين العظيم؟",["الصين","اليابان","الهند","روسيا"],0],
+["ما اللعبة التي تحتوي على Creeper؟",["Minecraft","FIFA","Tetris","Roblox"],0],
+["ما اسم اللعبة التي صنعتها Mojang؟",["Minecraft","Fortnite","PUBG","Among Us"],0],
+["ما اسم الشخصية الرئيسية الافتراضية في Minecraft؟",["Steve","Mario","Sonic","Link"],0],
+["ما الأداة التي تستخدم لكسر الحجر في Minecraft بسرعة؟",["المعول","المجرفة","الفأس","المقص"],0],
+["ما الوحش الذي يحاول الاقتراب ثم ينفجر في Minecraft؟",["Zombie","Creeper","Skeleton","Spider"],1],
+["ما العالم الذي يوجد فيه Ender Dragon؟",["Nether","End","Overworld","Village"],1],
+["ما المادة التي يصنع منها الدرع الأقوى من المواد المذكورة؟",["حديد","ذهب","ألماس","نيذرايت"],3],
+["ما اللعبة التي تشتهر بشخصية Mario؟",["Nintendo","Minecraft","Roblox","Tetris"],0],
+["ما اللعبة التي تعتمد على بناء المكعبات؟",["Minecraft","FIFA","Chess","Pac-Man"],0],
+["كم لاعباً في فريق كرة القدم داخل الملعب؟",["9","10","11","12"],2],
+["ما الرياضة التي تستخدم فيها الكرة والسلة؟",["كرة القدم","كرة السلة","التنس","السباحة"],1],
+["ما الرياضة التي تستخدم فيها المضرب والكرة الصغيرة؟",["التنس","كرة القدم","الملاكمة","السباحة"],0],
+["ما لون بطاقة الطرد في كرة القدم؟",["أخضر","أصفر","أحمر","أزرق"],2],
+["كم شوطاً في مباراة كرة القدم؟",["1","2","3","4"],1],
+["ما الرياضة التي تتم في حوض الماء؟",["السباحة","كرة القدم","الجري","الملاكمة"],0],
+["ما الحيوان المعروف بسرعته الكبيرة؟",["الفهد","السلحفاة","البطريق","الباندا"],0]
 ];
 
 var qIndex=0;
@@ -1552,7 +1807,21 @@ function startQuiz(){
 
 qIndex=0;
 qScore=0;
+
+shuffleQuestions();
 showQuestion();
+}
+
+function shuffleQuestions(){
+
+for(var i=questions.length-1;i>0;i--){
+
+var r=Math.floor(Math.random()*(i+1));
+
+var temp=questions[i];
+questions[i]=questions[r];
+questions[r]=temp;
+}
 }
 
 function showQuestion(){
@@ -1560,39 +1829,54 @@ function showQuestion(){
 var q=questions[qIndex];
 
 document.getElementById("quizScore").textContent=
-"النقاط: "+qScore;
+"السؤال "+(qIndex+1)+" / "+questions.length+
+" | النقاط: "+qScore;
 
-document.getElementById("question").textContent=q.q;
+document.getElementById("question").textContent=q[0];
 
 var answers=document.getElementById("answers");
+
 answers.innerHTML="";
 
-q.a.forEach(function(answer,index){
+q[1].forEach(function(answer,index){
 
 var b=document.createElement("button");
+
 b.textContent=answer;
 
 b.onclick=function(){
 
-if(index===q.c)qScore++;
+if(index===q[2]){
+qScore++;
+b.style.background="#159447";
+}else{
+b.style.background="#d92332";
+}
+
+Array.from(answers.children).forEach(function(x){
+x.disabled=true;
+});
+
+setTimeout(function(){
 
 qIndex++;
 
 if(qIndex>=questions.length){
 
 document.getElementById("question").textContent=
-"🎉 انتهت اللعبة!";
+"🎉🎉 انتهت الأسئلة! 🎉🎉";
 
 document.getElementById("quizScore").textContent=
 "النتيجة: "+qScore+" / "+questions.length;
 
 answers.innerHTML=
-'<button onclick="startQuiz()">🔄 إعادة</button>';
+'<button onclick="startQuiz()">🔄 إعادة الأسئلة</button>';
 
 }else{
-
 showQuestion();
 }
+
+},500);
 };
 
 answers.appendChild(b);
@@ -1610,7 +1894,9 @@ var emojiPairs=[
 ["⭐","🌟"],
 ["🍕","🍔"],
 ["⚽","🏀"],
-["🐸","🐵"]
+["🐸","🐵"],
+["😀","😄"],
+["❤️","💙"]
 ];
 
 var emojiScore=0;
@@ -1619,7 +1905,8 @@ function startEmoji(){
 
 emojiScore=0;
 
-document.getElementById("emojiScore").textContent="النقاط: 0";
+document.getElementById("emojiScore").textContent=
+"النقاط: 0";
 
 newEmoji();
 }
@@ -1627,20 +1914,28 @@ newEmoji();
 function newEmoji(){
 
 var grid=document.getElementById("emojiGrid");
+
 grid.innerHTML="";
 
-var pair=emojiPairs[Math.floor(Math.random()*emojiPairs.length)];
+var pair=
+emojiPairs[
+Math.floor(Math.random()*emojiPairs.length)
+];
 
 var normal=pair[0];
 var different=pair[1];
 
-var differentIndex=Math.floor(Math.random()*25);
+var differentIndex=
+Math.floor(Math.random()*25);
 
 for(let i=0;i<25;i++){
 
 var b=document.createElement("button");
 
-b.textContent=i===differentIndex?different:normal;
+b.textContent=
+i===differentIndex?
+different:
+normal;
 
 b.onclick=function(){
 
@@ -1686,7 +1981,9 @@ show("rps");
 document.getElementById("rpsResult").textContent="";
 
 document.getElementById("rpsStatus").textContent=
-mode==="bot"?"اختر ضد البوت":"اللاعب 1 يختار";
+mode==="bot"?
+"اختر ضد البوت":
+"اللاعب 1 يختار";
 }
 
 function playRPS(choice){
@@ -1714,7 +2011,8 @@ return;
 
 var options=["rock","paper","scissors"];
 
-var bot=options[Math.floor(Math.random()*3)];
+var bot=
+options[Math.floor(Math.random()*3)];
 
 showRPS(choice,bot);
 }
@@ -1744,94 +2042,12 @@ document.getElementById("rpsResult").innerHTML=
 "اللاعب 1: "+rpsName[a]+
 "<br>"+
 "اللاعب 2: "+rpsName[b]+
-"<br><br>"+result;
+"<br><br>"+
+result;
 }
 
 
-/* ================= BOMB ================= */
-
-var bombTurn=1;
-var bomb1=0;
-var bomb2=0;
-var used1=[];
-var used2=[];
-var bombEnd=false;
-
-function startBomb(){
-
-bombTurn=1;
-bombEnd=false;
-
-used1=[];
-used2=[];
-
-bomb1=Math.floor(Math.random()*6);
-bomb2=Math.floor(Math.random()*6);
-
-document.getElementById("bombStatus").textContent=
-"دور اللاعب 1";
-
-drawBomb(1);
-drawBomb(2);
-}
-
-function drawBomb(player){
-
-var grid=document.getElementById(player===1?"bomb1":"bomb2");
-
-grid.innerHTML="";
-
-for(let i=0;i<6;i++){
-
-var b=document.createElement("button");
-
-b.textContent="📦";
-
-var used=player===1?used1.includes(i):used2.includes(i);
-
-b.disabled=used;
-
-b.onclick=function(){
-chooseBomb(player,i);
-};
-
-grid.appendChild(b);
-}
-}
-
-function chooseBomb(player,index){
-
-if(bombEnd)return;
-if(player!==bombTurn)return;
-
-if(player===1)used1.push(index);
-else used2.push(index);
-
-drawBomb(1);
-drawBomb(2);
-
-var bomb=player===1?bomb1:bomb2;
-
-if(index===bomb){
-
-bombEnd=true;
-
-document.getElementById("bombStatus").textContent=
-"💥 اللاعب "+player+" وجد القنبلة!";
-
-return;
-}
-
-bombTurn=player===1?2:1;
-
-document.getElementById("bombStatus").textContent=
-"دور اللاعب "+bombTurn;
-}
-
-
-/* =====================================================
-   LIQUID / WATER SORT
-===================================================== */
+/* ================= LIQUID ================= */
 
 var liquidColors=[
 "redL",
@@ -1864,7 +2080,6 @@ colors.push(liquidColors[i]);
 }
 }
 
-/* خلط الألوان */
 for(var i=colors.length-1;i>0;i--){
 
 var r=Math.floor(Math.random()*(i+1));
@@ -1887,6 +2102,7 @@ drawLiquid();
 }
 
 function leaveLiquid(){
+
 selectedTube=-1;
 show("home");
 }
@@ -1942,6 +2158,7 @@ return;
 if(selectedTube===index){
 
 selectedTube=-1;
+
 drawLiquid();
 
 return;
@@ -1956,21 +2173,21 @@ var source=liquidData[from];
 var target=liquidData[to];
 
 if(source.length===0){
+
 selectedTube=-1;
 drawLiquid();
 return;
 }
 
 if(target.length>=4){
+
 selectedTube=-1;
 drawLiquid();
 return;
 }
 
-/* اللون الموجود بالأعلى */
 var color=source[source.length-1];
 
-/* إذا الأنبوب الثاني غير فارغ لازم يكون نفس اللون */
 if(target.length>0){
 
 var targetColor=target[target.length-1];
@@ -1983,7 +2200,6 @@ return;
 }
 }
 
-/* عدد القطع المتتالية من نفس اللون */
 var count=0;
 
 for(var i=source.length-1;i>=0;i--){
@@ -1995,20 +2211,17 @@ break;
 }
 }
 
-/* المساحة المتوفرة */
 var space=4-target.length;
 
 var amount=Math.min(count,space);
 
 for(var i=0;i<amount;i++){
-
 target.push(source.pop());
 }
 
 selectedTube=-1;
 
 drawLiquid();
-
 checkLiquidWin();
 }
 
@@ -2023,6 +2236,7 @@ var tube=liquidData[i];
 if(tube.length===0)continue;
 
 if(tube.length!==4){
+
 win=false;
 break;
 }
@@ -2030,17 +2244,21 @@ break;
 for(var j=1;j<tube.length;j++){
 
 if(tube[j]!==tube[0]){
+
 win=false;
 break;
 }
 }
+
+if(!win)break;
 }
 
 if(win){
 
+liquidLocked=true;
+
 document.getElementById("liquidWin").textContent=
 "🎉🎉 أحسنت! رتبت كل السوائل! 🎉🎉";
-
 }
 }
 
@@ -2052,4 +2270,4 @@ show("home");
 </script>
 
 </body>
-  </html>
+                                      </html>
